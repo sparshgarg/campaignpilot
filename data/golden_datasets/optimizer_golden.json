@@ -1,0 +1,445 @@
+[
+  {
+    "id": "opt_001",
+    "input": {
+      "campaign_id": "camp_023",
+      "campaign_name": "Q4 2024 Local Retailer Acquisition — Facebook",
+      "current_metrics": {
+        "channel": "facebook",
+        "spend_usd": 12000,
+        "impressions": 890000,
+        "clicks": 8900,
+        "conversions": 71,
+        "ctr": 0.01,
+        "cost_per_new_advertiser_usd": 169,
+        "roas": 1.8
+      },
+      "benchmark_metrics": {
+        "meta_smb_median_roas": 2.19,
+        "target_cost_per_new_advertiser_usd": 150,
+        "meta_median_ctr": 0.0219
+      },
+      "days_remaining": 18,
+      "remaining_budget_usd": 8000,
+      "campaign_type": "smb_acquisition"
+    },
+    "expected_output": {
+      "recommendation_type": "creative_refresh",
+      "primary_recommendation": "CTR is 55% below benchmark (1.0% vs. 2.19%). This is the primary bottleneck. While CPNA is slightly above target ($169 vs. $150), the low CTR is depressing volume and efficiency. Refresh creative immediately.",
+      "specific_actions": [
+        "Pause underperforming creative variants (anything <0.8% CTR)",
+        "Test 3-4 new creative variations within 48 hours: shift messaging from 'setup' to 'local customers', add specific use case (foot traffic, local reach), include customer testimonial or 2-3x ROI stat",
+        "Keep budget at current $12k but reallocate: 60% to new creative, 40% to retargeting website visitors (they've seen offer, lower friction)",
+        "Set creative performance threshold: require >1.8% CTR within 7 days or deprioritize"
+      ],
+      "expected_impact": "If CTR improves to benchmark (2.19%), same $8k remaining spend delivers ~120 conversions vs. current 48-50 pace. CPNA would improve to $133-140 (below target). Estimated 2-week impact: 25-35 additional new advertiser accounts.",
+      "confidence": "high",
+      "rationale": "CTR gap is diagnostic. Healthy Facebook SMB acquisition campaigns run 1.8-2.5% CTR. At 1.0%, the audience either doesn't recognize offer relevance or creative isn't compelling. ROAS gap (1.8 vs. 2.19) is downstream of low CTR (fewer conversions with higher cost). Creative refresh is lower-risk than audience pivot and can be executed immediately."
+    },
+    "quality_dimensions": {
+      "actionability": 5,
+      "specificity": 5,
+      "benchmark_grounded": 5,
+      "urgency_appropriate": 5
+    },
+    "annotator_notes": "Strong diagnostic analysis. Correctly identifies CTR as root cause vs. treating ROAS/CPNA as primary issue. Specific creative recommendations (messaging shift, testimonial angle, stat inclusion). Actionable threshold (>1.8% CTR in 7d). Timeline-aware recommendation (18 days remaining)."
+  },
+  {
+    "id": "opt_002",
+    "input": {
+      "campaign_id": "camp_056",
+      "campaign_name": "E-commerce SMB Acquisition — Multi-channel",
+      "current_metrics": {
+        "channel": "multi_channel",
+        "spend_usd": 28000,
+        "impressions": 1200000,
+        "clicks": 18400,
+        "conversions": 140,
+        "ctr": 0.0153,
+        "cost_per_new_advertiser_usd": 200,
+        "roas": 1.65
+      },
+      "benchmark_metrics": {
+        "meta_smb_median_roas": 2.19,
+        "target_cost_per_new_advertiser_usd": 160,
+        "meta_median_ctr": 0.0219
+      },
+      "days_remaining": 45,
+      "remaining_budget_usd": 22000,
+      "campaign_type": "smb_acquisition"
+    },
+    "expected_output": {
+      "recommendation_type": "channel_shift_to_advantage_plus",
+      "primary_recommendation": "CPNA ($200) is 25% above target and ROAS (1.65) is 25% below benchmark. Rather than optimize manual campaigns, shift to Advantage+ on remaining budget. Advantage+ delivers 32% lower CPA and handles audience/bid optimization automatically.",
+      "specific_actions": [
+        "Allocate $15k (68% of remaining budget) to Advantage+ Conversions campaign with e-commerce SMB audience lookalike",
+        "Keep $7k (32%) in manual campaigns but only for testing new creative variants",
+        "Set Advantage+ daily budget at $1.5k (allows 10-day learning phase for optimization)",
+        "Use existing campaign assets (best-performing creatives from manual) as seed for Advantage+",
+        "Monitor Advantage+ ROAS daily; expect ramp to >2.0x by day 10-14 as algorithm learns"
+      ],
+      "expected_impact": "Advantage+ typically achieves 2.1-2.5x ROAS vs. manual 1.6-1.9x ROAS for e-commerce segment. On $15k spend, could deliver 75-90 new advertisers at ~$167-200 CPNA vs. manual projected 70 at $200 CPNA. Combined with optimized manual ($7k), total 145-155 conversions vs. manual-only 105. Net gain: 40-50 additional new advertiser accounts.",
+      "confidence": "high",
+      "rationale": "E-commerce segment is ideal for Advantage+: product-focused businesses respond well to AI-optimized creative and audience. 32% CPA improvement benchmark is proven across vertical. With 45 days remaining, Advantage+ has sufficient runway to optimize. Shifting burden of optimization to AI is appropriate given manual campaign underperformance."
+    },
+    "quality_dimensions": {
+      "actionability": 5,
+      "specificity": 4,
+      "benchmark_grounded": 5,
+      "urgency_appropriate": 4
+    },
+    "annotator_notes": "Strategic recommendation shifting from manual optimization to automation (Advantage+). Well-grounded in 32% CPA improvement benchmark. Clear budget split (68% Advantage+, 32% manual test). Daily budget recommendation ($1.5k) shows deep platform knowledge. Good timeline awareness (45 days for learning phase)."
+  },
+  {
+    "id": "opt_003",
+    "input": {
+      "campaign_id": "camp_078",
+      "campaign_name": "Q4 2024 Multi-Channel Test — Instagram vs Facebook",
+      "current_metrics": {
+        "channel": "instagram",
+        "spend_usd": 8500,
+        "impressions": 450000,
+        "clicks": 6300,
+        "conversions": 62,
+        "ctr": 0.014,
+        "cost_per_new_advertiser_usd": 137,
+        "roas": 2.32
+      },
+      "benchmark_metrics": {
+        "meta_smb_median_roas": 2.19,
+        "target_cost_per_new_advertiser_usd": 150,
+        "facebook_benchmark_cpna": 160,
+        "instagram_benchmark_cpna": 145
+      },
+      "days_remaining": 25,
+      "remaining_budget_usd": 9500,
+      "campaign_type": "smb_acquisition"
+    },
+    "expected_output": {
+      "recommendation_type": "budget_reallocation_to_outperformer",
+      "primary_recommendation": "Instagram is significantly outperforming Facebook (CPNA $137 vs. $160 Facebook benchmark, ROAS 2.32 vs. 2.19 median). Shift budget allocation from Facebook to Instagram to capitalize on better channel efficiency.",
+      "specific_actions": [
+        "Reduce Facebook spend by $3.5k (from current implied $12.5k to $9k remaining)",
+        "Increase Instagram spend by $3.5k (from $8.5k to $12k remaining)",
+        "Maintain same creative but test Instagram-specific messaging (more visual, lifestyle angle vs. technical setup)",
+        "Monitor daily: if Instagram CTR drops >15% due to frequency fatigue, revert split to 50/50"
+      ],
+      "expected_impact": "Instagram at current efficiency ($137 CPNA) on $12k budget yields ~87 new advertisers. Facebook at $160 CPNA on $9k yields ~56. Combined: 143 new advertisers vs. current trajectory of 120. Gain: 23 additional accounts from budget reallocation alone. Estimated ROAS improvement: 2.26 portfolio ROAS (vs. current 2.19).",
+      "confidence": "high",
+      "rationale": "This is a clear case of channel performance divergence. Instagram's better CPNA ($137) and above-benchmark ROAS (2.32) indicate stronger product-market fit with Instagram's visual format and younger SMB audience. Facebook's implied underperformance ($160+ CPNA) suggests creative or targeting misalignment. Reallocation is low-risk portfolio optimization with 25 days to achieve results."
+    },
+    "quality_dimensions": {
+      "actionability": 5,
+      "specificity": 5,
+      "benchmark_grounded": 5,
+      "urgency_appropriate": 4
+    },
+    "annotator_notes": "Excellent A/B channel analysis. Correctly identifies Instagram's 8.7% CPNA advantage. Recommendation to shift budget while monitoring frequency fatigue is sophisticated. Specific reallocation amounts ($3.5k) show confidence. Good portfolio-level thinking (combine ROAS calculation)."
+  },
+  {
+    "id": "opt_004",
+    "input": {
+      "campaign_id": "camp_091",
+      "campaign_name": "Q3 2024 Re-engagement Campaign — Email Sequence",
+      "current_metrics": {
+        "channel": "email",
+        "spend_usd": 6200,
+        "conversions": 89,
+        "open_rate": 0.22,
+        "click_rate": 0.042,
+        "cost_per_reactivated_usd": 70,
+        "roas": 3.1
+      },
+      "benchmark_metrics": {
+        "email_reengagement_open_rate": 0.18,
+        "email_reengagement_click_rate": 0.035,
+        "target_cost_per_reactivated": 111
+      },
+      "days_remaining": 12,
+      "remaining_budget_usd": 3800,
+      "campaign_type": "reengagement"
+    },
+    "expected_output": {
+      "recommendation_type": "offer_optimization",
+      "primary_recommendation": "Email sequence shows strong open (22% vs. 18% benchmark) and click (4.2% vs. 3.5% benchmark) rates, but conversion is stalling. ROAS (3.1x) is strong but CPNA is below target, indicating offer conversion issue not awareness issue.",
+      "specific_actions": [
+        "A/B test offer in remaining budget: vary free trial credit amount ($25 vs. $50) or trial duration (7 days vs. 14 days)",
+        "Test landing page variant: current path likely has friction (form fields, payment info). Create 'no-credit-card' variant with post-trial billing",
+        "Segment by historical spend tier: high-value lapsed ($10k+ lifetime) should get premium offer (dedicated onboarding call + free Advantage+ audit), medium-value should get standard offer",
+        "Extend email sequence by 1-2 messages if budget allows (current may be 3-message sequence, test 4-5 message with increasing offer sweetness)"
+      ],
+      "expected_impact": "Landing page friction removal alone could improve conversion rate by 3-5%. Segmented offer strategy could improve high-value segment conversion by 10-15%. With remaining $3.8k, incremental conversions: 10-15 additional reactivations at improved efficiency.",
+      "confidence": "medium",
+      "rationale": "Strong email engagement (open/click above benchmark) but conversion underperformance (low CPNA reactivations) is classic sign of offer-landing page friction. A/B testing offer within remaining budget is smart use of time. Segmentation by value tier is more sophisticated than one-size-fits-all approach and aligns incentives (high-value gets white-glove, medium gets standard)."
+    },
+    "quality_dimensions": {
+      "actionability": 4,
+      "specificity": 4,
+      "benchmark_grounded": 4,
+      "urgency_appropriate": 4
+    },
+    "annotator_notes": "Good diagnosis of engagement-vs-conversion mismatch. Specific A/B test recommendations (trial duration, credit amount). Landing page friction hypothesis is grounded in pattern. Segmentation by historical value tier shows good SMB knowledge. Could benefit from more specificity on expected conversion lift."
+  },
+  {
+    "id": "opt_005",
+    "input": {
+      "campaign_id": "camp_112",
+      "campaign_name": "Advantage+ E-commerce Upsell — Scaling",
+      "current_metrics": {
+        "channel": "facebook",
+        "spend_usd": 18000,
+        "conversions": 156,
+        "cost_per_converted_advertiser_usd": 115,
+        "roas": 3.1
+      },
+      "benchmark_metrics": {
+        "meta_smb_median_roas": 2.19,
+        "advantage_plus_target_roas": 2.5,
+        "portfolio_cpa_threshold": 140
+      },
+      "days_remaining": 52,
+      "remaining_budget_usd": 32000,
+      "campaign_type": "smb_upsell"
+    },
+    "expected_output": {
+      "recommendation_type": "scale_budget",
+      "primary_recommendation": "Campaign is significantly outperforming targets (ROAS 3.1x vs. 2.5x target, CPNA $115 vs. $140 threshold). This is a proven winner. Increase daily budget by 50% immediately to capture demand.",
+      "specific_actions": [
+        "Increase daily spend by $500/day (from ~$1.4k to ~$2.1k daily). Roll out over 3 days to monitor performance stability",
+        "Monitor quality score and CTR daily: ensure scaling doesn't trigger quality degradation or audience fatigue",
+        "Retest creative at higher frequency: high performers may degrade at higher spend; have 2-3 new variants ready",
+        "Set scaling guardrails: if ROAS drops <2.5x, revert to previous daily budget; if CTR drops >20%, pause and refresh creative"
+      ],
+      "expected_impact": "At current efficiency, $32k remaining budget yields 278 additional conversions at ~$115 CPNA. Scaling delivers higher confidence in results and captures market demand before quarter-end. Projected incremental revenue: $2.1M+ (assuming $50k+ LTV per converted advertiser).",
+      "confidence": "high",
+      "rationale": "Strong performance across all metrics (ROAS 41% above target, CPNA 18% below threshold) with 52 days runway justifies aggressive scaling. Advantage+ campaigns are designed to scale and typically maintain efficiency even at 50% budget increase. Guardrails prevent downside risk. Upsell campaigns typically show strong scaling ability due to audience knowledge."
+    },
+    "quality_dimensions": {
+      "actionability": 5,
+      "specificity": 5,
+      "benchmark_grounded": 5,
+      "urgency_appropriate": 5
+    },
+    "annotator_notes": "Excellent scaling recommendation grounded in strong performance. Specific daily budget increase ($500/day) shows platform expertise. Good guardrails (ROAS <2.5, CTR drop >20%) prevent blind scaling. LTV mention ($50k+) shows business context. High urgency appropriate for outperformer with runway."
+  },
+  {
+    "id": "opt_006",
+    "input": {
+      "campaign_id": "camp_133",
+      "campaign_name": "WhatsApp API Campaign — Service Business Lead Gen",
+      "current_metrics": {
+        "channel": "whatsapp",
+        "spend_usd": 9500,
+        "conversions": 67,
+        "cost_per_conversation_usd": 142,
+        "response_rate": 0.58,
+        "conversion_to_job": 0.22,
+        "roas": 2.1
+      },
+      "benchmark_metrics": {
+        "whatsapp_cpc_target": 95,
+        "whatsapp_response_rate_benchmark": 0.65,
+        "service_business_roas_target": 2.5
+      },
+      "days_remaining": 30,
+      "remaining_budget_usd": 8500,
+      "campaign_type": "whatsapp_adoption"
+    },
+    "expected_output": {
+      "recommendation_type": "audience_refinement",
+      "primary_recommendation": "Cost per conversation ($142) is 50% above target ($95). Response rate (58%) is healthy but below benchmark (65%). Problem is likely audience reach breadth. Narrow to service businesses most likely to convert (plumbing, HVAC, home services only).",
+      "specific_actions": [
+        "Exclude general home services and focus on high-intent verticals: plumbing, HVAC, electrical, roofing. These verticals show 25-35% job booking rate vs. 22% portfolio",
+        "Reduce geographic reach from 'all metro' to top 10 DMAs with highest service density and highest historical ROAS",
+        "Test messaging: current may be too generic. Create variant emphasizing emergency response (24/7 booking) vs. preventive",
+        "Implement WhatsApp-native creative: use WhatsApp status ads vs. feed if available, lean into messaging-first positioning"
+      ],
+      "expected_impact": "Audience narrowing typically improves CPC by 15-25%. Vertical-specific focus could reduce CPNA to $105-115 range. On remaining $8.5k, improved efficiency would yield 75-80 conversations vs. current 60 pace. Combined with better conversion rate (targeting high-intent), job booking lift expected 5-8 additional jobs.",
+      "confidence": "medium",
+      "rationale": "Cost overrun ($142 vs. $95 target) suggests audience too broad for WhatsApp's direct messaging format. WhatsApp works best for high-intent audiences already primed to book. Service businesses in high-density areas (metro focus) are better targets. Vertical specificity also improves message-market fit (emergency plumbing vs. routine service discovery messaging differs)."
+    },
+    "quality_dimensions": {
+      "actionability": 4,
+      "specificity": 5,
+      "benchmark_grounded": 4,
+      "urgency_appropriate": 4
+    },
+    "annotator_notes": "Strong audience refinement approach. Specific vertical focus (plumbing, HVAC, electrical) with data-backed conversion rates. DMA narrowing is sophisticated geographic tactic. WhatsApp-native creative suggestion shows channel knowledge. Cost overrun diagnosis (breadth vs. quality) is insightful."
+  },
+  {
+    "id": "opt_007",
+    "input": {
+      "campaign_id": "camp_154",
+      "campaign_name": "Q4 Holiday Email Nurture — Retail Reactivation",
+      "current_metrics": {
+        "channel": "email",
+        "send_count": 45000,
+        "open_rate": 0.18,
+        "click_rate": 0.028,
+        "conversion_rate": 0.009,
+        "spend_usd": 4200,
+        "conversions": 405
+      },
+      "benchmark_metrics": {
+        "email_holiday_open_rate": 0.22,
+        "email_holiday_click_rate": 0.048,
+        "email_holiday_conversion_rate": 0.015
+      },
+      "days_remaining": 8,
+      "remaining_budget_usd": 1800,
+      "campaign_type": "reengagement"
+    },
+    "expected_output": {
+      "recommendation_type": "creative_fatigue_pause_test",
+      "primary_recommendation": "All metrics trending below holiday benchmarks (open -18%, click -42%, conversion -40%). Classic sign of creative fatigue in email sequence. With 8 days left, quick refresh is insufficient. Strategic decision: pause primary nurture and test holiday-specific creative in small segment.",
+      "specific_actions": [
+        "Pause main email sequence to remaining list (save $1.2k budget)",
+        "Test single holiday-themed email on cold segment ($400 spend, 10k users): emphasize holiday-specific angle (year-end budget, Black Friday deals, gift cards for staff)",
+        "Preserve remaining $400 for post-holiday direct mail or paid social to re-warm list in January",
+        "Conduct post-campaign analysis: identify which email variant (position 1-5 in sequence) had highest drop-off"
+      ],
+      "expected_impact": "Pausing bleed is conservative but prudent with 8 days left. Small creative test gives market signal for Q1 planning. Expected incremental conversions from test: 15-25. This is low absolute impact but prevents further spend waste. Post-campaign learning prevents repeat fatigue in future campaigns.",
+      "confidence": "high",
+      "rationale": "Decisional framework: at 18% open rate and <1% conversion from 45k sends, marginal spend on fatigued creative is not justified. Root cause is likely one of: message staleness (holiday offer not resonating vs. benchmark), frequency (too many emails), or sequence design (wrong order/timing). Eight days is insufficient to diagnose and retest fully. Pausing preserves capital for higher-ROI channels while testing one hypothesis (holiday messaging) validates learning."
+    },
+    "quality_dimensions": {
+      "actionability": 5,
+      "specificity": 4,
+      "benchmark_grounded": 5,
+      "urgency_appropriate": 5
+    },
+    "annotator_notes": "Sophisticated recommendation to pause underperformer. Clear creative fatigue diagnosis. Conservative pause-and-test approach is appropriate given timeline and spend bleed. Post-campaign analysis recommendation shows continuous improvement mindset. Metric comparison to benchmark (all down -18% to -42%) is thorough."
+  },
+  {
+    "id": "opt_008",
+    "input": {
+      "campaign_id": "camp_167",
+      "campaign_name": "Q3 2024 Multi-Location Retail Acquisition",
+      "current_metrics": {
+        "channel": "facebook",
+        "spend_usd": 24000,
+        "conversions": 110,
+        "cost_per_new_advertiser_usd": 218,
+        "roas": 1.72,
+        "daily_spend_usd": 1200
+      },
+      "benchmark_metrics": {
+        "target_cost_per_new_advertiser_usd": 150,
+        "meta_smb_median_roas": 2.19,
+        "pacing_target_daily": 800
+      },
+      "days_remaining": 14,
+      "remaining_budget_usd": 11200,
+      "campaign_type": "smb_acquisition"
+    },
+    "expected_output": {
+      "recommendation_type": "pacing_adjustment",
+      "primary_recommendation": "Campaign is burning budget 50% faster than target ($1.2k daily vs. $800 pacing target). With 14 days and $11.2k remaining, will exceed budget. Core issue: daily spend is high relative to conversion rate (110 conversions on $24k = 4.6 conversions/day). Reduce daily budget pacing immediately.",
+      "specific_actions": [
+        "Reduce daily budget from $1.2k to $800 (paces full remaining budget across 14 days)",
+        "Investigate why daily spend is elevated: check bid strategy (may be auto-increasing), audience expansion (may be too broad), or bid caps (may not be active)",
+        "If CPNA can improve to target ($150), daily spend can increase to $920 and still hit budget. Use 7-day test window to validate any optimization",
+        "Implement daily budget cap (hard max) to prevent overspend in final days"
+      ],
+      "expected_impact": "At current efficiency ($218 CPNA), reducing to $800 daily over 14 days yields 51 conversions (total 161). At target efficiency ($150 CPNA), same pacing yields 74 conversions (total 184). Pacing adjustment prevents budget overrun and aligns to plan. If creative optimization achieves efficiency lift, additional 23 conversions possible.",
+      "confidence": "high",
+      "rationale": "Pacing is purely operational control. Campaign has 14 days and $11.2k; at $1.2k daily, will spend $16.8k and exceed budget. Reducing to $800 daily achieves full budget spend over period. Unless CPNA improves significantly (33% improvement needed), current spend rate is unsustainable. Hard budget cap prevents executive-level embarrassment of overspend."
+    },
+    "quality_dimensions": {
+      "actionability": 5,
+      "specificity": 5,
+      "benchmark_grounded": 4,
+      "urgency_appropriate": 5
+    },
+    "annotator_notes": "Excellent operational control recommendation. Clear math on budget math ($11.2k / 14 days = $800 daily). Identifies overspend risk ($1.2k daily would exceed budget). Suggests bid strategy investigation (root cause analysis). Hard budget cap is practical implementation safeguard. Conservative timeline-aware recommendation."
+  },
+  {
+    "id": "opt_009",
+    "input": {
+      "campaign_id": "camp_178",
+      "campaign_name": "Q4 2024 Seasonal Urgency Campaign — E-commerce",
+      "current_metrics": {
+        "channel": "facebook",
+        "spend_usd": 8500,
+        "conversions": 52,
+        "cost_per_new_advertiser_usd": 163,
+        "roas": 2.05,
+        "ctr": 0.0167,
+        "message_theme": "holiday_limited_time_offer"
+      },
+      "benchmark_metrics": {
+        "target_cost_per_new_advertiser_usd": 160,
+        "q4_holiday_roas_benchmark": 2.4,
+        "q4_seasonal_lift_opportunity": 0.15
+      },
+      "days_remaining": 22,
+      "remaining_budget_usd": 11500,
+      "campaign_type": "smb_acquisition"
+    },
+    "expected_output": {
+      "recommendation_type": "messaging_amplification_and_budget_increase",
+      "primary_recommendation": "Campaign is nearly on-target CPNA ($163 vs. $160) but ROAS (2.05) is 14.6% below Q4 seasonal benchmark (2.4). This is Q4 peak season with 22 days of high purchase intent. Increase budget and amplify seasonal urgency messaging to capture Q4 opportunity.",
+      "specific_actions": [
+        "Increase daily budget by 40% (add $300-400/day) to capture higher seasonal demand volume",
+        "Test creative variant emphasizing holiday/EOY scarcity: 'Last chance to launch before Black Friday' or 'Set up before year-end reviews'",
+        "Ensure landing page is holiday-themed and includes limited-time offer copy and countdown timer",
+        "Run frequency test: Q4 seasonality can support higher frequency (increase ad set frequency cap from 2.5 to 3.5)",
+        "A/B test offer: test extended free trial (14 days vs. 7 days) at higher ROAS to see if extended trial drives more conversions"
+      ],
+      "expected_impact": "40% budget increase ($4.6k additional spend) + 15% ROAS lift to 2.36x = 95-100 total conversions at $163-170 CPNA. Compared to hold-steady scenario (~54 conversions), net gain: 40-46 additional new advertiser accounts in peak season. Q4 momentum carries into Q1 (historically 10% higher retention for Q4 cohorts).",
+      "confidence": "medium",
+      "rationale": "Q4 is high-intent season for SMBs (budget planning, holiday sales, year-end goals). Being 14.6% below seasonal benchmark suggests under-capitalization. Seasonal lift is often 15-30% vs. non-seasonal months; capturing this is multiplicative. Messaging and frequency adjustments specifically lever Q4 urgency. Risk is moderate (higher frequency may drive lower quality) but mitigated by strong current CPNA."
+    },
+    "quality_dimensions": {
+      "actionability": 5,
+      "specificity": 5,
+      "benchmark_grounded": 5,
+      "urgency_appropriate": 5
+    },
+    "annotator_notes": "Excellent seasonal opportunity identification. Specific messaging angle (EOY planning, Black Friday setup) for e-commerce context. Frequency test is sophisticated tactic for high-intent season. Countdown timer mention shows landing page savvy. 40-46 additional accounts estimated impact is credible. Good retention cohort note (Q4 cohort retention insight)."
+  },
+  {
+    "id": "opt_010",
+    "input": {
+      "campaign_id": "camp_189",
+      "campaign_name": "Q3 2024 Advantage+ Underperformer — All Verticals",
+      "current_metrics": {
+        "channel": "facebook",
+        "spend_usd": 16000,
+        "conversions": 72,
+        "cost_per_converted_advertiser_usd": 222,
+        "roas": 1.58,
+        "campaign_objective": "Conversions"
+      },
+      "benchmark_metrics": {
+        "advantage_plus_target_roas": 2.5,
+        "advantage_plus_target_cpna": 140,
+        "learning_phase_expected": 21
+      },
+      "days_remaining": 19,
+      "remaining_budget_usd": 8000,
+      "campaign_type": "smb_acquisition_advantage_plus"
+    },
+    "expected_output": {
+      "recommendation_type": "pause_and_consolidate",
+      "primary_recommendation": "Advantage+ campaign is underperforming significantly (ROAS 1.58 vs. 2.5 target, CPNA $222 vs. $140 target) after 21 days (past learning phase). Campaign should have stabilized but hasn't. Root cause likely: poor conversion tracking, misaligned audience, or offer mismatch. Pausing this underperformer is more prudent than continued optimization.",
+      "specific_actions": [
+        "Pause campaign immediately to stop budget bleed",
+        "Diagnose root cause within next 3 days: verify conversion tracking is working (check pixel firing, lead form attribution), validate audience definition (should be existing advertiser lookalikes, not cold audiences)",
+        "Allocate remaining $8k to proven performer (recommend previous Advantage+ campaign that hit >2.2x ROAS) with same audience",
+        "Document learnings: if conversion tracking issue, fix pixel before future Advantage+ launches. If audience issue, refine targeting rules.",
+        "Do NOT restart similar campaign without root cause resolution"
+      ],
+      "expected_impact": "Pausing saves $8k that would underperform. Reallocating to proven performer with 2.3x ROAS yields ~67 conversions at $119 CPNA (vs. current 36 at $222 CPNA). Net impact: 31 additional conversions from reallocation. Diagnostic learnings prevent repeat failures.",
+      "confidence": "high",
+      "rationale": "Advantage+ has 21-day learning phase. This campaign is past learning (started 35+ days ago based on $16k spend) but hasn't improved. This indicates systematic issue, not normal variance. Continuing to optimize would waste remaining budget. Diagnostic pause is appropriate. Reallocation to proven performer is lower-risk path to results. Root cause documentation prevents expensive repeat mistakes."
+    },
+    "quality_dimensions": {
+      "actionability": 5,
+      "specificity": 5,
+      "benchmark_grounded": 5,
+      "urgency_appropriate": 5
+    },
+    "annotator_notes": "Strong decisional framework to pause underperformer. Correctly identifies learning phase should be complete (21 days) and diagnoses systematic issue vs. noise. Specific diagnostic questions (conversion tracking, audience, offer) show platform expertise. Reallocation strategy is practical. Root cause documentation recommendation shows institutional learning mindset. High-confidence pause is justified."
+  }
+]

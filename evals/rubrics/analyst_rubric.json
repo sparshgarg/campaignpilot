@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "agent": "analyst",
+  "description": "Rubric for evaluating data analysis and insight generation",
+  "metrics": [
+    {
+      "name": "insight_quality",
+      "type": "llm_judge",
+      "scale": "1-5",
+      "pass_threshold": 3.0,
+      "weight": 0.4,
+      "description": "Does the insight demonstrate meaningful analysis and actionable recommendations?"
+    },
+    {
+      "name": "sql_accuracy",
+      "type": "deterministic",
+      "scale": "0-1",
+      "pass_threshold": 0.6,
+      "weight": 0.35,
+      "description": "Is the SQL query syntactically valid and executable?"
+    },
+    {
+      "name": "completeness",
+      "type": "deterministic",
+      "scale": "0-1",
+      "pass_threshold": 0.8,
+      "weight": 0.25,
+      "required_fields": [
+        "insight",
+        "sql",
+        "data_source",
+        "recommendation"
+      ],
+      "description": "Are all required analysis components present?"
+    }
+  ]
+}

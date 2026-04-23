@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "agent": "strategist",
+  "description": "Rubric for evaluating campaign strategy generation",
+  "metrics": [
+    {
+      "name": "strategic_coherence",
+      "type": "llm_judge",
+      "scale": "1-5",
+      "pass_threshold": 3.0,
+      "weight": 0.4,
+      "description": "Does the strategy make logical sense for the goal and segment?"
+    },
+    {
+      "name": "completeness",
+      "type": "deterministic",
+      "scale": "0-1",
+      "pass_threshold": 0.8,
+      "weight": 0.3,
+      "required_fields": [
+        "recommended_channels",
+        "budget_split",
+        "primary_message_pillar",
+        "kpis",
+        "rationale",
+        "risks"
+      ],
+      "description": "Are all required strategy components present and non-empty?"
+    },
+    {
+      "name": "budget_realism",
+      "type": "deterministic",
+      "scale": "0-1",
+      "pass_threshold": 0.7,
+      "weight": 0.3,
+      "description": "Is the budget allocation realistic and justified?"
+    }
+  ]
+}

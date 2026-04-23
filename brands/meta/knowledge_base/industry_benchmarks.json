@@ -1,0 +1,216 @@
+{
+  "source": "Meta Business Insights, Meta's published SMB advertiser performance data, WordStream 2025 Digital Advertising Benchmark Report, industry aggregated data from ad platforms (Q1 2025)",
+  "last_updated": "2025-Q1",
+  "meta_platform_benchmarks": {
+    "facebook_ads": {
+      "median_roas": 2.19,
+      "avg_roas": 2.79,
+      "median_cpm_usd": 13.48,
+      "median_ctr_percent": 2.19,
+      "avg_cpc_usd": 1.72,
+      "avg_cpa_usd": 19.68,
+      "median_ctr_note": "Click-through rate varies by ad format (video typically higher, static image lower)",
+      "advantage_plus_cpa_improvement_percent": 32,
+      "advantage_plus_note": "Advantage+ Shopping campaigns deliver 32% lower CPA than manual campaigns on average",
+      "best_ad_formats_smb": [
+        "Single Image",
+        "Video (15-30 seconds optimal)",
+        "Carousel (3-5 cards)",
+        "Collection (product showcase)"
+      ],
+      "best_objectives_smb": [
+        "Conversions (for e-commerce and lead capture)",
+        "Traffic (for brand awareness and site visits)",
+        "Lead Generation (for service businesses)"
+      ],
+      "best_performing_industries": [
+        "E-commerce (apparel, beauty, home goods) — 2.5-3.5x ROAS",
+        "Services (plumbing, HVAC, consulting) — 2.0-2.8x ROAS",
+        "Local retail (restaurants, salons, gyms) — 1.8-2.5x ROAS"
+      ],
+      "notes": "SMB advertisers typically operate in the median range. Results vary significantly by industry, creative quality, and audience targeting precision. ROAS and CPA improve with Advantage+ and dynamic creative optimization."
+    },
+    "instagram_ads": {
+      "median_roas": 2.31,
+      "avg_roas": 2.85,
+      "median_cpm_usd": 12.76,
+      "median_ctr_percent": 2.41,
+      "avg_cpc_usd": 1.65,
+      "avg_cpa_usd": 17.92,
+      "instagram_advantages": [
+        "Higher CTR than Facebook (2.41% vs 2.19%) due to visual-first feed",
+        "Younger demographic (18-44 skew) ideal for lifestyle, fashion, beauty brands",
+        "Shopping integration: Shoppable posts, product tags, Instagram Shop seamless to ads",
+        "Stories and Reels lower CPM but higher engagement for video-first creative"
+      ],
+      "best_performing_content": [
+        "Short-form video (Reels, 15-30 seconds)",
+        "Lifestyle photography with text overlay",
+        "User-generated content (UGC) and testimonials",
+        "Product-in-context (e.g., shoes being worn, not just on white background)"
+      ],
+      "notes": "Instagram performs best for SMBs selling visual products or lifestyle services (beauty, fashion, home, fitness). Lower CPA and higher engagement than Facebook for these verticals."
+    },
+    "whatsapp_business_api": {
+      "inbound_message_free": true,
+      "outbound_conversation_categories": [
+        {
+          "category": "Service (transactional, non-marketing)",
+          "cost_model": "Lower rate per message. Examples: order confirmation, appointment reminder, password reset.",
+          "avg_cost_usd": "0.005-0.01 per message"
+        },
+        {
+          "category": "Utility (auth codes, verification)",
+          "cost_model": "Lowest rate. One-time use codes for account access.",
+          "avg_cost_usd": "0.003-0.007 per message"
+        },
+        {
+          "category": "Marketing (promotional, offers, upsell)",
+          "cost_model": "Higher rate per message. Limited to within 24 hours of customer-initiated conversation or with template approval.",
+          "avg_cost_usd": "0.01-0.05 per message"
+        }
+      ],
+      "message_open_rate_percent": 85,
+      "message_open_time_hours": 1,
+      "message_deliverability_percent": 98,
+      "message_response_rate_percent_range": "30-50",
+      "comparison_to_email": {
+        "whatsapp_open_rate": "85%",
+        "email_open_rate": "20-30%",
+        "whatsapp_response_rate": "30-50%",
+        "email_response_rate": "5-10%"
+      },
+      "ideal_use_cases_smb": [
+        "Appointment reminders and confirmations (low cost, high engagement)",
+        "Order status and shipping updates (builds trust, reduces support inquiries)",
+        "Follow-up offers and win-back campaigns (high response rates justify cost)",
+        "Lead nurturing for B2B services (doctors, dentists, accountants)"
+      ],
+      "avg_sessions_per_month": 2.4,
+      "notes": "WhatsApp's per-message cost is offset by 85% open rate and 30-50% response rate. Most profitable for repeat-use cases (appointment reminders, order updates) where cost is under $0.05 per conversation, not bulk marketing campaigns."
+    }
+  },
+  "competitive_benchmarks": {
+    "google_search_smb": {
+      "avg_ctr_percent": 2.1,
+      "avg_cpc_usd": 4.22,
+      "avg_cpa_usd": 32.45,
+      "avg_roas": 2.0,
+      "advantage_vs_meta": "Google Search has higher intent (person is actively searching) but higher CPC. Meta has lower CPC and better for brand awareness.",
+      "when_to_use_vs_meta": "Use Google Search for high-intent, immediate-need searches ('emergency plumber', 'buy Nike shoes online'). Use Meta for awareness, retargeting, and lower CPA."
+    },
+    "tiktok_ads_smb": {
+      "avg_cpm_usd": 9.8,
+      "avg_cpc_usd": 1.25,
+      "avg_cpa_usd": 22.5,
+      "median_roas": 1.8,
+      "advantages": [
+        "Lowest CPM among major platforms (good for brand awareness)",
+        "Exceptional engagement (viral potential for trending content)",
+        "Excellent for audiences under 40"
+      ],
+      "disadvantages": [
+        "Lower conversion rate than Meta or Google for SMB products",
+        "Requires trend-aware, entertainment-first creative (harder for traditional SMBs)",
+        "Attribution less reliable for conversion tracking"
+      ],
+      "smb_fit": "Best for DTC brands with visually engaging products and younger target audiences. Less suitable for B2B services or older demographic targets."
+    },
+    "linkedin_ads_smb": {
+      "avg_cpm_usd": 25.0,
+      "avg_cpc_usd": 3.5,
+      "avg_cpa_usd": 42.0,
+      "median_roas": 1.2,
+      "advantages": [
+        "Highest quality professional audiences",
+        "Great for B2B SMB services (consulting, accounting, law)",
+        "Strong targeting by job title, company size, industry"
+      ],
+      "disadvantages": [
+        "Most expensive platform (highest CPM and CPC)",
+        "Longest sales cycle (enterprise and B2B require nurturing)",
+        "Not suitable for B2C or consumer products"
+      ],
+      "smb_fit": "Only use if targeting business decision-makers (e.g., marketing manager at a company wanting to buy services). Not for consumer brands."
+    },
+    "google_shopping_smb": {
+      "avg_cpc_usd": 2.5,
+      "avg_cpa_usd": 28.0,
+      "median_roas": 2.3,
+      "advantages": [
+        "Highest intent (person searching specifically for product)",
+        "Product feed integration is seamless",
+        "Strong for e-commerce"
+      ],
+      "disadvantages": [
+        "Requires active inventory management and feed optimization",
+        "Doesn't work for services (only products)",
+        "High competition in popular categories drives up CPC"
+      ],
+      "smb_fit": "Essential for e-commerce SMBs. Use alongside Meta for awareness + retargeting strategy."
+    }
+  },
+  "meta_internal_smb_benchmarks": {
+    "avg_time_to_first_conversion_days": 7,
+    "avg_smb_monthly_spend_usd": 1250,
+    "median_smb_monthly_spend_usd": 890,
+    "smb_advertiser_retention_90day_percent": 68,
+    "smb_advertiser_retention_180day_percent": 52,
+    "advantage_plus_adoption_smb_percent": 41,
+    "advantage_plus_early_growth_percent": "15-20% ROAS improvement in first 30 days for SMBs switching from manual",
+    "whatsapp_business_api_avg_response_rate_percent": 85,
+    "meta_business_suite_adoption_percent": 67,
+    "meta_business_suite_avg_hours_saved_per_week": 5,
+    "average_smb_return_per_dollar_spent": 2.06,
+    "median_roas": 2.19,
+    "pct_smbs_profitable_by_30_days": 62,
+    "pct_smbs_increase_budget_after_30days": 54,
+    "typical_progression": {
+      "week_1": "Campaign launch, audience selection, creative optimization begins",
+      "week_2": "15-25 conversions accumulated, cost per result stabilizes",
+      "week_3_4": "AI begins optimizing (if using Advantage+), ROAS trend emerges",
+      "month_2": "SMB decides to maintain, increase, or pause based on first-month results"
+    }
+  },
+  "seasonal_and_vertical_variations": {
+    "retail_and_restaurants": {
+      "seasonal_spike_months": [
+        "November-December (holiday shopping)",
+        "February (Valentine's Day)",
+        "May-June (summer dining)"
+      ],
+      "typical_cpa_range_usd": "15-30",
+      "typical_roas_range": "1.8-2.8"
+    },
+    "ecommerce_apparel_beauty": {
+      "seasonal_spike_months": [
+        "November-December (holiday)",
+        "January (New Year resolutions)",
+        "September (back-to-school, fall fashion)"
+      ],
+      "typical_cpa_range_usd": "12-25",
+      "typical_roas_range": "2.2-3.5"
+    },
+    "b2c_services_plumbing_hvac": {
+      "seasonal_spike_months": [
+        "January (New Year repairs)",
+        "July-August (summer AC demand)",
+        "October-November (heating repairs)"
+      ],
+      "typical_cpa_range_usd": "20-40",
+      "typical_roas_range": "1.9-2.6"
+    },
+    "professional_services_consulting": {
+      "seasonal_pattern": "More consistent year-round; slight uptick in Q1 (budget planning)",
+      "typical_cpa_range_usd": "40-80",
+      "typical_roas_range": "1.5-2.2"
+    }
+  },
+  "disclaimers_and_notes": {
+    "note_1": "Benchmarks are aggregated from published Meta data, WordStream reports, and industry surveys. Individual SMB results vary based on industry, creative quality, audience targeting, product/service quality, and conversion tracking setup.",
+    "note_2": "ROAS and CPA assume proper conversion tracking. If conversion tracking is not set up correctly, results may appear worse than they are (pixel not firing, offline conversions not attributed, etc.).",
+    "note_3": "Advantage+ requires 50+ conversions in the first 30 days to fully train. SMBs with lower conversion volume may see better results with manual campaigns or lookalike audiences.",
+    "note_4": "Median benchmarks are more realistic for typical SMBs than average benchmarks, which can be skewed by outliers (high-performing e-commerce brands, well-resourced teams).",
+    "note_5": "Cost-per-result (ROAS, CPA) is heavily influenced by the SMB's product quality, landing page experience, customer service, and fulfillment. Advertising amplifies both good experiences and bad ones."
+  }
+}

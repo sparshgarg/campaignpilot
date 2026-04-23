@@ -1,0 +1,364 @@
+[
+  {
+    "id": "overwhelmed-ops-manager",
+    "name": "The Overwhelmed Ops Manager",
+    "title": "VP of Operations / Director of Business Operations",
+    "company_size": "50-250 employees",
+    "age_range": "32-45",
+    "gender": "60% male, 40% female",
+    "education": "Bachelor's degree in business, finance, or operations; many have MBA",
+    "experience_years": "10-15 years in operations roles",
+    "salary_range": "$120K-$180K",
+    "company_revenue": "$10M-$100M",
+    "reports_to": "CFO or COO",
+    "primary_pain": "Managing data from 6+ disconnected tools (Salesforce, HubSpot, QuickBooks, Workday, Slack, etc.), building reports manually in spreadsheets every month, can't trust the numbers because everyone has a different version, losing 60+ hours per month to reporting work instead of strategy",
+    "secondary_pains": [
+      "Team members requesting custom reports constantly; can't say no, but takes weeks to build each one",
+      "Month-end close takes 3-5 days because data doesn't reconcile across systems; spend hours investigating discrepancies",
+      "Leadership asks for 'just one more metric' at the last minute; Excel breaks, formulas are error-prone, and it's embarrassing"
+    ],
+    "day_to_day_frustrations": [
+      "Spends 30% of time in Excel instead of on strategic operational improvements",
+      "Gets blamed for 'late' reports when the bottleneck is data pulling, not analysis",
+      "Can't automate because tools don't integrate; tried Zapier/IFTTT but it only covers 20% of data sources",
+      "Team sees Lumen as 'the person who makes charts' not a strategic operations leader"
+    ],
+    "decision_criteria": [
+      "Will it actually work without IT involvement? (I can't wait for engineering sprints.)",
+      "Can I implement this in less than 2 weeks? (Leadership wants results faster.)",
+      "Will this replace 5+ of my current data tools or just add another? (Tool sprawl is killing me.)",
+      "Does it support our specific tech stack? (We use Salesforce, QuickBooks, and Workday, not 'generic systems'.)",
+      "What's the ROI in hours saved? (Can I justify the cost by showing time savings to finance?)"
+    ],
+    "typical_objections": [
+      {
+        "objection": "We already have Excel and Google Sheets—why add another tool?",
+        "rebuttal": "Excel is great for static analysis, but it doesn't scale. You're spending 60+ hours rebuilding the same reports monthly. Lumen automates that work so your team focuses on improvement, not data plumbing. Plus: no more version conflicts or human errors."
+      },
+      {
+        "objection": "Can your software connect to our systems? We use [custom ERP / old system].",
+        "rebuttal": "Lumen connects to 30+ major business apps out of the box. For custom systems, we offer API integrations and CSV uploads as a fallback. Most ops teams find we cover 90%+ of their data sources without custom engineering."
+      },
+      {
+        "objection": "Implementation will take months and we don't have time for that.",
+        "rebuttal": "We implement in 7 days for Core, 3 weeks for Pro. Your team gets live dashboards before month-end. Most customers are up and running faster than a single Excel template migration would take."
+      },
+      {
+        "objection": "How much does this actually cost? Your pricing seems high.",
+        "rebuttal": "At $299-800/seat, Lumen costs $1,500-5,000/month for a typical ops team. You're currently losing $5,000+ per month in staff time on manual reporting. One person's time saved pays for the whole platform."
+      }
+    ],
+    "buying_process": "Ops managers self-educate first (Google search, analyst reports), then get CFO/COO approval for budget. Sales cycle is 2-3 weeks. They want proof before committing: free trial, customer references, and a conversation with someone who understands their specific pain (not a generic SaaS pitch). Implementation must be fast and require minimal IT involvement.",
+    "budget_authority": "Can approve up to $20K annually without approval; needs CFO sign-off above $20K",
+    "budget_source": "Operations budget under 'software' or 'systems'; sometimes buried under 'reporting tools'",
+    "purchasing_cycle": "Fiscal year budgeting (Q4 planning for next year); can accelerate for Q1 if there's budget carryover",
+    "champion_or_economic_buyer": "champion (proposes the tool), but CFO is the economic buyer (approves money)",
+    "preferred_channels": [
+      "LinkedIn (sees thought leadership on operations, reads comments on operational efficiency topics)",
+      "Google Search (searches 'how to automate monthly reporting', 'BI tool for operations')",
+      "Email (reads newsletters on operational best practices)"
+    ],
+    "content_that_resonates": [
+      "Case studies showing month-end close time cut from 3 days to 4 hours",
+      "ROI calculator: 'How much time will Lumen save your team?'",
+      "Webinar: 'Why Excel breaks at 50+ people and what to do instead'",
+      "Free benchmark report: 'How much time do operations teams actually spend on reporting?' (positioning Lumen as the research authority)",
+      "LinkedIn articles about hiring ops teams efficiently and focus (mention that 40% of ops managers' time goes to reporting, not improvement)"
+    ],
+    "messaging_that_resonates": [
+      "Time savings framed in hours/dollars: '60 hours/month = 1.5 FTEs saved'",
+      "Specific outcomes: 'Month-end close in 4 hours instead of 3 days'",
+      "Validation from peers: 'Operations leaders at [mid-market company names] trust Lumen for monthly close'",
+      "Ease of implementation: 'Live in 7 days, no IT required'",
+      "Empowerment: 'Stop being the report person. Become the strategy person.'"
+    ],
+    "messaging_to_avoid": [
+      "Technical jargon: don't say 'SQL transformations' or 'data modeling'—say 'reconciles your data automatically'",
+      "Hype words: 'revolutionary', 'cutting-edge', 'game-changing' don't land with ops folks; they want evidence",
+      "Feature-focused: avoid 'machine learning', 'advanced analytics'—lead with 'saves you 60 hours'",
+      "Enterprise speak: ops managers aren't impressed by 'enterprise-grade' or 'scalable'; they care about 'does it work next week?'",
+      "Vendor comparisons: don't trash Tableau/Power BI; instead say 'built specifically for operations teams, not data engineers'"
+    ],
+    "typical_sales_cycle_days": 14,
+    "deal_size_range": "2-5 seats, $5K-$20K ACV",
+    "key_stakeholders": [
+      "VP Operations (decision maker)",
+      "CFO (budget approval)",
+      "Operations analysts (end users, will give feedback on ease-of-use)"
+    ]
+  },
+  {
+    "id": "data-curious-cfo",
+    "name": "The Data-Curious CFO",
+    "title": "Chief Financial Officer / VP Finance",
+    "company_size": "75-500 employees",
+    "age_range": "38-55",
+    "gender": "70% male, 30% female",
+    "education": "CPA, MBA, or both; often accounting background",
+    "experience_years": "15-20 years in finance roles",
+    "salary_range": "$200K-$350K",
+    "company_revenue": "$20M-$250M",
+    "reports_to": "CEO",
+    "primary_pain": "Can't close the books on time because operations data doesn't match accounting data; board and investor questions go unanswered because insights are buried in spreadsheets; finance team spends 50% of time reconciling and building reports instead of analysis and forecasting",
+    "secondary_pains": [
+      "Operations manager sends conflicting numbers than what accounting has; spends hours investigating discrepancies between systems",
+      "Cash flow forecasting is a manual nightmare—pulls data from Salesforce, QuickBooks, Workday, and three spreadsheets; always out of sync",
+      "Auditors question the integrity of data sources because everything is in Excel without audit trails or version control"
+    ],
+    "day_to_day_frustrations": [
+      "Doesn't understand why month-end close takes 5-7 days when it should take 2",
+      "Gets angry at Excel errors that cause wrong board presentations",
+      "Can't answer CEO questions about cash runway, customer profitability, or unit economics in real-time",
+      "Finance team turnover because analysts hate repetitive manual work"
+    ],
+    "decision_criteria": [
+      "Will this help us close the books faster? (Every day earlier = cash visibility = better decisions)",
+      "Does it address the audit trail and governance gaps we have? (Auditors hate Excel; we need version control.)",
+      "Can we trust the numbers? Are they reconciled across all systems? (I put my name on these statements.)",
+      "What's the implementation timeline and will it disrupt month-end? (We can't afford downtime during close.)",
+      "Will it integrate with our accounting system and our operational systems? (We need a single truth.)"
+    ],
+    "typical_objections": [
+      {
+        "objection": "Finance has accounting software (NetSuite, Sage, QuickBooks); why do we need another BI tool?",
+        "rebuttal": "Accounting software is great for GL transactions, but operational data lives in Salesforce, HR systems, manufacturing systems. Lumen bridges that gap—it pulls ops data, reconciles it with accounting, and gives you a unified close. Most CFOs using Lumen cut close time by 2-3 days."
+      },
+      {
+        "objection": "We tried BI tools before and implementation took 6 months and cost $200K.",
+        "rebuttal": "That was Tableau/Looker, which are built for IT. Lumen is built for finance. We implement in 21 days, no data engineering required. Cost is $5K-10K/month, not a six-figure platform license."
+      },
+      {
+        "objection": "Our accounting software has reporting built-in; isn't that enough?",
+        "rebuttal": "Accounting tools show ledger data, not operational drivers. You see 'revenue was $2M' but not 'because we signed 15 new customers' or 'because customer churn was lower than expected.' Lumen connects the ops data to the financials so you see cause and effect."
+      },
+      {
+        "objection": "Data security is a concern. How do you protect financial data?",
+        "rebuttal": "Lumen is SOC 2 Type II certified with encryption in transit and at rest. For Enterprise customers, we offer on-premises deployment and fine-grained access control. Finance data is our highest priority."
+      }
+    ],
+    "buying_process": "CFO drives evaluation based on month-end pain and audit feedback. Gets ops manager feedback on technical fit. Sales cycle is 4-6 weeks because multiple stakeholders (CFO, ops manager, IT security) need to sign off. CFO wants to understand ROI (faster close = better cash visibility) and risk mitigation (audit findings = compliance risk).",
+    "budget_authority": "Full authority on capex/software spending; may need CEO approval if over $50K annually",
+    "budget_source": "Finance/shared services budget under 'accounting software' or 'business systems'",
+    "purchasing_cycle": "Driven by audit feedback or month-end pain; can accelerate if close is a recurring issue",
+    "champion_or_economic_buyer": "economic buyer (approves budget) and champion (drives the evaluation)",
+    "preferred_channels": [
+      "LinkedIn (reads finance and operations content)",
+      "Email (subscribes to CFO newsletters, accounting firm insights)",
+      "Industry events (CFO conferences, accounting council meetings)",
+      "Analyst reports (Gartner, Forrester evaluations)"
+    ],
+    "content_that_resonates": [
+      "Benchmark report: 'How much time do mid-market finance teams spend on month-end close?' (typical: 5-7 days)",
+      "Case study: '3-day close reduced to 8 hours with unified ops + accounting data'",
+      "ROI calculator: 'What would an extra 2 days of cash visibility be worth to your company?'",
+      "Audit defense: 'Why auditors prefer BI tools to Excel' (data lineage, version control, access logs)",
+      "Webinar: 'Close the books in 48 hours: A CFO's guide to closing faster'"
+    ],
+    "messaging_that_resonates": [
+      "Speed and accuracy: 'Reduce close time from 5 days to 2 days; eliminate manual reconciliation errors'",
+      "Governance and risk: 'Full audit trail, data lineage, and access controls auditors actually like'",
+      "Business intelligence: 'See not just what happened (GL), but why (operational drivers behind variance)'",
+      "Cash visibility: 'Know your cash runway 2 days earlier every month; that's 24 days/year of better visibility'",
+      "Team enablement: 'Free up finance analysts from spreadsheet work so they focus on forecasting and analysis'"
+    ],
+    "messaging_to_avoid": [
+      "Overly technical: 'ETL', 'data modeling', 'transformations' don't resonate—translate to 'pulls data automatically'",
+      "Implementation risk: don't say 'complex setup' or 'requires data engineering'—say 'implemented in 21 days without IT'",
+      "Analytics hype: 'Advanced forecasting' and 'predictive analytics' aren't the CFO's priority; lead with 'faster close'",
+      "Enterprise features they don't need: CFOs care about close automation, not multi-tenancy or white-label dashboards",
+      "Comparison to consumer tools: mentioning Excel as a competitor makes the CFO feel judged; instead, acknowledge Excel's limits gracefully"
+    ],
+    "typical_sales_cycle_days": 45,
+    "deal_size_range": "5-10 seats, $15K-$50K ACV",
+    "key_stakeholders": [
+      "CFO (decision maker, budget authority)",
+      "VP Operations (technical fit, end user)",
+      "Controller or Manager of Accounting (month-end process owner)",
+      "IT/Security (data protection, access control)"
+    ]
+  },
+  {
+    "id": "scaling-startup-cto",
+    "name": "The Scaling Startup CTO",
+    "title": "CTO / VP Engineering / Tech Lead",
+    "company_size": "30-200 employees",
+    "age_range": "28-40",
+    "gender": "80% male, 20% female",
+    "education": "Computer science, engineering background; many self-taught",
+    "experience_years": "8-15 years; 50% came from bigger companies, 50% startup natives",
+    "salary_range": "$150K-$250K + equity",
+    "company_revenue": "$1M-$30M (mostly VC-backed SaaS)",
+    "reports_to": "CEO",
+    "primary_pain": "Can't give the CEO and board real-time metrics on product health, customer engagement, churn, and unit economics because data is scattered across Segment, Mixpanel, Salesforce, and Stripe; engineering team is being asked to build internal dashboards but has no time; needs operational insights without building a full data stack (dbt + Airflow + Tableau stack is too much overhead for the stage we're at)",
+    "secondary_pains": [
+      "CEO wants to understand why churn is up 2%; has to do a SQL query against production database (risky and slow)",
+      "Sales team keeps asking for 'one more metric'—each request turns into an engineering task",
+      "Getting ready for Series B; investors will ask about unit economics and customer health—doesn't have dashboards ready"
+    ],
+    "day_to_day_frustrations": [
+      "Tired of being asked to build analytics infrastructure when the product is what needs work",
+      "Doesn't have time to learn SQL or build ETL pipelines; would rather use a tool",
+      "Production database is too slow for exploratory queries; needs a proper analytics setup but can't justify hiring a data engineer",
+      "Board meetings are painful because metrics are scattered—should be able to pull up 'cohort analysis' in seconds"
+    ],
+    "decision_criteria": [
+      "Can we set this up without hiring a data engineer? (Budget-constrained startup.)",
+      "Does it have pre-built SaaS metrics? (I don't want to learn data modeling; we need to ship product.)",
+      "Will it slow down our production database? (We're scaling fast; can't add load.)",
+      "Can I embed it in our internal dashboard or investor portal? (Need flexibility for different audiences.)",
+      "What's the learning curve? (Team is busy; tools need to be intuitive.)"
+    ],
+    "typical_objections": [
+      {
+        "objection": "We're already using Mixpanel / Segment for analytics. Why do we need Lumen?",
+        "rebuttal": "Mixpanel is great for product analytics, but it doesn't connect to business systems. Lumen pulls data from all your tools—product, sales, ops—and reconciles it. You see 'churn is up' but also 'because ACV is down and customer acquisition cost is up.' That's the insight investors want."
+      },
+      {
+        "objection": "Tableau / Looker is standard in the startup world. Why not just use that?",
+        "rebuttal": "Tableau is built for IT shops with data engineers. You don't have that. Lumen is built for startups without data infrastructure—pre-built SaaS metrics, no SQL required, implemented in weeks not months. Half your peers using Tableau are still waiting for it to go live."
+      },
+      {
+        "objection": "We're bootstrapped / pre-Series A; we can't afford tools right now.",
+        "rebuttal": "Lumen is $300-800/seat. At 5 people, that's $1,500-4,000/month. You're losing that much in engineering time building dashboards ad hoc. Plus, having metrics-ready for Series A fundraising will be worth 10x that investment."
+      },
+      {
+        "objection": "Implementation will pull engineering time from shipping the product.",
+        "rebuttal": "7-day implementation, not 6 months. We handle the setup; your team contributes 3 hours total for Slack/Salesforce credentials. You get live dashboards with zero engineering effort."
+      }
+    ],
+    "buying_process": "CTO self-educates (often googles 'SaaS analytics tool' or 'BI for startups'), evaluates free tier or trial with product team. If it looks good, pitches CEO as 'saves us 20 engineering hours/month.' Sales cycle is 1-2 weeks. Very high close rate if free trial converts because CTO sees immediate value.",
+    "budget_authority": "For amounts under $10K/year, can approve independently; above that, needs CEO approval",
+    "budget_source": "Product/engineering budget under 'software' or 'tools'; sometimes allocated from 'technical debt'",
+    "purchasing_cycle": "Quarterly or before fundraising (when metrics matter); can accelerate if CEO asks 'why don't we have dashboards?'",
+    "champion_or_economic_buyer": "champion (proposes and drives evaluation); CEO is economic buyer",
+    "preferred_channels": [
+      "Google Search (searches 'SaaS analytics tool', 'Segment alternative', 'BI for startups')",
+      "Product Hunt (discovers tools through 'new and interesting' releases)",
+      "Hacker News (reads comments and uses; sees peer validation there)",
+      "Twitter/X (follows founders and engineering leaders; sees recommendations there)",
+      "Slack communities (founder/CTO Slack groups discuss tools)"
+    ],
+    "content_that_resonates": [
+      "Product Hunt launch page with live demo video showing 'metrics ready in 7 days'",
+      "Blog post: 'Why your startup doesn't need a data engineer yet' (positioning Lumen as the shortcut)",
+      "Free template: 'SaaS metrics dashboard to copy into Lumen' (ARR, MRR, churn, CAC, LTV)",
+      "Webinar for founders/CTOs: 'The metrics investors actually ask about' (what should be on your Series B dashboard)",
+      "Case study: 'Early-stage SaaS company ready for Series A in 6 weeks with metrics infrastructure'"
+    ],
+    "messaging_that_resonates": [
+      "Speed: 'Metrics-ready in 7 days, not 6 months'",
+      "Startup-focused: 'Built for teams without a data engineer' / 'No SQL required'",
+      "ROI: 'Saves 20 engineering hours/month—that's engineering time for the product'",
+      "Credibility: 'Use the same metrics dashboard investors ask to see' / 'Prepare for fundraising faster'",
+      "Simplicity: 'Connect Stripe, Salesforce, Segment in 10 minutes; get live metrics in your Slack'"
+    ],
+    "messaging_to_avoid": [
+      "Enterprise features: 'SOC 2 certification', 'fine-grained security', 'audit trails'—startups don't care yet",
+      "Complexity: avoid technical jargon; don't say 'ETL' or 'data transformation'",
+      "Comparison to toy tools: don't compare to Google Sheets or Excel; startups know those are limits",
+      "Features they don't use yet: 'advanced forecasting', 'predictive analytics'—keep it simple",
+      "Vendor lock-in language: startups worry about switching costs; emphasize portability and open data"
+    ],
+    "typical_sales_cycle_days": 7,
+    "deal_size_range": "1-5 seats, $2K-$8K ACV",
+    "key_stakeholders": [
+      "CTO (decision maker, champion)",
+      "CEO (approves budget, wants to see metrics)",
+      "Product/data analyst (end user, will use the dashboards)",
+      "Finance/operations person (may help with business metrics)"
+    ]
+  },
+  {
+    "id": "enterprise-data-analyst",
+    "name": "The Enterprise Data Analyst",
+    "title": "Senior Analyst / Analytics Manager / Data Analyst IV",
+    "company_size": "500+ employees",
+    "age_range": "28-42",
+    "gender": "50% male, 50% female",
+    "education": "Statistics, data science, computer science, business analytics degree; many self-taught",
+    "experience_years": "5-12 years in analytics roles",
+    "salary_range": "$90K-$150K + bonus",
+    "company_revenue": "$100M+ (mostly Fortune 1000 or large mid-market)",
+    "reports_to": "Director of Analytics or VP of BI",
+    "primary_pain": "Drowning in ad hoc requests from operations teams; can't move beyond reactive reporting to proactive analytics because too much time is spent building one-off dashboards and reports; Tableau/Looker infrastructure is slow and expensive; IT-heavy governance makes it hard to iterate quickly; wants to focus on insights and modeling, not infrastructure",
+    "secondary_pains": [
+      "Can build beautiful dashboards but feels constrained by slow data pipelines and outdated transformation logic",
+      "Doesn't have authority to make infrastructure decisions; IT owns Tableau/Looker; analytics team is beholden to IT roadmap",
+      "Dealing with duplicate metrics and conflicting definitions across 20+ dashboards because there's no centralized metric store",
+      "Advanced analytics work (forecasting, segmentation, cohort analysis) gets deprioritized because of request backlog"
+    ],
+    "day_to_day_frustrations": [
+      "Gets 10-15 dashboard requests per week; can only deliver 2-3; rest get deprioritized indefinitely",
+      "Has to wait 2-3 weeks for IT to provision new data connections or add databases",
+      "Analytics work feels like 'dashboard sweatshop'—building, not thinking",
+      "Frustrated that insights are ignored; business asks for reports but doesn't act on them",
+      "Imposter syndrome: is this really data analytics or just dashboard building?"
+    ],
+    "decision_criteria": [
+      "Will it reduce the ad hoc dashboard request backlog? (So I have time for real analysis.)",
+      "Can I govern metrics centrally so we stop having conflicting definitions? (Each team has their own 'churn' definition.)",
+      "Does it integrate with our data warehouse / Snowflake / Redshift? (We're not moving core infrastructure.)",
+      "Will IT / security be on board? (Can't implement tools IT hates.)",
+      "Does it support advanced analytics? (Not just dashboards; forecasting, cohort analysis, segmentation.)"
+    ],
+    "typical_objections": [
+      {
+        "objection": "We already have Tableau / Looker / Power BI. Why switch?",
+        "rebuttal": "These tools are great for dashboards, but they're data visualization layer only. They don't solve the request backlog or metric governance problem. Lumen adds a transformation layer with self-service capabilities so operations teams can self-serve basic reports, freeing you for advanced work."
+      },
+      {
+        "objection": "Our infrastructure is locked into Tableau / Looker through IT contracts. We can't switch.",
+        "rebuttal": "You don't have to switch. Lumen works alongside Looker/Tableau. Push ops requests to Lumen; use Looker for executive dashboards. IT keeps their tool; you get faster iteration for operations teams."
+      },
+      {
+        "objection": "We have a data engineering team that handles transformations. Why not use them?",
+        "rebuttal": "Data engineering should focus on data quality and architecture, not building the 50th version of the same 'monthly revenue' metric. Lumen provides governed self-service for ops teams so engineering can focus on core infrastructure."
+      },
+      {
+        "objection": "Learning a new tool will take time. Is it worth it?",
+        "rebuttal": "Standard BI tools have a 3-6 month ramp-up. Lumen's UI is built for analysts; you'll be productive in a week. Consider the payoff: 5-10 hours/week freed from ad hoc requests = 250+ hours/year for real analytics work."
+      }
+    ],
+    "buying_process": "Analyst evaluates based on ease of use and capability. Pitches to analytics manager with a demo showing 'how this would reduce request backlog.' Sales cycle is 4-8 weeks because IT/security needs to sign off. Works best if analytics leader (manager/director) champions it to reduce their team's request load.",
+    "budget_authority": "No budget authority; depends on analytics manager or director",
+    "budget_source": "Analytics/BI budget owned by analytics director or CTO",
+    "purchasing_cycle": "Quarterly review of analytics tools; can accelerate if request backlog is visibly hurting productivity",
+    "champion_or_economic_buyer": "champion (proposes and demonstrates value); analytics director/manager is economic buyer",
+    "preferred_channels": [
+      "LinkedIn (follows analytics leaders, reads BI content)",
+      "Online communities (dbt community, Analytics Engineering Slack, Locally Optimistic blog)",
+      "Podcasts (The Analytics Engineering Podcast, DBT Coalesce)",
+      "YouTube (demos and tutorials from analytics community)",
+      "Email (subscribed to analytics newsletters, Analytics Union)"
+    ],
+    "content_that_resonates": [
+      "Case study: 'How an analytics team reduced ad hoc request backlog from 20/week to 3/week'",
+      "Blog post: 'Analytics sweatshop? Here's how to build a metrics-driven organization' (positioning Lumen as the scaling solution)",
+      "Free resource: 'Metric definition playbook—how to centralize metrics across your org'",
+      "Webinar with analyst panel: 'Scaling analytics without adding headcount' (peer validation from analysts at similar companies)",
+      "YouTube demo: '5-minute guide to self-service operational analytics' (shows how easy it is to build dashboards)"
+    ],
+    "messaging_that_resonates": [
+      "Efficiency: 'Reduce dashboard build time from 40 hours to 4 hours per report'",
+      "Governance: 'Centralized metric definitions so you stop debating what churn means'",
+      "Self-service: 'Empower operations teams to build their own dashboards; you stop being the bottleneck'",
+      "Advanced analytics: 'Spend 60% of your time on forecasting and insights, not dashboard building'",
+      "Career growth: 'Move from dashboard sweatshop to analytics strategist'"
+    ],
+    "messaging_to_avoid": [
+      "Replacing IT tools: don't position Lumen as 'Tableau killer'; that threatens IT and won't work",
+      "Too much jargon: 'semantic layer', 'dimension tables', 'mart definition'—use accessible language",
+      "Overpromising on analytics: 'machine learning', 'AI-powered insights'—analysts are skeptical of hype",
+      "One-click insights: analysts know business intelligence isn't push-button; be honest about what requires thinking",
+      "Anti-IT messaging: don't criticize Looker/Tableau or IT's governance; position Lumen as complementary"
+    ],
+    "typical_sales_cycle_days": 45,
+    "deal_size_range": "3-8 seats, $10K-$25K ACV",
+    "key_stakeholders": [
+      "Senior analyst / analytics manager (champion, end user)",
+      "Director of analytics / VP of BI (economic buyer, infrastructure decision)",
+      "IT security (data governance, system access)",
+      "Operations leaders (end users, define requirements)"
+    ]
+  }
+]

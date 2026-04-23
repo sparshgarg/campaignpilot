@@ -1,0 +1,229 @@
+[
+  {
+    "id": "persona_local_retailer",
+    "name": "The Local Retailer",
+    "title": "Shop Owner / Store Manager",
+    "company_type": "Brick-and-mortar retail (boutique, restaurant, salon, gym, coffee shop)",
+    "employee_count": "1-10",
+    "age_range": "35-55",
+    "primary_pain": "Unpredictable foot traffic and uncertainty about whether marketing actually works. Scared to waste money on ads if they don't see immediate results.",
+    "secondary_pains": [
+      "Rising rent and labor costs squeeze margins; can't afford big ad budgets or agencies",
+      "No time for marketing—running the shop takes all available hours",
+      "Competitor (big-box or online) threats; feels pressure to advertise but doesn't know where to start"
+    ],
+    "decision_criteria": [
+      "Proof it works for 'people like me' (other local shops, same city)",
+      "Low cost of entry ($5-50/day to test)",
+      "See results within 30 days or budget gets cut",
+      "Easy to set up (no design or copywriting skills needed)",
+      "No long-term commitment or contract"
+    ],
+    "objections": [
+      {
+        "objection": "I tried Facebook ads once and saw no results.",
+        "rebuttal": "Most SMBs see results in the first 30 days if set up correctly. What went wrong last time? (budget too low? wrong targeting? confusing metrics?) We'll show you exactly what to measure and fix it."
+      },
+      {
+        "objection": "I don't understand how ads work or what I'm paying for.",
+        "rebuttal": "You're not paying for impressions—you're paying for results. If you want foot traffic, you only pay when someone clicks your ad and comes to the store. It's simple: budget → audience → results."
+      },
+      {
+        "objection": "My regular customers are enough. I don't need to advertise.",
+        "rebuttal": "That's great. But what happens when one regular moves away or stops coming? New customers fill that gap. Ads are cheaper than losing a regular."
+      }
+    ],
+    "preferred_channels": [
+      "Facebook Ads (reaches local people, easy to set up)",
+      "Instagram Ads (visual for retail/food/beauty)",
+      "Google Search (local people searching 'salon near me', 'restaurant downtown')",
+      "Local word-of-mouth and in-person networking"
+    ],
+    "messaging_that_resonates": [
+      "Real numbers: '$200/month in ads brought in 50 new customers'",
+      "Local proof: 'Other salons in your neighborhood are using this'",
+      "Low friction: 'Start with $5/day, no setup fee'",
+      "Speed to result: 'First new customer in 2 weeks'",
+      "Simplicity: 'No design skills needed. Use our templates.'"
+    ],
+    "messaging_to_avoid": [
+      "Jargon ('demographic targeting', 'audience segmentation', 'attribution modeling')",
+      "Patronizing tone ('Even you can do this', 'Don't worry, it's simple')",
+      "Overpromises ('Triple your revenue', '10x your ROI', 'Go viral')",
+      "Long-term commitment language ('Sign a 6-month contract', 'Ongoing management fee')"
+    ],
+    "typical_monthly_ad_budget": "$200-$800",
+    "sales_cycle_days": "7-14"
+  },
+  {
+    "id": "persona_ecommerce_founder",
+    "name": "The E-Commerce Founder",
+    "title": "Founder / Marketing Manager",
+    "company_type": "Direct-to-consumer (DTC) e-commerce brand (apparel, beauty, wellness, home goods)",
+    "employee_count": "2-20",
+    "age_range": "25-40",
+    "primary_pain": "Rising customer acquisition cost (CAC) eating into margins. iOS 14 changes broke attribution. Competing with Amazon and bigger DTC brands for ad space. Needs predictable ROAS to justify ad spend to investors/co-founders.",
+    "secondary_pains": [
+      "Credit card processing and payment issues eat 2-3% of revenue",
+      "Attribution is broken—can't reliably track which ads drive which sales",
+      "Inventory and fulfillment costs are unpredictable; can't always scale when ads perform"
+    ],
+    "decision_criteria": [
+      "Transparent ROAS measurement and proof",
+      "Lower CPA than current channels (Google, TikTok)",
+      "Support for product catalog (Shopping feed, dynamic ads)",
+      "Ability to scale budget fast when CAC is good",
+      "Team scaling features (ad account access, approval workflows)"
+    ],
+    "objections": [
+      {
+        "objection": "iOS 14 broke our attribution. How do I know if Meta ads actually work?",
+        "rebuttal": "iOS 14 made all channels harder to track, not just Meta. Meta uses aggregated event tracking and conversion API to rebuild data. Most DTC brands still see 2.19x median ROAS despite attribution gaps. We'll show you how to set up conversion tracking properly."
+      },
+      {
+        "objection": "Google Shopping ads work better for us. Why switch to Meta?",
+        "rebuttal": "You don't switch—you add Meta. Google reaches intent-driven searches. Meta builds awareness and retargeting at lower CAC. The best DTC brands use both. Let's prove it with a 30-day test campaign."
+      },
+      {
+        "objection": "We need predictable ROAS to justify spend. Meta feels unpredictable.",
+        "rebuttal": "Advantage+ handles the unpredictability. AI optimizes in real time for your conversion goal. Most brands see 32% lower CAC in the first 30 days. If ROAS falls below your threshold, we pause and regroup."
+      }
+    ],
+    "preferred_channels": [
+      "Meta Ads (especially Advantage+ for automation)",
+      "Google Shopping & Search (for purchase intent)",
+      "TikTok Ads (for brand awareness to younger audiences)",
+      "Email (high ROI for retained customers)",
+      "Influencer partnerships and affiliate"
+    ],
+    "messaging_that_resonates": [
+      "Benchmark comparison: 'Median ROAS 2.19x. Here's how that compares to Google and TikTok.'",
+      "Cost per acquisition: 'Advantage+ delivers 32% lower CAC than manual campaigns'",
+      "Data and transparency: 'Real-time dashboard. See every dollar and every result.'",
+      "Scaling language: 'Go from $2k/month to $20k/month when CAC is right. Automation scales with you.'",
+      "Proof from peers: 'Case study: Brand X grew from $1M to $5M revenue using Meta + Advantage+'"
+    ],
+    "messaging_to_avoid": [
+      "Vague claims ('Grow fast', 'Maximize revenue', 'Get more sales')",
+      "False certainty ('Guaranteed ROAS', '100% success rate')",
+      "Overselling simplicity (Advantage+ is smart but not effortless—requires good products and conversion tracking)",
+      "Competitor trash-talk ('Better than Google', 'TikTok is unreliable')"
+    ],
+    "typical_monthly_ad_budget": "$5,000-$30,000",
+    "sales_cycle_days": "14-21"
+  },
+  {
+    "id": "persona_service_business",
+    "name": "The Service Business Owner",
+    "title": "Owner / Practice Manager / Service Lead",
+    "company_type": "B2C services (plumbing, HVAC, dental, real estate, consulting, accounting, therapy, coaching)",
+    "employee_count": "1-15",
+    "age_range": "40-65",
+    "primary_pain": "Word-of-mouth referrals and repeat business no longer fill the pipeline. Can't afford a full-time inside salesperson. Needs consistent, predictable lead flow to keep team utilized.",
+    "secondary_pains": [
+      "Doesn't trust online marketing ('I've always built my business on reputation')",
+      "Concerned about lead quality—wants vetted customers, not bargain hunters",
+      "Doesn't have time or skill to manage ads; doesn't want to hire an agency"
+    ],
+    "decision_criteria": [
+      "Proof it works for their specific service (dentist ads, plumber ads, real estate ads, etc.)",
+      "Pay only for actual leads or booked appointments, not just clicks",
+      "Simple setup—no copywriting, design, or technical skills needed",
+      "Transparent cost per lead; predictable budget",
+      "Integration with their phone or booking system"
+    ],
+    "objections": [
+      {
+        "objection": "I've built my business on reputation and referrals. I don't need ads.",
+        "rebuttal": "Referrals are amazing but unreliable. One person moves or stops using you, and your pipeline shrinks. Ads fill gaps in your schedule and attract new referral sources. Think of it as buying referrals upfront."
+      },
+      {
+        "objection": "I don't want 'bargain hunter' leads. Ads attract the wrong people.",
+        "rebuttal": "We target by location and intent, not price. A person searching 'emergency plumber near me' at 11pm is a good lead. Meta's targeting finds serious customers in your area who need your service."
+      },
+      {
+        "objection": "I tried Google Ads once. Clicks were expensive and led to nothing.",
+        "rebuttal": "Google Search works for immediate, high-intent searches ('emergency plumber'). Meta reaches people planning ahead who might not be searching yet. Lower cost per lead, better fit for service businesses."
+      }
+    ],
+    "preferred_channels": [
+      "Google Search (for local 'emergency' and intent-driven searches)",
+      "Meta Ads (for local awareness and lead generation)",
+      "Local directories (Yelp, Google My Business)",
+      "Word-of-mouth and referral partnerships",
+      "Local radio or sponsorships (for established businesses)"
+    ],
+    "messaging_that_resonates": [
+      "Local proof: 'Other dentists in your city are booking 5-10 new patients/month'",
+      "Predictable cost: 'Average cost per lead: $8-12. You only pay when someone books.'",
+      "Specific numbers: 'Reach 2,000 homeowners in your area who just searched for plumbing help'",
+      "Reduced risk: 'Try $300/month first. Pause anytime. No contract.'",
+      "Pipeline language: 'Keep your team busy and your schedule full.'"
+    ],
+    "messaging_to_avoid": [
+      "Hype language ('Explode your growth', 'Dominate your market')",
+      "Tech jargon ('Programmatic bidding', 'Lookalike audiences')",
+      "Complexity ('Requires a full-time marketing manager')",
+      "One-size-fits-all approach (they want specific case studies for their service type)"
+    ],
+    "typical_monthly_ad_budget": "$300-$1,500",
+    "sales_cycle_days": "10-18"
+  },
+  {
+    "id": "persona_multilocation_manager",
+    "name": "The Multi-Location SMB Manager",
+    "title": "Marketing Manager / Regional Manager / Franchise Owner",
+    "company_type": "Franchise, regional chain, or multi-location business (coffee chains, gyms, home services network, salon groups)",
+    "employee_count": "50-500",
+    "age_range": "30-50",
+    "primary_pain": "Balance brand consistency at scale with local relevance at each location. Each location competes for same customers. Can't manage a different ad strategy for 50+ locations manually. Needs a system that scales.",
+    "secondary_pains": [
+      "Dealership/franchisee pushback—store managers feel ads aren't serving their location",
+      "Attribution complexity—can't easily tie corporate ad spend to location-level revenue",
+      "Budget allocation tricky—how much should Location A get vs. Location B?"
+    ],
+    "decision_criteria": [
+      "Ability to run brand-level campaigns + location-level campaigns simultaneously",
+      "Proof it works across multiple locations (not just one success story)",
+      "Dashboard that shows corporate view AND store manager view",
+      "Team access and approval workflows (so multiple people can manage safely)",
+      "Scalability (whether adding 10 new locations requires new setup or just budget increase)"
+    ],
+    "objections": [
+      {
+        "objection": "Our locations are all different. A one-size-fits-all ad strategy won't work.",
+        "rebuttal": "You run one brand-level campaign + location-specific campaigns. Corporate maintains brand consistency; each location customizes for their market. Meta's tools let you segment audiences by location and auto-scale budget."
+      },
+      {
+        "objection": "We tried ads before but couldn't track what drove sales at each location.",
+        "rebuttal": "That's a tracking setup issue, not a Meta issue. We'll show you how to set up conversion tracking so each location can see its own results in the dashboard. Then budget allocation becomes data-driven."
+      },
+      {
+        "objection": "Our franchisees don't want corporate running their ads.",
+        "rebuttal": "Give them admin access. They manage their local location ads; corporate runs brand-level campaigns. Everyone sees their own results. It's collaborative, not top-down."
+      }
+    ],
+    "preferred_channels": [
+      "Meta Ads (for brand + local campaigns with audience segmentation)",
+      "Google Local Services Ads (for immediate service intent in each market)",
+      "Email (to store managers for coordination)",
+      "LinkedIn (for corporate/B2B partnerships)",
+      "YouTube (for brand awareness across regions)"
+    ],
+    "messaging_that_resonates": [
+      "Scale language: 'Add 10 new locations and budget scales automatically'",
+      "Control language: 'Corporate maintains brand voice. Store managers customize for local market.'",
+      "Data and proof: 'See which locations drive ROI. Reallocate budget based on performance.'",
+      "Efficiency: 'Stop managing 50 separate ad accounts. One platform, local + brand control.'",
+      "Team enablement: 'Train your team once. They self-serve without needing corporate approval every time.'"
+    ],
+    "messaging_to_avoid": [
+      "One-size-fits-all positioning (they need to know they can customize)",
+      "Overly technical (marketing managers at franchises aren't usually tech experts)",
+      "Franchisee concerns being ignored ('This is how corporate will now run your marketing'—sounds threatening)",
+      "Vague ROI ('Grow faster', 'Increase awareness'—they want location-level metrics)"
+    ],
+    "typical_monthly_ad_budget": "$10,000-$100,000+ (depending on number of locations)",
+    "sales_cycle_days": "21-45"
+  }
+]

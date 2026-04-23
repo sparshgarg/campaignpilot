@@ -1,0 +1,496 @@
+[
+  {
+    "id": "creative_001",
+    "input": {
+      "brief_summary": "Target local restaurant owners who've never run a Meta ad. Emphasize ease of setup and local reach. Facebook feed ad.",
+      "channel": "facebook",
+      "tone": "warm_conversational",
+      "product": "Meta Ads",
+      "persona": "local_retailer"
+    },
+    "expected_output": {
+      "headline": "Get More Customers in Your Neighborhood",
+      "body": "Your restaurant is already on Facebook. Now use it to attract hungry customers.\n\nMeta Ads shows your menu and specials to people nearby who are actively looking for a place to eat.\n\nNo design skills needed. Pick a photo. Write a few words. Start with just $5/day.\n\nLocal restaurants report 2-3x return on their ad spend.",
+      "cta": "Start your first ad free"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Excellent for local retail persona. Opens with existing asset (Facebook page). Concrete minimum spend ($5/day) removes hesitation. Grounded in real benchmark (2-3x ROI). Warm, not patronizing. Strong CTA."
+  },
+  {
+    "id": "creative_002",
+    "input": {
+      "brief_summary": "Target e-commerce store owners on Instagram. Focus on product discovery and customer reach. Instagram feed ad.",
+      "channel": "instagram",
+      "tone": "aspirational_empowering",
+      "product": "Meta Ads",
+      "persona": "ecommerce"
+    },
+    "expected_output": {
+      "headline": "Your Products Deserve to be Found",
+      "body": "Great products don't sell themselves.\n\nInstagram Ads put your best products in front of customers who are already scrolling, already looking, already ready to buy.\n\nShow them your story. Show them your style. Watch your orders come in.\n\nE-commerce businesses using Instagram Ads average 2.19x return on ad spend.",
+      "cta": "Create your first campaign"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 4
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Strong brand story angle ('Show them your story'). Uses exact benchmark (2.19x ROAS). Aspirational for e-commerce without hyperbole. Instagram-native imagery suggestion. Appropriate for product-focused business."
+  },
+  {
+    "id": "creative_003",
+    "input": {
+      "brief_summary": "Target service business owners (plumbing, HVAC) on Facebook. Lead generation focus. Lead Gen form ad.",
+      "channel": "facebook",
+      "tone": "direct_helpful",
+      "product": "Meta Ads",
+      "persona": "service_business"
+    },
+    "expected_output": {
+      "headline": "More Service Calls This Week",
+      "body": "Homeowners search for 'plumber near me' every day. Meta Ads shows your business to those customers at that exact moment.\n\nThey click. They fill out a form with their contact info. You call them back. That's a potential job.\n\nService businesses report getting 3-5 qualified leads per week at $20-40 per lead.",
+      "cta": "Get your first leads"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Perfect for service businesses. Opens with real search behavior. Clear funnel (search > click > form > call > job). Specific lead metrics ($20-40 per lead) build credibility. Direct problem-solution framing."
+  },
+  {
+    "id": "creative_004",
+    "input": {
+      "brief_summary": "Target multi-location retail chains on Facebook. Brand awareness and foot traffic. Carousel ad.",
+      "channel": "facebook",
+      "tone": "professional_confident",
+      "product": "Meta Ads",
+      "persona": "regional_retailer"
+    },
+    "expected_output": {
+      "headline": "Drive Traffic to All Your Locations",
+      "body": "Managing ads across 5 stores, 10 stores, 20 stores is complicated. Unless you use Meta Ads.\n\nOne campaign. Geographically targeted. Shows each location to customers nearby. Drives foot traffic to the store that's closest to them.\n\nMulti-location retailers see 15-20% increase in in-store visits within 30 days.",
+      "cta": "Set up location-based ads"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 4
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Strong for multi-location pain point. Concrete store count examples. Specific foot traffic lift (15-20%) is credible. Addresses the 'managing scale' problem. Professional tone appropriate for regional decision-makers."
+  },
+  {
+    "id": "creative_005",
+    "input": {
+      "brief_summary": "Target SMBs on Instagram with Advantage+ upsell messaging. Automation and efficiency focus.",
+      "channel": "instagram",
+      "tone": "energetic_modern",
+      "product": "Advantage+ Campaigns",
+      "persona": "active_advertiser"
+    },
+    "expected_output": {
+      "headline": "Your AI Campaign Manager is Ready",
+      "body": "Stop manually tweaking audiences and bids. Advantage+ AI learns from your best-performing ads and optimizes in real-time.\n\nThe result? 32% lower cost-per-acquisition on average. And you get your time back.\n\nActive advertisers who switch to Advantage+ report: more sales, less work, better results.",
+      "cta": "Switch to Advantage+ free"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 4,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Excellent use of benchmark (32% lower CPA). 'Your AI campaign manager' is memorable metaphor. Speaks to efficiency and results. Grounded benefit. Good for Instagram's younger advertiser demographic."
+  },
+  {
+    "id": "creative_006",
+    "input": {
+      "brief_summary": "Email to new SMB advertiser onboarding. First campaign success messaging.",
+      "channel": "email",
+      "tone": "supportive_expert",
+      "product": "Meta Ads",
+      "persona": "new_advertiser"
+    },
+    "expected_output": {
+      "headline": "Your First Campaign Launched. Here's What Happens Next.",
+      "body": "Welcome to Meta Ads.\n\nYour first campaign is live. Customers in your area are seeing your ads right now.\n\nHere's the 5-step roadmap to success:\n\n1) Monitor your results daily (check your dashboard tomorrow)\n2) After 7 days, look for patterns (which ads get more clicks?)\n3) On day 14, boost your best-performing ad\n4) By day 30, you'll see your first real results\n5) Scale what works\n\nMedian advertisers see their ROI double between month 1 and month 3.\n\nQuestions? Reply to this email or visit our SMB help center.",
+      "cta": "View your campaign"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Perfect onboarding email. Clear step-by-step roadmap reduces anxiety. Specific timeline (7d, 14d, 30d) creates engagement moments. ROI doubling benchmark is grounded. Supportive tone builds confidence."
+  },
+  {
+    "id": "creative_007",
+    "input": {
+      "brief_summary": "Email nurture sequence for lapsed advertiser re-engagement. Social proof angle.",
+      "channel": "email",
+      "tone": "friendly_fomo",
+      "product": "Meta Ads",
+      "persona": "lapsed_advertiser"
+    },
+    "expected_output": {
+      "headline": "See How [Competitor Vertical] Grew 40% With Meta Ads This Year",
+      "body": "Hey [Name],\n\nWe noticed you haven't run a campaign with us since [date]. We wanted to share something interesting.\n\nRestaurant owners who came back to Meta Ads this year are reporting:\n\n- 2-3x return on ad spend\n- 25% increase in foot traffic\n- Better customer data (who's coming in, from where)\n\nA lot has changed since you last advertised. Advantage+ campaigns do the optimization for you. Instagram Ads reach younger customers. Lead gen forms capture contact info automatically.\n\nWhat if you spent just $500 to test it again? That could be 5-15 new customers depending on your vertical.\n\nWe made it easy: Start a free test campaign in 5 minutes.",
+      "cta": "Run a free 7-day test"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 4,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Strong re-engagement email. Vertical-specific social proof. Real benchmarks (2-3x ROAS, 25% foot traffic increase). Acknowledges time gap ('since you last advertised'). Low-risk trial ($500 test). Good specificity on ROI potential."
+  },
+  {
+    "id": "creative_008",
+    "input": {
+      "brief_summary": "Google Search ad for intent keyword 'facebook ads for small business'. Educational angle.",
+      "channel": "google_search",
+      "tone": "helpful_direct",
+      "product": "Meta Ads",
+      "persona": "small_business_owner"
+    },
+    "expected_output": {
+      "headline": "Facebook Ads for Small Business Owners",
+      "body": "Reach nearby customers with Facebook and Instagram Ads. No experience needed. Get started with $5/day.",
+      "cta": "Create your free account"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 4,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 4
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Clean Google Search ad. Mirrors search intent (Facebook ads + small business). Addresses barrier ('no experience needed') and minimizes friction ($5/day). Direct CTA. Appropriate length for search format."
+  },
+  {
+    "id": "creative_009",
+    "input": {
+      "brief_summary": "Google Search ad for commercial intent keyword 'instagram ads'. Direct response.",
+      "channel": "google_search",
+      "tone": "action_oriented",
+      "product": "Meta Ads",
+      "persona": "ecommerce"
+    },
+    "expected_output": {
+      "headline": "Instagram Ads for E-commerce Stores",
+      "body": "Show products to customers actively looking. Average 2.19x return. Start with Shopify integration.",
+      "cta": "Launch your campaign"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Excellent commercial intent ad. Includes exact benchmark (2.19x ROAS). Mentions integration advantage (Shopify). Specific to persona. Appropriate urgency in CTA ('Launch')."
+  },
+  {
+    "id": "creative_010",
+    "input": {
+      "brief_summary": "LinkedIn ad targeting SMB marketing managers. Advantage+ expertise angle.",
+      "channel": "linkedin",
+      "tone": "professional_innovative",
+      "product": "Advantage+ Campaigns",
+      "persona": "smb_marketing_manager"
+    },
+    "expected_output": {
+      "headline": "AI-Powered Campaign Optimization Is Here",
+      "body": "Meta's Advantage+ campaigns use machine learning to optimize every element: audience, creative, placement, bid.\n\nThe result for marketing teams: 32% lower cost-per-acquisition and way less manual work.\n\nLeading SMB brands are already reporting 2x efficiency gains.",
+      "cta": "See the data"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Strong for SMB marketing managers. Technical credibility without jargon. Real benchmark (32% lower CPA). Speaks to efficiency (less manual work). 'Leading SMB brands' creates social proof. Appropriate for LinkedIn's professional tone."
+  },
+  {
+    "id": "creative_011",
+    "input": {
+      "brief_summary": "LinkedIn ad for WhatsApp Business API launch. B2B focus on service businesses.",
+      "channel": "linkedin",
+      "tone": "forward_thinking",
+      "product": "WhatsApp Business API",
+      "persona": "service_business_ops"
+    },
+    "expected_output": {
+      "headline": "Reach Customers Where They Are: WhatsApp",
+      "body": "Your customers are on WhatsApp. Now you can be too.\n\nWhatsApp Business API lets service businesses send personalized messages, booking confirmations, and updates directly to customers.\n\nResult: 3x higher response rates vs. SMS. Better customer experience. More appointments booked.",
+      "cta": "Apply for early access"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 4
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Strong product launch positioning. 3x response rate benchmark is grounded. Speaks to service business core need (booking). 'Where they are' is powerful framing. Early access creates scarcity. Appropriate for LinkedIn launch strategy."
+  },
+  {
+    "id": "creative_012",
+    "input": {
+      "brief_summary": "NEGATIVE EXAMPLE: Uses prohibited phrase 'guaranteed results'. Facebook ad.",
+      "channel": "facebook",
+      "tone": "hyperbolic",
+      "product": "Meta Ads",
+      "persona": "naive_advertiser"
+    },
+    "expected_output": {
+      "headline": "Guaranteed Results With Meta Ads",
+      "body": "Meta Ads guarantees you'll get more sales. No risk. No waiting. Just instant profits.\n\nJoin thousands of businesses who are crushing it with guaranteed results on Meta.",
+      "cta": "Get guaranteed sales now"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 1,
+      "factual_accuracy": 1,
+      "tone_match": 1,
+      "safety_passed": false,
+      "specificity": 2
+    },
+    "prohibited_phrases_present": [
+      "guaranteed results",
+      "instant profits"
+    ],
+    "annotator_notes": "FAILS BRAND SAFETY. Uses prohibited phrase 'guaranteed results' multiple times. Makes unsubstantiated claims ('no risk', 'instant profits'). Hyperbolic tone. Misleading messaging. Would violate Meta advertising policy. Rewrite needed."
+  },
+  {
+    "id": "creative_013",
+    "input": {
+      "brief_summary": "NEGATIVE EXAMPLE: Uses prohibited phrase 'go viral'. Instagram ad.",
+      "channel": "instagram",
+      "tone": "clickbait",
+      "product": "Meta Ads",
+      "persona": "young_business"
+    },
+    "expected_output": {
+      "headline": "Make Your Posts Go Viral",
+      "body": "With Meta Ads, your content will go viral and reach millions of people overnight.\n\nStart a campaign today and watch your followers explode. Every post will be a hit.",
+      "cta": "Go viral now"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 1,
+      "factual_accuracy": 1,
+      "tone_match": 1,
+      "safety_passed": false,
+      "specificity": 1
+    },
+    "prohibited_phrases_present": [
+      "go viral",
+      "reach millions overnight"
+    ],
+    "annotator_notes": "FAILS BRAND SAFETY. 'Go viral' is prohibited. Unrealistic promises ('reach millions overnight', 'every post will be a hit'). Clickbait tone undermines credibility. No substantiated claims or benchmarks. Violates Meta's truth-in-advertising standards."
+  },
+  {
+    "id": "creative_014",
+    "input": {
+      "brief_summary": "NEGATIVE EXAMPLE: Uses prohibited phrase 'crush your competitors'. Email campaign.",
+      "channel": "email",
+      "tone": "aggressive",
+      "product": "Meta Ads",
+      "persona": "competitive_advertiser"
+    },
+    "expected_output": {
+      "headline": "Crush Your Competitors With Meta Ads",
+      "body": "Your competitors are using Meta Ads. You should too, or they'll crush you.\n\nGet rich quick. Dominate your market. Leave your competitors in the dust with guaranteed success.",
+      "cta": "Crush them now"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 1,
+      "factual_accuracy": 1,
+      "tone_match": 1,
+      "safety_passed": false,
+      "specificity": 1
+    },
+    "prohibited_phrases_present": [
+      "crush your competitors",
+      "get rich quick",
+      "guaranteed success"
+    ],
+    "annotator_notes": "FAILS BRAND SAFETY. Multiple prohibited phrases: 'crush your competitors', 'get rich quick', 'guaranteed success'. Aggressive, fear-based messaging. Makes unsubstantiated financial claims. Violates both brand voice and regulatory standards. Requires complete rewrite."
+  },
+  {
+    "id": "creative_015",
+    "input": {
+      "brief_summary": "NEGATIVE EXAMPLE: Uses prohibited phrase 'instant sales'. Facebook feed ad.",
+      "channel": "facebook",
+      "tone": "spammy",
+      "product": "Meta Ads",
+      "persona": "desperate_retailer"
+    },
+    "expected_output": {
+      "headline": "Instant Sales With Meta Ads",
+      "body": "Run Meta Ads and get instant sales immediately. No waiting, no experience needed. You'll make thousands.\n\nThis is a get-rich-quick opportunity. Start today and watch the money pour in.",
+      "cta": "Get instant sales"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 1,
+      "factual_accuracy": 1,
+      "tone_match": 1,
+      "safety_passed": false,
+      "specificity": 1
+    },
+    "prohibited_phrases_present": [
+      "instant sales",
+      "get rich quick",
+      "money pour in"
+    ],
+    "annotator_notes": "FAILS BRAND SAFETY. 'Instant sales' is prohibited. Combines prohibited phrases ('instant', 'get-rich-quick'). Makes unrealistic financial promises ('thousands', 'money pour in'). Spammy tone. Would be flagged by Meta's own ad review systems. Not fit for publication."
+  },
+  {
+    "id": "creative_016",
+    "input": {
+      "brief_summary": "High-performing email nurture for Advantage+ adoption. Results-focused messaging.",
+      "channel": "email",
+      "tone": "results_driven",
+      "product": "Advantage+ Campaigns",
+      "persona": "active_advertiser"
+    },
+    "expected_output": {
+      "headline": "Your Manual Campaign Just Cost You $1,200",
+      "body": "Here's the math:\n\nYou spent 5 hours last week optimizing bids, audiences, and creatives.\n\nAt your time value, that's roughly $500 in labor.\n\nPlus, manual optimization leaves room for inefficiency. Our data shows manual campaigns overspend by 20-30% vs. Advantage+.\n\nOn a $5k monthly budget, that's another $1,000-1,500 in wasted spend.\n\nAdvantage+ does that optimization automatically. 32% lower cost-per-acquisition on average.\n\nOne advertiser switched and saved $2,400 in just 30 days.\n\nWhat's your time and budget worth?",
+      "cta": "Switch one campaign to test"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Excellent ROI-focused email. Concrete cost calculation ($1,200 wasted spend). Grounded in real benchmarks (20-30% overspend, 32% CPA improvement). Powerful cost-benefit framing. Speaks to CFO mentality. Low-friction CTA ('test one campaign'). Strong email copy."
+  },
+  {
+    "id": "creative_017",
+    "input": {
+      "brief_summary": "Educational landing page header for SMBs learning about Facebook ads. Trust-building.",
+      "channel": "email",
+      "tone": "educational_trusted",
+      "product": "Meta Ads",
+      "persona": "newbie_advertiser"
+    },
+    "expected_output": {
+      "headline": "The Complete Guide to Facebook Ads for Small Businesses",
+      "body": "Facebook and Instagram Ads are the most effective way small businesses reach new customers.\n\nBut where do you start?\n\nIn this guide, you'll learn:\n\n- How Facebook Ads work (and why they work)\n- The 5 campaign types that drive results\n- How much to budget ($5/day vs. $500/day)\n- Real ROI benchmarks from businesses like yours\n- Common mistakes to avoid\n\nMedian SMB advertisers see 2.19x return on ad spend. You can be average. Or you can be strategic.\n\nDownload the free guide.",
+      "cta": "Get the guide"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 4
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Strong educational positioning. Addresses beginner anxiety (where do I start?). Clear table of contents builds credibility. Real benchmark (2.19x ROAS). 'You can be average or strategic' is powerful closing. Low-friction download CTA. Good for nurturing newbies."
+  },
+  {
+    "id": "creative_018",
+    "input": {
+      "brief_summary": "SMS message for service business lead gen campaign. Action-oriented.",
+      "channel": "sms",
+      "tone": "urgent_helpful",
+      "product": "Meta Ads",
+      "persona": "service_business"
+    },
+    "expected_output": {
+      "headline": "N/A - SMS format",
+      "body": "Hi [Name]. Your HVAC Ads campaign is live. Customers searching for heating service are seeing your business right now. Reply HELP for support or visit [link] to check your leads.",
+      "cta": "Check leads"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 4,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 4
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Good SMS copy. Concise and action-oriented. 'Customers are seeing your business right now' creates urgency. Reply HELP is good accessibility feature. Link drives to next action (check leads). Appropriate for SMS character limits and mobile behavior."
+  },
+  {
+    "id": "creative_019",
+    "input": {
+      "brief_summary": "Paid social creative for Meta Business Suite free product promotion. Value-driven.",
+      "channel": "facebook",
+      "tone": "efficient_helpful",
+      "product": "Meta Business Suite",
+      "persona": "active_advertiser"
+    },
+    "expected_output": {
+      "headline": "Manage Everything in One Place",
+      "body": "Stop switching between Facebook Ads Manager, Instagram, Messenger, and WhatsApp.\n\nMeta Business Suite brings it all together: ads, messages, customer chat, team management.\n\nOne dashboard. Real-time insights. Less time managing, more time growing.\n\nIt's free.",
+      "cta": "Set up in 2 minutes"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 5,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 4
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Strong positioning of free Meta Business Suite. Problem statement (switching costs) is relatable. Concrete benefit (less time managing). 'Free' is powerful for product adoption. '2 minutes' removes friction. Speaks to efficiency-focused advertiser."
+  },
+  {
+    "id": "creative_020",
+    "input": {
+      "brief_summary": "Testimonial-style email from successful SMB. Social proof for Conversions objective.",
+      "channel": "email",
+      "tone": "authentic_relatable",
+      "product": "Meta Ads",
+      "persona": "skeptical_newbie"
+    },
+    "expected_output": {
+      "headline": "$50k in Revenue From a $3k Ad Budget",
+      "body": "'I was skeptical. I'd never run ads before. But Meta Ads is so simple.\n\nI took the free guide, spent 30 minutes setting up my first campaign, and started getting customers immediately.\n\nIn 3 months, I turned a $3k ad investment into $50k in new sales. The ROI was insane.\n\nI'm now spending $1k/month on Meta Ads and it's the best marketing investment I've made.'\n\n— Sarah M., Local Salon Owner\n\nSarah's not special. She just gave it a try.\n\nWhat if you spent $500 on your first test?",
+      "cta": "Start your first campaign"
+    },
+    "quality_dimensions": {
+      "brand_voice_alignment": 5,
+      "factual_accuracy": 4,
+      "tone_match": 5,
+      "safety_passed": true,
+      "specificity": 5
+    },
+    "prohibited_phrases_present": [],
+    "annotator_notes": "Excellent testimonial email. Relatable persona (local salon owner). Specific numbers ($3k spend to $50k revenue). Addresses skepticism ('never run ads before'). Shows progression (30 min setup, 3-month ROI, now $1k/month ongoing). Low-risk ask ($500 test). Powerful social proof."
+    }
+]

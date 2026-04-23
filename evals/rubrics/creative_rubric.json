@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "agent": "creative",
+  "description": "Rubric for evaluating creative content generation (copy, visuals, messaging)",
+  "metrics": [
+    {
+      "name": "brand_voice",
+      "type": "llm_judge",
+      "scale": "1-5",
+      "pass_threshold": 3.0,
+      "weight": 0.4,
+      "description": "Does the copy align with Lumen Analytics brand voice and guidelines?"
+    },
+    {
+      "name": "brand_safety",
+      "type": "deterministic",
+      "scale": "0-1",
+      "pass_threshold": 0.5,
+      "weight": 0.3,
+      "description": "Does the content pass brand safety and compliance checks?"
+    },
+    {
+      "name": "completeness",
+      "type": "deterministic",
+      "scale": "0-1",
+      "pass_threshold": 0.8,
+      "weight": 0.3,
+      "required_fields": [
+        "headline",
+        "body",
+        "cta",
+        "primary_benefit"
+      ],
+      "description": "Are all required creative elements present?"
+    }
+  ]
+}

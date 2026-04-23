@@ -1,0 +1,160 @@
+[
+  {
+    "id": "lumen-core",
+    "name": "Lumen Core",
+    "tagline": "Unified operational dashboards for teams drowning in spreadsheets",
+    "price_monthly_usd": 299,
+    "billing": "per seat, minimum 3 seats",
+    "target_segment": "SMB",
+    "company_size": "10-100 employees",
+    "annual_contract_value_typical": 8964,
+    "key_features": [
+      "Pre-built operational dashboards for finance, ops, and HR workflows",
+      "Automated daily/weekly/monthly report generation and delivery",
+      "Data connectors for 30+ business apps (Salesforce, HubSpot, QuickBooks, ADP, Slack)",
+      "Role-based access control with audit logging for compliance",
+      "Mobile-friendly dashboard viewing and email alerts"
+    ],
+    "proof_points": [
+      {
+        "metric": "Customers reduce monthly reporting time by 18 hours per analyst",
+        "source": "Customer survey Q3 2024, n=47"
+      },
+      {
+        "metric": "94% of users say they trust the numbers in Lumen more than Excel",
+        "source": "Customer survey Q3 2024, n=47"
+      },
+      {
+        "metric": "Average implementation time: 7 days",
+        "source": "Internal analytics, last 100 implementations"
+      },
+      {
+        "metric": "98% of customers still active after 12 months",
+        "source": "Internal retention analytics, cohorts 2023-2024"
+      }
+    ],
+    "competitors": ["Tableau Public", "Looker Studio", "Power BI Desktop (self-service)", "Google Data Studio"],
+    "differentiators": [
+      "Purpose-built for operations teams—not data engineers. No SQL required.",
+      "Fastest time-to-value in the category: live dashboards in 48 hours.",
+      "Flat-rate pricing per seat; no hidden per-connection or per-row costs."
+    ],
+    "ideal_customer_profile": "Growing operations teams (15-75 people) with 3-8 data sources, spending 40+ hours/month on manual reporting. Finance directors, ops managers, and business analysts who own the reporting process but lack data engineering support. Budget authority typically $2K-$10K annually.",
+    "typical_use_cases": [
+      "Monthly financial close reporting: KPIs, variance analysis, and board-ready reports automated and delivered by the 1st of each month",
+      "Operational metrics dashboards: real-time view of sales pipeline velocity, customer churn, and support SLA compliance",
+      "HR and headcount planning: automated headcount, turnover, and hiring funnel tracking across multiple systems"
+    ],
+    "sales_cycle_days": 14,
+    "implementation_days": 7,
+    "customer_success_tier": "self-service with email support"
+  },
+  {
+    "id": "lumen-pro",
+    "name": "Lumen Pro",
+    "tagline": "Advanced BI for operations teams that outgrew spreadsheets and Lumen Core",
+    "price_monthly_usd": 799,
+    "billing": "per seat, minimum 5 seats",
+    "target_segment": "Mid-Market",
+    "company_size": "100-1,000 employees",
+    "annual_contract_value_typical": 28764,
+    "key_features": [
+      "Custom SQL modeling and transformation layer for complex data logic",
+      "Advanced data connectors including APIs, databases (Postgres, MySQL, Snowflake), and data warehouses",
+      "Scheduled data refresh with SLA monitoring and failure alerts",
+      "Custom metrics and KPI definitions with version control and audit trails",
+      "Embedded dashboards for customer-facing portals and internal apps",
+      "Advanced forecasting and trend analysis powered by ML",
+      "Data lineage tracking and impact analysis for data governance"
+    ],
+    "proof_points": [
+      {
+        "metric": "Customers reduce data prep time by 65% with automated transformation workflows",
+        "source": "Customer survey Q2 2024, n=23"
+      },
+      {
+        "metric": "98% of KPI calculations match financial records with no manual reconciliation",
+        "source": "Customer audit Q4 2024, n=12"
+      },
+      {
+        "metric": "Average implementation time: 21 days",
+        "source": "Internal analytics, last 50 implementations"
+      },
+      {
+        "metric": "Organizations using Pro see 3.2x faster decision-making in operations",
+        "source": "Post-implementation survey, Q3 2024, n=18"
+      }
+    ],
+    "competitors": ["Tableau", "Looker", "Power BI Premium", "Qlik Sense", "Domo"],
+    "differentiators": [
+      "Built-in SQL transformation engine—no separate dbt or data transformation tool required.",
+      "Real-time data refresh with sub-5-minute latency, not batch overnight updates.",
+      "Operations-specific ML features: anomaly detection, forecasting, and variance drivers—not generic analytics."
+    ],
+    "ideal_customer_profile": "Mid-market companies (100-500 people) with complex data architectures, multiple databases, and teams requiring custom reporting logic. Finance operations, shared services organizations, and mid-market SaaS companies with data governance needs. Budget authority typically $30K-$100K annually.",
+    "typical_use_cases": [
+      "Finance shared services: multi-entity consolidation, intercompany eliminations, and compliance reporting with audit trails and approval workflows",
+      "Operations analytics: real-time manufacturing KPIs, supply chain metrics, and cost allocation across business units with custom variance analysis",
+      "Enterprise customer success: embedded dashboards showing customer health, usage metrics, and NRR with automated alerts for at-risk accounts"
+    ],
+    "sales_cycle_days": 45,
+    "implementation_days": 21,
+    "customer_success_tier": "dedicated success manager + priority support"
+  },
+  {
+    "id": "lumen-enterprise",
+    "name": "Lumen Enterprise",
+    "tagline": "Governance-first BI for large organizations with complex compliance and scale requirements",
+    "price_monthly_usd": 2499,
+    "billing": "per seat, minimum 10 seats, custom data volume pricing",
+    "target_segment": "Enterprise",
+    "company_size": "1,000+ employees",
+    "annual_contract_value_typical": 89964,
+    "key_features": [
+      "Unlimited custom SQL transformations with dev/staging/prod environments",
+      "Enterprise connectors: Snowflake, BigQuery, Redshift, Databricks, and Salesforce Data Cloud",
+      "Fine-grained row-level and column-level security with LDAP/SSO integration",
+      "Advanced data governance: data lineage, PII detection, usage analytics, and retention policies",
+      "Embedded dashboards with white-label branding and custom authentication",
+      "Advanced forecasting, scenario modeling, and predictive analytics",
+      "99.99% uptime SLA with dedicated infrastructure and DDoS protection",
+      "Real-time data sync with CDC (Change Data Capture) for sub-1-second latency",
+      "API-first architecture for custom integrations and programmatic access",
+      "Multi-tenancy support for managed services and customer-facing analytics"
+    ],
+    "proof_points": [
+      {
+        "metric": "Enterprise customers reduce annual analytics infrastructure spending by $500K+ by consolidating Tableau, Looker, and custom data tools into Lumen",
+        "source": "Customer economics study Q4 2024, n=8"
+      },
+      {
+        "metric": "Average time to deploy new BI use case: 5 days, down from 45 days with legacy tools",
+        "source": "Post-implementation survey, enterprise cohort 2024, n=6"
+      },
+      {
+        "metric": "99.98% uptime across all customer instances in 2024",
+        "source": "Internal SLA monitoring, 2024 YTD"
+      },
+      {
+        "metric": "Handles 50B+ data points per day across all enterprise customers with sub-50ms query response time",
+        "source": "Internal infrastructure metrics, 2024 YTD"
+      }
+    ],
+    "competitors": ["Tableau Enterprise", "Looker Cloud", "Power BI Premium Capacity", "Qlik Enterprise", "Sisense"],
+    "differentiators": [
+      "Operations-obsessed architecture: built for finance and ops teams, not IT/analytics teams. Governance is built-in, not bolted-on.",
+      "Single platform for dashboarding, transformation, and data governance—no vendor sprawl across Tableau + dbt + data catalog tools.",
+      "Rapid deployment on operations data: 5 days vs. 3-6 months for traditional enterprise BI platforms."
+    ],
+    "ideal_customer_profile": "Large enterprises (500+ person operations orgs) with multiple business units, complex compliance requirements (SOX, HIPAA, GDPR), and data volumes exceeding 10B records. Public companies, regulated financial services, and healthcare organizations requiring data governance, audit trails, and fine-grained access control. Budget authority typically $150K-$500K+ annually.",
+    "typical_use_cases": [
+      "Multi-entity financial consolidation: automated monthly close for 20+ entities with intercompany eliminations, variance analysis, and SEC reporting with full audit trails",
+      "Global operations analytics: real-time KPIs across manufacturing plants, distribution centers, and regional operations with compliance reporting for SOX and industry-specific regulations",
+      "Managed analytics services: white-label embedded dashboards for customer success, channel partner, or investor portal with per-customer data isolation and custom branding"
+    ],
+    "sales_cycle_days": 120,
+    "implementation_days": 45,
+    "customer_success_tier": "dedicated customer success team + technical architect + quarterly business reviews",
+    "enterprise_features": true
+  }
+]

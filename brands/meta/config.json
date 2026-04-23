@@ -1,0 +1,65 @@
+{
+  "company_name": "Meta",
+  "company_tagline": "Give your business the reach it deserves.",
+  "industry": "Social Media / Digital Advertising",
+  "business_model": "B2B — sell advertising products and tools to small and medium businesses to help them reach consumers on Facebook, Instagram, WhatsApp, and Messenger",
+  "product_being_marketed": "Meta Ads Platform (Facebook Ads, Instagram Ads, Advantage+ Campaigns, Meta Business Suite, WhatsApp Business API)",
+  "target_customer_description": "Small and medium business owners (1-500 employees) across retail, e-commerce, services, hospitality, and professional services who want to reach their target customers affordably and drive measurable business results",
+  "campaign_context": "Meta's SMB marketing team runs campaigns to: (1) acquire new SMB advertisers who have never run a Meta ad, (2) re-engage lapsed advertisers who stopped spending, (3) upsell active advertisers from basic campaigns to Advantage+ automation, (4) drive WhatsApp Business API adoption among service businesses",
+  "prohibited_phrases": [
+    "guaranteed results",
+    "100% success",
+    "get rich quick",
+    "instant sales",
+    "go viral",
+    "crush your competitors",
+    "dominate the market",
+    "manipulate your audience",
+    "exploit customer data",
+    "bypass privacy controls"
+  ],
+  "brand_voice_summary": "Meta's brand voice for SMB marketing is empowering, optimistic, and results-focused. It speaks to business owners as capable entrepreneurs who deserve world-class tools. Copy is specific (real numbers, real benchmarks), accessible (no jargon), and action-oriented. Meta leads with the business outcome first ('More customers walking through your door') before explaining the mechanism. Tone is warm but not informal, confident but not arrogant. Meta avoids overpromising — it cites median benchmarks not maximums, and always grounds claims in data.",
+  "products": [
+    {
+      "id": "meta-ads-essentials",
+      "name": "Meta Ads",
+      "tagline": "Reach the customers who matter to your business.",
+      "price_model": "Pay-per-result. Start from $5/day. No setup fee, no minimum commitment.",
+      "target_segment": "All SMBs",
+      "key_platforms": ["Facebook", "Instagram", "Messenger", "Audience Network"]
+    },
+    {
+      "id": "advantage-plus",
+      "name": "Advantage+ Campaigns",
+      "tagline": "Let AI find your best customers — automatically.",
+      "price_model": "Same auction-based pricing as Meta Ads. No premium for automation.",
+      "target_segment": "SMBs spending $1k+/mo who want to scale without adding headcount",
+      "key_benefit": "32% lower CPA than manual campaigns on average"
+    },
+    {
+      "id": "meta-business-suite",
+      "name": "Meta Business Suite",
+      "tagline": "Run your Facebook and Instagram business from one place.",
+      "price_model": "Free",
+      "target_segment": "SMBs managing organic + paid presence across Facebook and Instagram"
+    },
+    {
+      "id": "whatsapp-business-api",
+      "name": "WhatsApp Business API",
+      "tagline": "Turn conversations into conversions — at scale.",
+      "price_model": "Per-message pricing. Free within 72-hour service windows. Utility/auth messages charged per delivery.",
+      "target_segment": "Service businesses, e-commerce, and multi-location SMBs with high customer messaging volume"
+    }
+  ],
+  "channels": ["facebook", "instagram", "email", "google_search", "linkedin", "youtube", "webinar"],
+  "currency": "USD",
+  "geography": "United States",
+  "key_proof_points": [
+    "Median ROAS of 2.19x across SMB advertisers (Meta internal data, 2025)",
+    "Advantage+ Shopping campaigns deliver 32% lower CPA than manual campaigns",
+    "3+ billion people use Meta apps every day",
+    "200+ million businesses use Meta apps to connect with customers",
+    "Average SMB advertiser sees $2.06 returned per $1 spent",
+    "Median CTR of 2.19% across Meta placements"
+  ]
+}

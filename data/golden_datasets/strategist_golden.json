@@ -1,0 +1,473 @@
+[
+  {
+    "id": "strat_001",
+    "input": {
+      "campaign_goal": "Acquire 500 new SMB advertisers in the quick-service restaurant (QSR) vertical across Texas in Q4 2024, targeting $140 cost per new advertiser with 25% reactivation of existing Facebook page owners",
+      "budget_usd": 70000,
+      "timeline_days": 120,
+      "target_segment": "Restaurant owners with 1-3 locations, annual revenue $500k-$2M, existing Facebook business page"
+    },
+    "expected_output": {
+      "recommended_channels": ["facebook", "instagram", "email"],
+      "budget_split": {"facebook": 0.55, "instagram": 0.25, "email": 0.2},
+      "primary_message_pillar": "Local reach: Drive foot traffic with Facebook Ads targeting hungry customers within 5 miles of your restaurant",
+      "secondary_message_pillar": "Simplicity: No design skills needed — use our templates and start your first campaign in 15 minutes",
+      "kpis": [
+        "new SMB advertiser accounts created",
+        "cost per new advertiser (target: $140)",
+        "30-day retention rate (target: 60%)",
+        "average first campaign spend per new advertiser",
+        "qualified lead rate from email nurture"
+      ],
+      "audience_targeting_notes": "Layer 1: Restaurant/food service business owners on Facebook (lookalike from existing Meta Ads advertisers). Layer 2: Pages with 500+ followers and activity in past 90 days. Layer 3: Geographic: Texas DMA markets with high QSR density (Houston, Dallas, Austin, San Antonio). Exclude current Meta advertisers and recent churners (within 6 months).",
+      "rationale": "Facebook and Instagram deliver the best reach for small restaurant owners and let us show visual creative (food imagery, local success stories). Email nurture sequence converts interested prospects to trial. Q4 timing captures holiday season and year-end planning. Budget split reflects 55% to Facebook (scale), 25% to Instagram (engagement with younger staff/decision influencers), 20% to email (conversion and retention). $140 CPA aligns with Meta's median while accounting for regional variation."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 5,
+      "completeness": 5
+    },
+    "annotator_notes": "Strong goal specificity. Clear rationale linking channel choice to audience behavior. Realistic 30-day retention KPI. Budget split adds to 100% and is defensible. CPA target grounds to benchmark data."
+  },
+  {
+    "id": "strat_002",
+    "input": {
+      "campaign_goal": "Acquire 300 new e-commerce SMB advertisers (Shopify/WooCommerce store owners) across North America, each with product catalog 50+ SKUs, targeting $160 cost per new advertiser and 40% conversion to first paid campaign within 30 days",
+      "budget_usd": 50000,
+      "timeline_days": 90,
+      "target_segment": "E-commerce store owners, $100k-$1M annual revenue, using Shopify, WooCommerce, or BigCommerce"
+    },
+    "expected_output": {
+      "recommended_channels": ["facebook", "instagram", "google_search"],
+      "budget_split": {"facebook": 0.4, "instagram": 0.35, "google_search": 0.25},
+      "primary_message_pillar": "Grow online sales: Reach customers actively searching for products like yours with Instagram and Facebook Ads. Median SMB advertisers see 2.19x return on ad spend.",
+      "secondary_message_pillar": "Scale with automation: Let Advantage+ AI optimize your campaign so you can focus on your product",
+      "kpis": [
+        "new e-commerce advertiser accounts created",
+        "cost per new advertiser (target: $160)",
+        "% of new advertisers launching paid campaign within 30 days (target: 40%)",
+        "average first campaign spend",
+        "% adopting Advantage+ in first campaign (stretch goal: 25%)"
+      ],
+      "audience_targeting_notes": "Tier 1: Shopify/WooCommerce store owners (use platform API data where available, or custom audience from integration partners). Tier 2: Facebook/Instagram users following e-commerce/business pages. Tier 3: Geographic: US, Canada. Exclude existing Meta advertisers. Segment by store age: 0-2 years old (high growth potential) vs 2+ years (looking to scale).",
+      "rationale": "E-commerce SMBs are digitally native and respond well to visual creative on Instagram/Facebook. Google Search captures high-intent searchers looking for 'Facebook ads for Shopify' type queries. Advantage+ messaging differentiates Meta from competitors. Google allocation (25%) addresses active search demand while bulk of budget (75%) goes to awareness/reach on social. 40% conversion-to-paid is ambitious but grounded in strong e-commerce vertical intent."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 5,
+      "completeness": 5
+    },
+    "annotator_notes": "Excellent vertical specificity. Differentiates between new and established stores. Google Search inclusion is smart for high-intent capture. Advantage+ upsell built into primary KPI. Realistic 40% first-campaign conversion for e-commerce segment."
+  },
+  {
+    "id": "strat_003",
+    "input": {
+      "campaign_goal": "Acquire 250 new SMB advertisers in service vertical (HVAC, plumbing, landscaping, cleaning) in Midwest and South, targeting $130 cost per new advertiser with focus on local lead generation use cases",
+      "budget_usd": 35000,
+      "timeline_days": 75,
+      "target_segment": "Service business owners (HVAC, plumbing, landscaping, cleaning), 1-5 employees, annual revenue $200k-$800k, local/regional service area"
+    },
+    "expected_output": {
+      "recommended_channels": ["facebook", "email", "google_local"],
+      "budget_split": {"facebook": 0.6, "email": 0.25, "google_local": 0.15},
+      "primary_message_pillar": "Get more service calls: Reach homeowners in your area on Facebook looking for your service. Local contractors report 2-3x ROI.",
+      "secondary_message_pillar": "Turn leads into jobs: Setup takes 30 minutes. Start getting leads from your neighbors on Facebook.",
+      "kpis": [
+        "new service business advertiser accounts created",
+        "cost per new advertiser (target: $130)",
+        "% launching lead generation campaigns within 45 days (target: 45%)",
+        "average lead cost for new advertisers in first campaign",
+        "30-day advertiser retention rate (target: 65%)"
+      ],
+      "audience_targeting_notes": "Primary: Service business owners on Facebook/Instagram (age 35-65, interests in business tools, Google My Business, service industry groups). Lookalike audiences from existing service business Meta advertisers. Geographic: Midwest (OH, IL, MI, IN) and South (TX, FL, GA, NC, SC). Target local geographic zones (metro areas 500k-3M population). Exclude existing advertisers.",
+      "rationale": "Service businesses are underrepresented in Meta's SMB advertiser base and show strong ROI with local campaigns. Facebook's local targeting and lead generation forms solve the core need: getting more service calls. Email nurture supports onboarding for less digitally-native audience. Google Local (Maps) captures high-intent 'plumber near me' searches. Lower CPA ($130) reflects more price-sensitive vertical than e-commerce. 45% conversion-to-lead-generation reflects that service businesses see immediate value."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 4,
+      "completeness": 5
+    },
+    "annotator_notes": "Strong vertical focus on underserved segment. Lead generation campaign emphasis is appropriate for service businesses. 45-65% retention targets are realistic for this less digitally-savvy segment. Good mix of channels for audience behavior. Email support justified."
+  },
+  {
+    "id": "strat_004",
+    "input": {
+      "campaign_goal": "Re-engage 2,000 SMB advertisers who spent $500+ on Meta Ads in 2023 but have been inactive for 6+ months, targeting 18% reactivation rate and average reactivation budget of $1,200 per advertiser",
+      "budget_usd": 40000,
+      "timeline_days": 60,
+      "target_segment": "Lapsed SMB advertisers (all verticals), previously active on Meta Ads, 6+ month inactivity, known to have seen ROI or generated leads in past"
+    },
+    "expected_output": {
+      "recommended_channels": ["email", "facebook", "retargeting"],
+      "budget_split": {"email": 0.5, "facebook": 0.35, "retargeting": 0.15},
+      "primary_message_pillar": "Your competitors didn't stop advertising. See how other [vertical] businesses grew their sales with Meta Ads in the last 6 months.",
+      "secondary_message_pillar": "New features make it easier: Advantage+ campaigns do the optimization for you. Get better results with less work.",
+      "kpis": [
+        "reactivated advertisers (target: 360 at 18% rate)",
+        "cost per reactivated advertiser (target: $111)",
+        "% launching new campaign within 14 days of reactivation",
+        "average first reactivation campaign spend (target: $1,200)",
+        "90-day retention of reactivated cohort (target: 55%)"
+      ],
+      "audience_targeting_notes": "Audience: CRM list of inactive advertisers from Meta's own systems (use hashed emails). Segment by: vertical (e-commerce, service, retail), historical spend tier ($500-2k, $2k-10k, $10k+), reason for churn (inferred from account activity). Retargeting: Website visitors who have been to business.facebook.com or m.facebook.com/ads in past 90 days. Exclude: Very recent churners (< 90 days), current active advertisers.",
+      "rationale": "Lapsed advertisers are warmer leads than cold acquisition. Email is primary channel (50%) because they're known, opted-in addresses. Facebook reminders (35%) work well for previous users who understand the platform. Retargeting (15%) captures those actively researching. 18% reactivation is realistic based on Meta benchmarks for win-back campaigns (10-25%). Advantage+ messaging differentiates new offering. Lower cost per reactivated (target $111) reflects higher conversion rate vs. new acquisition."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 4,
+      "completeness": 5
+    },
+    "annotator_notes": "Strong reactivation segmentation strategy. 18% conversion target is appropriately ambitious for warm audience. Cost-per-reactivated lower than new acquisition is correct. Email-first approach with paid support is textbook win-back strategy. Good risk/reward on $1,200 reactivation spend assumption."
+  },
+  {
+    "id": "strat_005",
+    "input": {
+      "campaign_goal": "Re-engage 1,500 SMB advertisers inactive 90+ days in the retail/local business segment with heavy email sequence focus, targeting 12% reactivation and $800 average first reactivation campaign budget",
+      "budget_usd": 25000,
+      "timeline_days": 90,
+      "target_segment": "Local retail, restaurants, service businesses, previously on Meta Ads, inactive 90+ days, annual revenue $500k-$3M"
+    },
+    "expected_output": {
+      "recommended_channels": ["email", "sms", "facebook"],
+      "budget_split": {"email": 0.6, "sms": 0.2, "facebook": 0.2},
+      "primary_message_pillar": "You're missing sales. Your customers are on Facebook looking for your business. Local businesses like yours are back and seeing 2+ times return.",
+      "secondary_message_pillar": "Fresh start: 30-day free trial credit to test new Advantage+ campaigns with zero setup complexity.",
+      "kpis": [
+        "reactivated advertisers (target: 180 at 12% rate)",
+        "cost per reactivated advertiser (target: $139)",
+        "email sequence open rate (target: 18%)",
+        "SMS click-through rate (target: 3.5%)",
+        "average reactivation campaign size (target: $800)",
+        "60-day retention post-reactivation (target: 50%)"
+      ],
+      "audience_targeting_notes": "Audience: CRM list of inactive local retail/restaurant/service advertisers. Segment by: industry vertical, historical performance (profitable vs. marginally profitable), time since last activity. Exclude: Accounts with active customer support tickets (bad churn reason), accounts showing competitor activity in past 60 days.",
+      "rationale": "Email-primary (60%) strategy with SMS supplement (20%) works for retail SMBs who may not be active on social. Free trial credit removes friction for reactivation. Facebook allocation (20%) maintains brand awareness. SMS reaches mobile-first business owners. 12% reactivation rate is conservative for 90+ day inactive segment but realistic given weaker engagement signals. Cost per reactivated ($139) slightly higher than better-engaged cohort reflects added nurturing cost."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 4,
+      "kpi_appropriateness": 5,
+      "budget_realism": 4,
+      "completeness": 4
+    },
+    "annotator_notes": "SMS inclusion is smart for retail/local segment. Free trial credit is good friction-reducer. 12% reactivation rate is realistic for cold 90+ day segment. Email/SMS/Facebook mix is well-balanced. Could benefit from more detail on SMS messaging strategy."
+  },
+  {
+    "id": "strat_006",
+    "input": {
+      "campaign_goal": "Re-engage 800 high-value lapsed SMB advertisers (historical spend $10k+) in e-commerce and DTC segment with white-glove outreach, targeting 25% reactivation and $2,500+ reactivation campaign commitment",
+      "budget_usd": 30000,
+      "timeline_days": 45,
+      "target_segment": "E-commerce/DTC businesses, previously spent $10k+ on Meta Ads, inactive 90+ days, estimated LTV >$50k"
+    },
+    "expected_output": {
+      "recommended_channels": ["email", "account_management", "linkedin"],
+      "budget_split": {"email": 0.4, "account_management": 0.35, "linkedin": 0.25},
+      "primary_message_pillar": "Your growth is on hold. Let's review what changed. Advantage+ and new AI tools mean better results with less work. We have a success story from a similar brand we should discuss.",
+      "secondary_message_pillar": "Premium support: Your dedicated Meta rep will set up and optimize your first campaign at no cost.",
+      "kpis": [
+        "reactivated high-value advertisers (target: 200 at 25% rate)",
+        "cost per reactivated advertiser (target: $150)",
+        "email open rate (target: 35% for high-value segment)",
+        "% moving to sales call (target: 15%)",
+        "average reactivation campaign commitment (target: $2,500)",
+        "6-month LTV of reactivated cohort (target: $8,000+)"
+      ],
+      "audience_targeting_notes": "Audience: High-value advertiser CRM (historical spend $10k+). Segment by: vertical (e-commerce, DTC), performance (profitable historical campaigns), relationship manager assignment. LinkedIn: Lookalike to high-value advertiser emails, targeting marketing/growth leadership roles at companies with 50-500 employees, US-based. Exclude: Accounts with known competitive relationships, recent customer success interactions.",
+      "rationale": "High-value segment justifies premium approach (account management allocation 35%). Email remains primary (40%) but with personalized messaging. LinkedIn (25%) reaches decision-makers at these larger SMBs. 25% reactivation rate is ambitious but justified for profitable historical cohort with strong LTV. Account management cost is real but offset by higher reactivation budgets ($2,500+) and expected 6-month LTV. Premium support messaging differentiates Meta's retention strategy."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 5,
+      "completeness": 5
+    },
+    "annotator_notes": "Excellent segmentation of high-value cohort. Premium account management approach is justified by LTV. 25% reactivation target is ambitious but defensible for profitable historical spenders. LinkedIn inclusion adds credibility in high-value segment. 6-month LTV target of $8k+ is realistic and shows business impact. Strong strategy overall."
+  },
+  {
+    "id": "strat_007",
+    "input": {
+      "campaign_goal": "Drive Advantage+ adoption among 1,000 currently active e-commerce SMB advertisers running manual campaigns with $500-2k monthly spend, targeting 40% migration to Advantage+ within 90 days with 32% lower cost-per-acquisition as primary benefit",
+      "budget_usd": 45000,
+      "timeline_days": 90,
+      "target_segment": "Active e-commerce advertisers, current spend $500-2k/month, running manual/standard campaigns, 6+ months account history"
+    },
+    "expected_output": {
+      "recommended_channels": ["email", "in_app", "facebook"],
+      "budget_split": {"email": 0.4, "in_app": 0.4, "facebook": 0.2},
+      "primary_message_pillar": "Stop manual optimization. Advantage+ cuts your customer acquisition cost by 32% on average. Let AI handle the work while you focus on product.",
+      "secondary_message_pillar": "Try risk-free: Run Advantage+ on 20% of your budget first. See the difference in 2 weeks.",
+      "kpis": [
+        "advertisers migrating to Advantage+ (target: 400 at 40%)",
+        "cost per migrated advertiser (target: $113)",
+        "% running test Advantage+ campaign on <50% of budget (target: 60%)",
+        "average CPA reduction post-migration (target: 30% improvement over manual baseline)",
+        "% increasing spend post-migration (target: 35%)",
+        "30-day retention in Advantage+ (target: 85%)"
+      ],
+      "audience_targeting_notes": "Audience: Active e-commerce advertiser CRM, filtered to: account spend $500-2k/month last 30 days, using Conversions or Sales objective (not Advantage+), account age 6+ months, recent activity (campaign launch/edit in past 30 days). Exclude: Current Advantage+ users, accounts flagged as 'trying Advantage+' in past 60 days.",
+      "rationale": "Email (40%) and in-app (40%) reach active advertisers where they live. Risk-free trial messaging lowers adoption barrier. 32% CPA improvement is grounded in Meta benchmark data. 40% migration is ambitious but targets active, engaged advertisers most likely to adopt. Email + in-app combo ensures message frequency without ad spend waste. 85% 30-day retention targets retention of those who try."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 5,
+      "completeness": 5
+    },
+    "annotator_notes": "Excellent upsell strategy grounded in real benefit (32% CPA improvement). Risk-free trial approach is smart for active advertisers. Email + in-app mix is appropriate for engaged audience. 40% migration target is ambitious but justified for active spenders. Strong messaging around cost reduction. CPA improvement KPI validates the recommendation."
+  },
+  {
+    "id": "strat_008",
+    "input": {
+      "campaign_goal": "Upsell 600 service business advertisers (HVAC, plumbing, electrical) currently using Lead Generation campaigns to Advantage+ Conversions campaigns, targeting 30% adoption and 25% higher conversion efficiency",
+      "budget_usd": 28000,
+      "timeline_days": 75,
+      "target_segment": "Service business advertisers, active on Meta Ads 3+ months, currently using Lead Generation objective, monthly budget $300-1.5k"
+    },
+    "expected_output": {
+      "recommended_channels": ["email", "in_app", "sms"],
+      "budget_split": {"email": 0.45, "in_app": 0.35, "sms": 0.2},
+      "primary_message_pillar": "Turn more leads into jobs. Advantage+ Conversions tracks actual customer actions (phone calls, form submissions, website visits) so you optimize for real business results, not just leads.",
+      "secondary_message_pillar": "Same leads, better results: Service businesses switching to Advantage+ see 25% more qualified conversions. Setup takes 10 minutes.",
+      "kpis": [
+        "service advertisers adopting Advantage+ Conversions (target: 180 at 30%)",
+        "cost per migrated advertiser (target: $156)",
+        "% launching Advantage+ test campaign with <30% of lead gen budget (target: 50%)",
+        "average conversion efficiency improvement (target: 25%)",
+        "% increasing spend post-migration (target: 25%)",
+        "cost per conversion reduction (target: 20% vs. lead gen baseline)"
+      ],
+      "audience_targeting_notes": "Audience: Service business advertiser CRM, current account criteria: using Lead Generation objective, monthly spend $300-1.5k, account active 3+ months, service vertical (HVAC, plumbing, electrical, roofing). Segment by: lead quality (high vs. medium vs. marginal based on historical feedback), geographic region. Exclude: Already running any Conversions campaigns, accounts with support tickets in past 30 days.",
+      "rationale": "Service businesses using Lead Gen are primed for upsell to Conversions because they care about qualified outcomes, not just lead volume. Email (45%) + in-app (35%) + SMS (20%) ensures multi-touch reach for less digitally-native audience. 25% conversion efficiency improvement is specific and grounded. 30% adoption is realistic for active advertisers with aligned use case. SMS included to reach business owners directly. Cost-per-conversion improvement frames ROI vs. lead cost metrics they understand."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 4,
+      "completeness": 5
+    },
+    "annotator_notes": "Smart upsell targeting service businesses already generating leads. SMS inclusion is good for less digital audience. 25% conversion efficiency improvement is well-grounded. 30% adoption is realistic. Email + in-app + SMS provides good reach. Cost-per-conversion KPI is appropriate for this cohort."
+  },
+  {
+    "id": "strat_009",
+    "input": {
+      "campaign_goal": "Upsell 400 retail/local business advertisers currently spending $200-800/month on manual campaigns to Advantage+ with bundled Meta Business Suite training, targeting 35% adoption and 28% budget increase post-migration",
+      "budget_usd": 22000,
+      "timeline_days": 60,
+      "target_segment": "Retail and local business advertisers, active 4+ months, monthly budget $200-800, currently using Standard campaigns"
+    },
+    "expected_output": {
+      "recommended_channels": ["email", "in_app", "webinar"],
+      "budget_split": {"email": 0.5, "in_app": 0.35, "webinar": 0.15},
+      "primary_message_pillar": "Sell more with less work. Advantage+ does the optimization. Learn from local retailers who cut their campaign setup time by 80% and saw better results.",
+      "secondary_message_pillar": "Free training: Join our live webinar on Advantage+ for local businesses. See setup, strategy, and real ROI from stores like yours.",
+      "kpis": [
+        "advertisers migrating to Advantage+ (target: 140 at 35%)",
+        "cost per migrated advertiser (target: $157)",
+        "webinar attendance rate (target: 25% of email recipients)",
+        "% launching Advantage+ campaign within 7 days of webinar (target: 40%)",
+        "average budget increase post-migration (target: 28%)",
+        "3-month ROI lift post-migration (target: 18%)"
+      ],
+      "audience_targeting_notes": "Audience: Retail/local business advertiser CRM, criteria: monthly spend $200-800, Standard campaign user, account active 4+ months, verticals include: retail, restaurants, salons, fitness, services. Segment by: engagement level (high activity vs. moderate), geography. Webinar: Email invite + in-app + Facebook ads to same audience.",
+      "rationale": "Webinar (15% budget) provides educational touchpoint that builds confidence for less digital-native retail segment. Email (50%) + in-app (35%) ensures omnipresent messaging. 35% adoption is realistic for active mid-tier spenders. 28% budget increase post-migration reflects confidence in Advantage+ efficiency. 3-month ROI lift (18%) is conservative but grounded. Bundled training reduces friction."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 4,
+      "kpi_appropriateness": 5,
+      "budget_realism": 4,
+      "completeness": 5
+    },
+    "annotator_notes": "Good inclusion of webinar/education component for less digital-native segment. 35% adoption and 28% budget increase targets are realistic. Email + in-app + webinar mix is solid. ROI improvement (18%) is conservative but credible. Could provide more detail on webinar content/speaker strategy."
+  },
+  {
+    "id": "strat_010",
+    "input": {
+      "campaign_goal": "Drive WhatsApp Business API adoption among 500 service business advertisers (HVAC, plumbing, home services) in North America, targeting 22% adoption and $400+ monthly WhatsApp ad spend per adopter",
+      "budget_usd": 55000,
+      "timeline_days": 90,
+      "target_segment": "Service business advertisers, active 6+ months, monthly budget $500-3k, using Conversions or Lead Gen objectives"
+    },
+    "expected_output": {
+      "recommended_channels": ["email", "webinar", "in_app", "facebook"],
+      "budget_split": {"email": 0.35, "webinar": 0.25, "in_app": 0.25, "facebook": 0.15},
+      "primary_message_pillar": "Text customers directly. WhatsApp reaches service call bookers when they're actively looking. Respond faster, close more jobs.",
+      "secondary_message_pillar": "Real results: Home service businesses using WhatsApp ads see 3x higher response rate vs. SMS. Start with one $5/day test ad.",
+      "kpis": [
+        "service advertisers activating WhatsApp API (target: 110 at 22%)",
+        "cost per WhatsApp API adopter (target: $500)",
+        "webinar attendance (target: 30%)",
+        "% launching test WhatsApp campaign (target: 80% of adopters)",
+        "average monthly WhatsApp spend per adopter (target: $400+)",
+        "6-month retention of WhatsApp active users (target: 60%)"
+      ],
+      "audience_targeting_notes": "Audience: Service business advertiser CRM, criteria: HVAC, plumbing, electrical, roofing, home cleaning, home repair verticals, monthly spend $500-3k, account active 6+ months, using Conversions or Lead Gen. Segment by: team size (solo/small vs. growing), booking method (phone-heavy vs. online-friendly), existing SMS adoption. Geographic: North America (US + Canada).",
+      "rationale": "WhatsApp is newer channel for SMBs; webinar (25%) required for education. Email (35%) + in-app (25%) ensure awareness. Facebook (15%) tests WhatsApp messaging with lookalike audiences of existing adopters. 22% adoption is realistic for engaged service business segment; WhatsApp solves their core pain (direct customer communication). 3x response rate vs. SMS is real benefit. $400+ monthly spend target is ambitious but justified by channel ROI for service businesses. 60% 6-month retention reflects that early adopters stick if they see results."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 4,
+      "completeness": 5
+    },
+    "annotator_notes": "Strong verticalization on service businesses where WhatsApp solves real problem (direct customer communication for scheduling). Webinar component is justified for new channel education. 22% adoption target is realistic for engaged segment. 3x response rate claim is grounded in real data. $400+ monthly spend is ambitious but justified by ROI. Budget split gives webinar appropriate weight for new product."
+  },
+  {
+    "id": "strat_011",
+    "input": {
+      "campaign_goal": "Drive WhatsApp Business API adoption among 300 e-commerce SMB advertisers, targeting 18% adoption and $600+ monthly WhatsApp ad spend per adopter with focus on customer service/post-purchase engagement",
+      "budget_usd": 40000,
+      "timeline_days": 75,
+      "target_segment": "E-commerce advertisers, monthly budget $1k-5k, active 4+ months, using Conversions objective"
+    },
+    "expected_output": {
+      "recommended_channels": ["email", "in_app", "webinar"],
+      "budget_split": {"email": 0.4, "in_app": 0.35, "webinar": 0.25},
+      "primary_message_pillar": "Serve customers on WhatsApp. 85% of shoppers prefer messaging for support. WhatsApp ads let you reach them with personalized offers and drive repeat purchases.",
+      "secondary_message_pillar": "Ecommerce brands are already using WhatsApp to cut support costs by 40% and increase repeat purchase rate by 25%.",
+      "kpis": [
+        "e-commerce advertisers activating WhatsApp API (target: 54 at 18%)",
+        "cost per WhatsApp API adopter (target: $741)",
+        "webinar attendance (target: 35%)",
+        "% launching WhatsApp test campaign (target: 75%)",
+        "average monthly WhatsApp spend per adopter (target: $600+)",
+        "average repeat purchase lift post-WhatsApp activation (target: 18%)"
+      ],
+      "audience_targeting_notes": "Audience: E-commerce advertiser CRM, using Shopify/WooCommerce/BigCommerce integrations, monthly spend $1k-5k, Conversions objective, account active 4+ months. Segment by: product category (apparel, beauty, electronics, home goods), average order value (AOV >$50 favors repeat purchase messaging), existing email automation maturity. Exclude: Marketplace-only (Amazon, Etsy) sellers.",
+      "rationale": "E-commerce SMBs care about repeat purchase and customer service efficiency. WhatsApp is powerful for both. Webinar (25%) required for new channel education. Email (40%) + in-app (35%) provide sustained messaging. 18% adoption is realistic for e-commerce segment; higher spend targets ($600+) justified by repeat purchase ROI. 25% repeat purchase lift is grounded in real DTC benchmark data. Post-purchase use case (vs. lead gen) differentiates e-commerce adoption from service business strategy."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 4,
+      "completeness": 5
+    },
+    "annotator_notes": "Smart vertical differentiation: e-commerce focused on repeat purchase vs. service business focus on lead gen. 18% adoption with $600+ spend targets is realistic for higher-spend segment. 25% repeat purchase lift is well-grounded. Webinar + email + in-app mix is strong. Strong positioning on post-purchase/customer service use case."
+  },
+  {
+    "id": "strat_012",
+    "input": {
+      "campaign_goal": "Build brand awareness for Meta Business Suite free product among 100,000 SMB users across US, targeting 8% conversion to free account activation and positioning as essential SMB business management tool",
+      "budget_usd": 120000,
+      "timeline_days": 180,
+      "target_segment": "All SMB Facebook page owners (any vertical), currently not using Meta Business Suite, annual revenue $100k-$5M"
+    },
+    "expected_output": {
+      "recommended_channels": ["facebook", "instagram", "google_search", "email"],
+      "budget_split": {"facebook": 0.45, "instagram": 0.25, "google_search": 0.2, "email": 0.1},
+      "primary_message_pillar": "Organize your business on one platform. Meta Business Suite manages your Facebook, Instagram, messaging, and ads from one dashboard. It's free.",
+      "secondary_message_pillar": "See the big picture: Track performance, respond to customers faster, manage team members — all without switching apps.",
+      "kpis": [
+        "free Meta Business Suite account activations (target: 8,000 at 8% rate)",
+        "cost per activation (target: $15)",
+        "email opt-in rate (target: 5%)",
+        "30-day retention of free Suite users (target: 45%)",
+        "% upgrading to paid features (target: 2% within 6 months)",
+        "brand awareness lift in SMB segment (target: 15% aided recall)"
+      ],
+      "audience_targeting_notes": "Audience: All SMB Facebook page owners (engagement-based lookalike from existing Meta advertising partners), geographic: US, small business interest signals. Segments: by revenue size (micro <$100k, small $100k-500k, mid $500k-2M), by vertical (retail, service, e-commerce, professional services), by page maturity (engagement levels). Email: Opt-in from landing page or existing Meta email lists of SMBs.",
+      "rationale": "Broad awareness campaign (vs. direct response) builds Meta's SMB suite positioning. Large budget ($120k) and long timeline (180 days) reflect brand-building intent. Facebook/Instagram (70% combined) reach SMBs where they already spend time. Google Search (20%) captures high-intent 'Facebook business tools' searches. Email (10%) nurtures landing page visitors. 8% conversion is realistic for awareness-to-activation funnel. 2% upgrade rate targets eventual monetization but not primary goal. 15% brand awareness lift is ambitious but measurable."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 4,
+      "budget_realism": 5,
+      "completeness": 4
+    },
+    "annotator_notes": "Good brand-building strategy for free product. 8% activation rate is realistic for awareness campaign. Email nurture (10%) is light but appropriate for funnel. 2% upgrade rate shows business logic. Could benefit from more detail on email nurture sequence and content strategy."
+  },
+  {
+    "id": "strat_013",
+    "input": {
+      "campaign_goal": "Build awareness and trial adoption of Meta Business Suite among 75,000 existing SMB Facebook advertisers, targeting 12% trial activation and positioning as time-saving consolidation tool that reduces admin overhead",
+      "budget_usd": 95000,
+      "timeline_days": 150,
+      "target_segment": "Active Meta Ads advertisers, $500+ lifetime spend, monthly active campaigns, all verticals"
+    },
+    "expected_output": {
+      "recommended_channels": ["in_app", "email", "facebook", "retargeting"],
+      "budget_split": {"in_app": 0.35, "email": 0.35, "facebook": 0.2, "retargeting": 0.1},
+      "primary_message_pillar": "Stop switching tabs. Meta Business Suite brings your ads, messages, and insights together. Spend less time managing, more time growing.",
+      "secondary_message_pillar": "Active advertisers report 25% less time on admin. Try it free with your next campaign.",
+      "kpis": [
+        "Meta Business Suite activations from existing advertisers (target: 9,000 at 12%)",
+        "cost per activation (target: $10.56)",
+        "in-app notification click-through rate (target: 8%)",
+        "email open rate (target: 22% for advertiser segment)",
+        "% adding team members to Suite (indicating deeper adoption) (target: 35% within 30 days)",
+        "monthly active usage rate at 30 days (target: 60%)"
+      ],
+      "audience_targeting_notes": "Audience: Existing Meta Ads advertisers (CRM), active last 30 days, $500+ lifetime spend, monthly active campaigns. In-app audience: Ads Manager users. Email: Existing advertiser email addresses. Facebook: Retargeting to Ads Manager visitors. Segment by: account maturity (6mo+ active accounts = higher conversion), team size indicator, vertical.",
+      "rationale": "Existing advertisers are warm audience and natural Meta Business Suite users. In-app (35%) + email (35%) ensure high-frequency messaging within existing platforms advertisers use. Facebook (20%) reaches advertisers off-platform. 12% activation is realistic for engaged advertiser audience; message centers on efficiency gain (less admin time). 25% time savings claim should be internally validated. Team member adoption (35%) signals deepening engagement. 60% 30-day active usage is realistic retention for convenience tool."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 5,
+      "kpi_appropriateness": 5,
+      "budget_realism": 5,
+      "completeness": 5
+    },
+    "annotator_notes": "Excellent warm-audience strategy. 12% activation target is realistic for engaged existing advertisers. In-app + email split (70%) is appropriate for known audience. Team member adoption KPI shows smart engagement depth metric. 60% 30-day usage is credible retention target for convenience tool. Well-grounded messaging on time savings."
+  },
+  {
+    "id": "strat_014",
+    "input": {
+      "campaign_goal": "Run SMB acquisition campaign with poorly defined KPIs, generic messaging, and unrealistic budget assumptions",
+      "budget_usd": 50000,
+      "timeline_days": 90,
+      "target_segment": "Small business owners (undefined)"
+    },
+    "expected_output": {
+      "recommended_channels": ["facebook", "instagram", "email", "linkedin"],
+      "budget_split": {"facebook": 0.3, "instagram": 0.3, "email": 0.3, "linkedin": 0.2},
+      "primary_message_pillar": "Grow your business with Meta Ads. We help businesses succeed.",
+      "secondary_message_pillar": "Join thousands of businesses using Meta.",
+      "kpis": [
+        "reach",
+        "impressions",
+        "clicks",
+        "cost per click"
+      ],
+      "audience_targeting_notes": "Target small business owners interested in advertising and growth.",
+      "rationale": "Multi-channel approach to maximize reach across different platforms where small business owners spend time. Budget evenly split across channels. Generic messaging applies broadly to all business types."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 2,
+      "kpi_appropriateness": 2,
+      "budget_realism": 2,
+      "completeness": 2
+    },
+    "annotator_notes": "Poor campaign strategy. Budget split adds to 110% (not valid). Audience targeting is vague ('small business owners' undefined). KPIs are vanity metrics (impressions, clicks) not business outcomes (advertiser acquisition, retention, campaign activation). Generic messaging provides no differentiation. No campaign goal specificity (no vertical, no geography, no target segment clarity). Lacks rationale for channel selection. Would not achieve meaningful ROI."
+  },
+  {
+    "id": "strat_015",
+    "input": {
+      "campaign_goal": "Reactivate lapsed SMB advertisers with unclear success criteria and weak messaging",
+      "budget_usd": 35000,
+      "timeline_days": 60,
+      "target_segment": "Advertisers who haven't spent in a while"
+    },
+    "expected_output": {
+      "recommended_channels": ["facebook", "email"],
+      "budget_split": {"facebook": 0.6, "email": 0.4},
+      "primary_message_pillar": "Come back to Meta Ads.",
+      "secondary_message_pillar": "We have new features.",
+      "kpis": [
+        "email sends",
+        "email bounces",
+        "facebook impressions"
+      ],
+      "audience_targeting_notes": "Target inactive advertisers.",
+      "rationale": "Email and Facebook are good channels for reaching inactive users. We'll use broad messaging to appeal to all types of inactive advertisers."
+    },
+    "quality_dimensions": {
+      "strategic_coherence": 2,
+      "kpi_appropriateness": 2,
+      "budget_realism": 3,
+      "completeness": 2
+    },
+    "annotator_notes": "Weak reactivation strategy. No definition of 'lapsed' (90+ days? 6 months?). Campaign goal completely lacks specificity (no reactivation rate target, no ROAS target, no spending target). KPIs are process metrics (email sends, bounces) not business outcomes (reactivated advertisers, revenue, spend). Messaging is bare and provides no value prop or motivation. No audience segmentation by value, vertical, or reason for churn. No rationale for 60% Facebook / 40% email split. Would not drive meaningful reactivation."
+  }
+]

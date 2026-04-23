@@ -1,0 +1,256 @@
+{
+  "name": "CampaignPilot — Full Campaign Lifecycle",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "campaign-brief-request",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "node-webhook-trigger",
+      "name": "Campaign Brief Request (Webhook)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "campaignpilot-brief-request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/agents/strategist/run",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "campaign_goal",
+              "value": "={{ $json.body.campaign_goal }}"
+            },
+            {
+              "name": "budget_usd",
+              "value": "={{ $json.body.budget_usd }}"
+            },
+            {
+              "name": "timeline_days",
+              "value": "={{ $json.body.timeline_days }}"
+            },
+            {
+              "name": "target_segment",
+              "value": "={{ $json.body.target_segment }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "node-strategist-run",
+      "name": "Run Strategist Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "node-strategist-check",
+      "name": "Strategist Succeeded?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/agents/strategist/run",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"brief_summary\": \"{{ $('Run Strategist Agent').item.json.output.primary_message_pillar }}\",\n  \"channel\": \"{{ $('Run Strategist Agent').item.json.output.recommended_channels[0] }}\",\n  \"tone\": \"professional_conversational\",\n  \"product\": \"Lumen Pro\",\n  \"num_variants\": 3\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "node-creative-run",
+      "name": "Run Creative Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [960, 200]
+    },
+    {
+      "parameters": {
+        "amount": 5,
+        "unit": "seconds"
+      },
+      "id": "node-wait",
+      "name": "Wait 5s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1200, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/agents/eval/run",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"agent_name\": \"strategist\",\n  \"dataset_path\": \"data/golden_datasets/strategist_golden.json\",\n  \"dataset_version\": \"v1\",\n  \"use_llm_judge\": false\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "node-eval-trigger",
+      "name": "Trigger Eval Run",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1440, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"campaign_brief\": {{ JSON.stringify($('Run Strategist Agent').item.json.output) }},\n  \"creative_variants\": {{ JSON.stringify($('Run Creative Agent').item.json.output) }},\n  \"eval_run_id\": \"{{ $('Trigger Eval Run').item.json.eval_run_id }}\",\n  \"strategist_latency_ms\": {{ $('Run Strategist Agent').item.json.latency_ms }},\n  \"total_tokens\": {{ $('Run Strategist Agent').item.json.total_input_tokens + $('Run Strategist Agent').item.json.total_output_tokens }}\n}",
+        "options": {}
+      },
+      "id": "node-respond-success",
+      "name": "Return Campaign Brief",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1680, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"error\",\n  \"error\": \"{{ $('Run Strategist Agent').item.json.error }}\",\n  \"agent\": \"strategist\",\n  \"message\": \"Strategist agent failed. Check Langfuse for trace details.\"\n}",
+        "options": {
+          "responseCode": 500
+        }
+      },
+      "id": "node-respond-error",
+      "name": "Return Error Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [960, 420]
+    }
+  ],
+  "connections": {
+    "Campaign Brief Request (Webhook)": {
+      "main": [
+        [
+          {
+            "node": "Run Strategist Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Strategist Agent": {
+      "main": [
+        [
+          {
+            "node": "Strategist Succeeded?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Strategist Succeeded?": {
+      "main": [
+        [
+          {
+            "node": "Run Creative Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return Error Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Creative Agent": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s": {
+      "main": [
+        [
+          {
+            "node": "Trigger Eval Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger Eval Run": {
+      "main": [
+        [
+          {
+            "node": "Return Campaign Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "1.0.0",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "campaignpilot-lifecycle-v1",
+  "tags": ["campaignpilot", "marketing-automation", "lumen-analytics"]
+}

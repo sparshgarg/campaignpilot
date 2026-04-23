@@ -1,0 +1,156 @@
+[
+  {
+    "id": "meta-ads-essentials",
+    "name": "Meta Ads",
+    "tagline": "Reach the customers who matter to your business.",
+    "price_model": "Pay-per-result. Start from $5/day. No setup fee, no minimum commitment.",
+    "target_segment": "All SMBs",
+    "key_features": [
+      "Reach 3+ billion people on Facebook, Instagram, Messenger, and Audience Network with precise targeting (location, age, interests, behaviors)",
+      "Multiple campaign objectives: Awareness, Traffic, Conversions, Lead Generation, Messages, depending on your business goal",
+      "Flexible ad formats: Single Image, Video, Carousel, Collection, Instant Experience—optimized for mobile-first audiences",
+      "Real-time performance dashboard showing impressions, clicks, conversions, and cost-per-result in a single view",
+      "Dynamic creative optimization (DCO) automatically tests multiple creative combinations and surfaces winners"
+    ],
+    "proof_points": [
+      "Median ROAS of 2.19x for SMB advertisers (Meta Business Insights, 2024-2025)",
+      "Median CPM (cost per thousand impressions) of $13.48 across Meta platforms for SMB campaigns (Q1 2025 benchmark data)",
+      "Median CTR (click-through rate) of 2.19% across Meta placements, outperforming many other digital channels",
+      "200+ million businesses globally use Meta tools to connect with customers; 3+ billion daily active users"
+    ],
+    "ideal_customer_profile": "Any SMB that wants to find new customers affordably. Retail shops, restaurants, e-commerce stores, local services, salons, fitness studios—anyone with a clear product/service and a target customer location or demographic.",
+    "typical_use_cases": [
+      "Local restaurant driving foot traffic and reservations by targeting people within 5 miles who like similar restaurants",
+      "E-commerce store increasing online sales by retargeting site visitors and finding lookalike audiences of existing customers",
+      "Salon booking appointments by showing ads to women aged 25-50 interested in beauty and wellness in their metro area"
+    ],
+    "competitors": [
+      "Google Ads (Search, Shopping, YouTube)",
+      "TikTok Ads",
+      "Amazon Ads",
+      "LinkedIn Ads",
+      "Pinterest Ads"
+    ],
+    "differentiators": [
+      "Largest and most detailed audience targeting: 3+ billion daily active users with rich demographic, interest, and behavioral data",
+      "Visual-first: Instagram and Facebook optimized for video and beautiful creative—ideal for SMBs selling lifestyle, experience, or visual products",
+      "Lowest barrier to entry: Start with $5/day, no setup fee, first campaign live in 20 minutes with templates and guided setup"
+    ],
+    "onboarding_time": "First campaign live in 20 minutes with Meta's guided ad creation tool and template library"
+  },
+  {
+    "id": "advantage-plus",
+    "name": "Advantage+ Campaigns",
+    "tagline": "Let AI find your best customers — automatically.",
+    "price_model": "Same auction-based pricing as Meta Ads. No premium for automation.",
+    "target_segment": "SMBs spending $1k+/month who want to scale without adding headcount; e-commerce brands, service businesses with lead conversion workflows",
+    "key_features": [
+      "AI-powered audience optimization: Meta's machine learning automatically finds and tests audiences that convert—you don't manually create segments",
+      "Simplified campaign setup: Instead of choosing audiences, placements, and bidding strategy, you provide budget and conversion goal—AI handles the rest",
+      "Automatic creative optimization (ACO): Upload multiple headlines, descriptions, images, and videos; AI tests combinations and serves the best performers",
+      "Real-time budget distribution: AI allocates budget across placements (Facebook, Instagram, Messenger, Audience Network) based on live performance",
+      "Outcome-based bidding: Automatically optimizes for your business goal (conversions, lead cost, or revenue) without manual bid adjustments"
+    ],
+    "proof_points": [
+      "32% lower CPA (cost-per-acquisition) than manual campaigns on average (Meta internal data, Advantage+ vs. manual comparison, 2024-2025)",
+      "41% of SMB advertisers on Meta use Advantage+ (Meta Business Insights, 2025); fastest-growing campaign type for SMBs",
+      "Average improvement in conversion rate: SMBs using Advantage+ see 15-20% better ROAS in first 30 days vs. switching from manual (Meta case studies, 2024)",
+      "Time savings: Campaign setup in 10 minutes; no ongoing audience or placement tweaking required"
+    ],
+    "ideal_customer_profile": "SMBs with consistent conversion tracking (e.g., online purchases, form submissions, phone calls, bookings) who spend $1,000+/month and want to scale ad spend without hiring a full-time marketer. Perfect for e-commerce, lead-gen services, and high-intent verticals.",
+    "typical_use_cases": [
+      "E-commerce store: Upload product feed + budget; AI finds and retargets similar customers across Meta's placements while optimizing for purchase",
+      "Lead generation (plumbing, HVAC, real estate): Set conversion goal as 'phone call' or 'form submission'; AI finds high-intent prospects and caps cost-per-lead automatically",
+      "Appointment booking (salon, dentist): AI finds people in your area most likely to book; automatically shows them at the right time with the right creative"
+    ],
+    "competitors": [
+      "Google Performance Max (Google Ads automation)",
+      "TikTok Automated Ads",
+      "Amazon Sponsored Ads with AI optimization",
+      "LinkedIn Campaign Manager with Audience Expansion"
+    ],
+    "differentiators": [
+      "Hands-off optimization without sacrificing control: You set budget and goal; AI handles the complexity. No manual audience tweaking needed.",
+      "Lowest cost-per-result: 32% lower CPA than manual campaigns on average—automation pays for itself in better pricing",
+      "Largest testing dataset: Meta's 3+ billion daily active users means AI has more data to find winners faster than competitors"
+    ],
+    "onboarding_time": "Campaign live in 10 minutes. Requires 50+ conversions in first 30 days for AI to fully optimize (warm-up period)."
+  },
+  {
+    "id": "meta-business-suite",
+    "name": "Meta Business Suite",
+    "tagline": "Run your Facebook and Instagram business from one place.",
+    "price_model": "Free.",
+    "target_segment": "SMBs managing both organic (content, community) and paid (ads) presence across Facebook and Instagram; retailers with a storefront; local service businesses",
+    "key_features": [
+      "Unified messaging: Respond to customer messages from Facebook, Instagram, and Messenger in a single inbox—see conversation history across all platforms",
+      "Content calendar and scheduler: Plan organic posts across Facebook and Instagram weeks in advance; schedule once, post to both platforms automatically",
+      "Shop/catalog management: Upload and organize your product catalog once; it syncs to Facebook Shop, Instagram Shop, and paid campaigns automatically",
+      "Audience insights: See who engaged with your content, what posts performed best, follower growth trends, and audience demographics",
+      "Admin roles and team access: Set granular permissions for team members (post, respond to messages, view analytics) without sharing login credentials"
+    ],
+    "proof_points": [
+      "Free tool with no setup fee; used by 200+ million businesses globally to connect with customers (Meta, 2024)",
+      "Average SMB saves 5+ hours per week managing separate Facebook and Instagram accounts with Suite's unified interface (internal Meta research, 2024)",
+      "Businesses using both organic and paid on Meta see 18-25% better ROAS when campaigns are linked to an active organic presence (Meta performance data, 2024-2025)",
+      "Shop integration reduces setup friction: 90% of SMBs can set up a Shop and sync catalog in under 2 hours"
+    ],
+    "ideal_customer_profile": "Any SMB with both a Facebook and Instagram presence. Retail shops wanting to sell directly on Instagram. Service businesses managing customer messages and trying to move from organic to paid.",
+    "typical_use_cases": [
+      "Boutique owner: Use Suite to post outfit ideas to both Facebook and Instagram at once; respond to customer DMs; use organic engagement to inform ad targeting",
+      "E-commerce store: Sync product catalog to Facebook/Instagram Shop via Suite; run ads from Suite that link directly to Shop; measure organic+paid together",
+      "Local service (hair salon, gym): Manage appointment inquiries in one inbox; post class schedules to both platforms; see which content drives bookings"
+    ],
+    "competitors": [
+      "Later, Buffer, Hootsuite (social media management tools)",
+      "Native Facebook/Instagram dashboards (managing separately)",
+      "Shopify and WooCommerce admin panels (for e-commerce)"
+    ],
+    "differentiators": [
+      "Native integration with Facebook and Instagram (no third-party syncing delays or permission issues)",
+      "Free: No subscription like Hootsuite or Buffer",
+      "Shop management built in: You don't need a separate Shopify or WooCommerce to sell on Instagram; catalog syncs directly from Suite"
+    ],
+    "onboarding_time": "Account setup and first post scheduled in 5 minutes. Shop setup (if selling) takes 20-30 minutes depending on catalog size."
+  },
+  {
+    "id": "whatsapp-business-api",
+    "name": "WhatsApp Business API",
+    "tagline": "Turn conversations into conversions — at scale.",
+    "price_model": "Per-message pricing: Inbound messages free. Outbound messages charged based on conversation type. Service messages (transactional) and utility messages (auth codes) have lower rates. Marketing messages are higher cost but still profitable for conversion-focused SMBs.",
+    "target_segment": "Service businesses (consultants, therapists, accountants); e-commerce with high customer support volume; multi-location SMBs managing customer inquiries at scale; businesses where SMS-like messaging drives conversions",
+    "key_features": [
+      "Direct customer messaging: Send marketing, utility, service, and auth messages to customers at scale without spamming SMS channels",
+      "Message templates: Pre-built, approved message formats (appointment reminders, order updates, promotional offers) deploy instantly with dynamic variables",
+      "Conversation-style interactions: Customers reply naturally; your team (or automation) responds in context—feels personal, not robotic",
+      "Media sharing: Send product images, invoices, receipts, appointment confirmations as rich messages (not text-only like SMS)",
+      "CRM integration: Connect WhatsApp messages to your CRM so customer context flows seamlessly between WhatsApp, email, and phone support",
+      "High deliverability and open rates: 85%+ open rate within hours (vs. email's 20-30%) and 98%+ deliverability"
+    ],
+    "proof_points": [
+      "3+ billion people globally use WhatsApp monthly; 200+ million SMBs use WhatsApp Business (Meta, 2024)",
+      "85% message open rate within 1 hour (vs. email's 20-30% open rate) (Twilio/WhatsApp internal benchmarks, 2024-2025)",
+      "98%+ message deliverability rate with zero unsubscribe friction (WhatsApp uses phone numbers, not email lists)",
+      "Average response rate: 30-50% of customers reply to WhatsApp Business messages vs. 5-10% for email (industry benchmarks, 2024)"
+    ],
+    "ideal_customer_profile": "Service businesses needing reliable customer contact (therapists confirming appointments, accountants reminding of deadlines); e-commerce with high customer support volume; multi-location SMBs managing distributed teams and customers; any business where customer conversations lead to revenue.",
+    "typical_use_cases": [
+      "Salon: Send appointment reminders, follow-ups post-service, promotional offers (e.g., 'Book your next blowout 48 hours early, get 10% off')",
+      "E-commerce: Send shipping updates, delivery confirmations, and post-purchase upsells ('Love your purchase? Here's 15% off your next order')",
+      "Consulting/Services: Send meeting confirmations, intake reminders, follow-up proposals, and contract updates directly to client phones"
+    ],
+    "competitors": [
+      "SMS (Twilio, EasyPost, Bandwidth)—lower cost but lower engagement and limited to text",
+      "Email (Mailchimp, Klaviyo)—high volume but lower open rates; treated as marketing",
+      "In-app messaging (native apps only)—limited reach if not everyone has your app",
+      "Traditional phone/voicemail—high cost, low scale"
+    ],
+    "differentiators": [
+      "Highest engagement channel available at scale: 85% open rate + 30-50% response rate makes WhatsApp more effective than SMS or email for conversion conversations",
+      "End-to-end encryption: Messages are private by default, building trust with customers",
+      "Rich media: Send images, documents, videos in messages—not just text like SMS",
+      "Free inbound: Only pay for outbound, which means customer inquiries and replies don't cost you"
+    ],
+    "onboarding_time": "WhatsApp Business Account setup: 15 minutes. API integration: 1-2 weeks depending on your tech stack. First message template approval: 5-10 minutes."
+  }
+]
