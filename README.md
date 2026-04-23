@@ -11,7 +11,8 @@ Premium multi-agent marketing campaign orchestration system powered by Claude AI
 ## Quick Start (Local)
 
 ### Prerequisites
-- Python 3.11+
+- Python 3.11+ (for backend)
+- Node.js 18+ (for frontend)
 - Docker & Docker Compose (for PostgreSQL + ChromaDB)
 - Anthropic API key
 
@@ -21,9 +22,15 @@ Premium multi-agent marketing campaign orchestration system powered by Claude AI
    ```bash
    git clone <repo-url>
    cd CampaignPilot
+   
+   # Backend
    python -m venv .venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    pip install -r requirements.txt
+   
+   # Frontend
+   cd web
+   npm install
    ```
 
 2. **Configure environment**
@@ -39,64 +46,60 @@ Premium multi-agent marketing campaign orchestration system powered by Claude AI
    docker-compose up -d
    ```
 
-4. **Run Streamlit UI**
-   ```bash
-   streamlit run app.py
-   ```
-
-5. **(Optional) Start FastAPI backend**
+4. **Start FastAPI backend** (Terminal 1)
    ```bash
    uvicorn api.main:app --reload --port 8000
    ```
 
-The UI will be available at `http://localhost:8501`
+5. **Start React UI** (Terminal 2)
+   ```bash
+   cd web
+   npm run dev
+   ```
+
+The UI will be available at `http://localhost:3000`  
+The API will be available at `http://localhost:8000`
 
 ---
 
 ## Deployment
 
-### Streamlit Cloud (UI)
+### React Frontend (Vercel / Netlify)
 
-1. **Push to GitHub**
+**See `web/README.md` for detailed setup.**
+
+1. **Build frontend**
    ```bash
-   git add .
-   git commit -m "Deploy to Streamlit Cloud"
-   git push origin main
+   cd web
+   npm run build
    ```
 
-2. **Create Streamlit Cloud account**
-   - Go to [streamlit.io/cloud](https://streamlit.io/cloud)
-   - Sign in with GitHub
-   - Click "New app" → Select this repo
+2. **Deploy to Vercel** (Recommended)
+   - Connect GitHub repo to [vercel.com](https://vercel.com)
+   - Set environment variable: `VITE_API_URL=https://api.campaignpilot.com`
+   - Auto-deploys on every push to `main`
 
-3. **Configure secrets**
-   - In Streamlit Cloud dashboard, go to Settings → Secrets
-   - Add:
-     ```toml
-     ANTHROPIC_API_KEY = "sk-..."
-     LANGFUSE_PUBLIC_KEY = "..."
-     LANGFUSE_SECRET_KEY = "..."
-     DATABASE_URL = "postgresql://..."
-     CHROMA_HOST = "..."
-     CHROMA_PORT = 8000
-     ```
+3. **Deploy to Netlify**
+   ```bash
+   cd web
+   npm run build
+   netlify deploy --prod --dir=dist
+   ```
 
-4. **Deploy**
-   - Streamlit Cloud auto-deploys on every push to `main`
-
-### FastAPI Backend (Backend)
-
-For local development, run:
-```bash
-uvicorn api.main:app --reload --port 8000
-```
+### FastAPI Backend
 
 For cloud deployment, consider:
-- **Render** (free tier available): `pip install -r requirements.txt && uvicorn api.main:app --host 0.0.0.0 --port 8000`
-- **Railway** (pay-as-you-go)
-- **Fly.io** (generous free tier)
+- **Render** (free tier available): Deploys on every push, includes built-in PostgreSQL/Redis add-ons
+- **Railway** (pay-as-you-go): Generous free tier, built-in deploy from Git
+- **Fly.io** (free tier): Fast global deployment, generous free tier
 
-Update Streamlit Cloud secrets with the live backend URL if deploying to cloud.
+Example Render deployment:
+1. Connect GitHub to [render.com](https://render.com)
+2. Create Web Service, set start command: `uvicorn api.main:app --host 0.0.0.0`
+3. Add environment variables (ANTHROPIC_API_KEY, etc.)
+4. Deploy
+
+Update frontend environment variable (`VITE_API_URL`) to point to deployed backend.
 
 ---
 

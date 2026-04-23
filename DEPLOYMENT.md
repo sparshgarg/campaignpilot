@@ -1,177 +1,220 @@
-# Streamlit Cloud Deployment Guide
+# React Frontend Deployment Guide
 
-This guide walks you through deploying CampaignPilot's Streamlit UI to Streamlit Cloud in 5 minutes.
+This guide walks you through deploying CampaignPilot's React frontend to Vercel or Netlify.
 
-## Prerequisites
+## Quick Start: Deploy to Vercel (Recommended)
+
+### Prerequisites
 
 - GitHub account with this repo pushed (`main` branch)
-- Anthropic API key with available credits
-- Optional: Langfuse keys for observability
+- Vercel account (free at [vercel.com](https://vercel.com))
+- Anthropic API key
 
-## Step 1: Create Streamlit Cloud Account
+### Step 1: Connect GitHub to Vercel
 
-1. Go to **[streamlit.io/cloud](https://streamlit.io/cloud)**
-2. Click **Sign in** → **Sign in with GitHub**
-3. Authorize Streamlit to access your GitHub account
-4. You should be taken to the Streamlit Cloud dashboard
+1. Go to [vercel.com](https://vercel.com)
+2. Click **Sign up** → **Sign up with GitHub**
+3. Authorize Vercel to access your GitHub
+4. Click **Add new** → **Project**
+5. Select the `campaignpilot` repository
+6. Click **Import**
 
-## Step 2: Deploy Your App
+### Step 2: Configure Build Settings
 
-1. Click **"New app"** button
-2. **Repository:** Select `sparshgarg/campaignpilot` (or your fork)
-3. **Branch:** Select `main`
-4. **Main file path:** Enter `app.py`
-5. Click **"Deploy"**
+Vercel should auto-detect the `web` folder:
 
-Streamlit Cloud will now:
+- **Framework preset:** Vite
+- **Root directory:** `web`
+- **Build command:** `npm run build`
+- **Output directory:** `dist`
+
+If not auto-detected, set manually.
+
+### Step 3: Add Environment Variables
+
+1. In project settings, go to **Settings** → **Environment Variables**
+2. Add your variables:
+   ```
+   VITE_API_URL=https://api.campaignpilot.com
+   ```
+   (Replace with your actual backend URL)
+
+3. Click **Save**
+
+### Step 4: Deploy
+
+Click **Deploy** button. Vercel will:
 - Clone your repo
-- Install dependencies from `requirements.txt`
-- Run `streamlit run app.py`
-- Give you a live URL (e.g., `https://campaignpilot-xxx.streamlit.app`)
+- Install dependencies (`npm install`)
+- Build the app (`npm run build`)
+- Deploy to a live URL (e.g., `https://campaignpilot.vercel.app`)
 
-This typically takes 1-2 minutes. You'll see a build log in the browser.
+Deployment typically takes 1-2 minutes. Your UI is now live!
 
-## Step 3: Configure Secrets
+---
 
-Your app needs API keys to work. Streamlit Cloud keeps these secure via the Secrets manager.
+## Alternative: Deploy to Netlify
 
-1. In Streamlit Cloud dashboard, click your app
-2. Click **Settings** (gear icon in top right)
-3. Click **Secrets**
-4. Paste the following, replacing with your actual keys:
+1. Go to [netlify.com](https://netlify.com)
+2. Click **New site from Git** → Select GitHub → Select `campaignpilot`
+3. Build settings:
+   - **Base directory:** `web`
+   - **Build command:** `npm run build`
+   - **Publish directory:** `dist`
+4. Add environment variables (same as above)
+5. Click **Deploy site**
 
-```toml
-ANTHROPIC_API_KEY = "sk-ant-..."
+---
+
+## Deploy FastAPI Backend
+
+While the React frontend is now deployed to Vercel/Netlify, you need the FastAPI backend running somewhere.
+
+### Option A: Render (Recommended, Free Tier)
+
+1. Go to [render.com](https://render.com)
+2. Click **New** → **Web Service**
+3. Connect your GitHub account and select `campaignpilot` repo
+4. Settings:
+   - **Name:** `campaignpilot-api`
+   - **Environment:** Python 3.11
+   - **Build command:** `pip install -r requirements.txt`
+   - **Start command:** `uvicorn api.main:app --host 0.0.0.0 --port 8000`
+5. Add environment variables:
+   - `ANTHROPIC_API_KEY`
+   - `DATABASE_URL` (if using cloud PostgreSQL)
+   - `CHROMA_HOST` (if using cloud ChromaDB)
+6. Click **Create Web Service**
+
+Render gives you a URL like `https://campaignpilot-api.onrender.com`.
+
+### Option B: Railway
+
+1. Go to [railway.app](https://railway.app)
+2. Connect GitHub repo
+3. Set start command: `uvicorn api.main:app --host 0.0.0.0`
+4. Deploy
+
+### Option C: Fly.io
+
+```bash
+flyctl auth login
+flyctl launch  # Generates fly.toml
+flyctl deploy
 ```
 
-Optional (for observability):
-```toml
-LANGFUSE_PUBLIC_KEY = "pk-..."
-LANGFUSE_SECRET_KEY = "sk-..."
-```
+---
 
-5. Click **Save**
-6. Streamlit will automatically reboot your app
+## Connect Frontend to Backend
 
-**Security note:** Secrets are encrypted and never exposed in logs or code. Each app has its own secrets.
+After deploying your backend, update the frontend:
 
-## Step 4: Test Your Deployment
+1. Get your backend URL (e.g., `https://campaignpilot-api.onrender.com`)
+2. In your Vercel/Netlify project:
+   - Go to Settings → Environment Variables
+   - Update `VITE_API_URL` to your backend URL
+   - Redeploy
 
-1. Go to your app URL
-2. You should see the CampaignPilot home page
-3. Click **Strategist** agent
-4. Fill in:
-   - Campaign Goal: "Increase SaaS signups"
-   - Budget: 5000
-   - Timeline: 30 days
-   - Target Segment: "B2B marketing teams"
-5. Click **Generate Strategic Brief**
-6. Watch the real-time event timeline stream live! ✨
+The frontend will now call your deployed backend API.
 
-If you see the live events streaming with tokens, latencies, and tool calls—**deployment successful!**
+---
+
+## Testing Your Deployment
+
+1. Go to your frontend URL (e.g., `https://campaignpilot.vercel.app`)
+2. You should see the CampaignPilot home page with all components
+3. Click **Launch console** button
+4. Fill in campaign details and click an agent button
+5. Verify the agent runs successfully and returns results
+
+---
 
 ## Troubleshooting
 
-### "ModuleNotFoundError: No module named 'agents'"
+### "Cannot find module 'react'"
 
-**Cause:** The app can't find local modules.
+**Cause:** Dependencies not installed or `node_modules` missing.
 
-**Fix:** Ensure `app.py` is at the root of your repo (not in a subdirectory). Streamlit Cloud uses the repo root as the working directory.
+**Fix:** 
+- Vercel/Netlify auto-run `npm install`
+- Check build logs for errors
+- Ensure `web/package.json` is present and valid
 
-### "ANTHROPIC_API_KEY not set"
+### API calls failing (Network error)
 
-**Cause:** Secrets not configured.
-
-**Fix:** Go to Settings → Secrets and add your key. Restart the app (click the 3 dots → Reboot app).
-
-### "Connection refused" for database/ChromaDB
-
-**Cause:** Your local database isn't accessible from Streamlit Cloud.
-
-**Why it happens:** The Strategist agent works without a database, but other agents may need one.
-
-**Fix:** For now, just use the Strategist agent. If you want other agents working, you'll need to:
-- Deploy a cloud PostgreSQL (e.g., AWS RDS, Heroku Postgres, Supabase)
-- Update `DATABASE_URL` in Secrets
-- Or deploy the FastAPI backend separately (see below)
-
-### App is slow or times out
-
-**Cause:** Streamlit Cloud has limited resources (1 CPU, 1GB RAM).
+**Cause:** `VITE_API_URL` not set or points to wrong backend.
 
 **Fix:**
-- This is normal for complex agentic workflows. Agent execution takes 10-30 seconds.
-- Consider deploying FastAPI as a separate service for heavier operations (see below)
+- Set `VITE_API_URL` environment variable correctly
+- Verify backend is deployed and running
+- Check browser DevTools → Network tab
+- Verify CORS is enabled on backend
 
-## Optional: Deploy FastAPI Backend Separately
+### "Cannot GET /" after deployment
 
-The Streamlit UI can also call FastAPI endpoints instead of running agents directly.
+**Cause:** Build output directory wrong or build failed.
 
-### Deploy to Render (Free Tier)
+**Fix:**
+- Ensure output directory is `dist` (not `build` or other)
+- Check build logs in deployment provider
+- Verify `vite.config.js` is correct
 
-1. Go to [render.com](https://render.com)
-2. Sign in with GitHub
-3. Click **New** → **Web Service**
-4. Select this repository
-5. Configure:
-   - **Name:** `campaignpilot-api`
-   - **Runtime:** Python 3.11
-   - **Build command:** `pip install -r requirements.txt`
-   - **Start command:** `uvicorn api.main:app --host 0.0.0.0 --port 8000`
-   - **Environment variables:** Add `ANTHROPIC_API_KEY=...`
-6. Click **Create Web Service**
-
-Once deployed, you'll get a URL like `https://campaignpilot-api.onrender.com`.
-
-Update your Streamlit Secrets to use this endpoint:
-```toml
-FASTAPI_URL = "https://campaignpilot-api.onrender.com"
-```
-
-Then modify `app.py` to call the API instead of running agents locally (currently it runs agents directly).
-
-## Alternative Cloud Platforms
-
-| Platform | Free Tier | Setup Time | Cold Start | Best For |
-|----------|-----------|------------|-----------|----------|
-| **Render** | ✅ Yes (1GB RAM) | 2 min | ~10s | Budget-conscious |
-| **Railway** | ✅ $5/month credit | 2 min | ~5s | Balanced |
-| **Fly.io** | ✅ 3 shared CPUs | 5 min | ~2s | Performance |
-| **AWS Lambda** | ✅ Free tier (1M invokes) | 10 min | ~1s (cold) | Serverless |
-
-## Monitoring & Logs
-
-In Streamlit Cloud:
-1. Click your app
-2. View **Logs** tab at the top
-
-For production monitoring:
-- Enable Langfuse (set `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY`)
-- Go to [langfuse.com](https://langfuse.com) to see token counts, latencies, and traces
-
-## Updates & Redeployment
-
-**Automatic redeployment:** Every time you push to `main` branch, Streamlit Cloud automatically redeploys (no action needed).
+### Port 3000 already in use (local dev)
 
 ```bash
-git add .
-git commit -m "Fix bug"
-git push origin main
-# Streamlit Cloud will redeploy automatically in ~1 min
+cd web
+VITE_PORT=3001 npm run dev
 ```
 
-**Manual redeploy:** Click the 3 dots menu → **Reboot app**.
+---
 
 ## Cost Breakdown
 
 | Service | Cost |
 |---------|------|
-| Streamlit Cloud (UI) | **Free** (always) |
-| Anthropic API (Claude Haiku) | ~$0.01-0.50/month (depends on usage) |
-| FastAPI (Render free tier) | **Free** (sleeps after 15 min inactivity) |
-| PostgreSQL (local only) | **Free** (included in docker-compose) |
+| Vercel (Frontend) | **Free** (always) |
+| Render (Backend) | **Free** (sleeps after 15 min inactivity) |
+| Anthropic API (Claude Haiku) | ~$0.01-0.50/month |
+| PostgreSQL (Render addon) | **$7/month** (optional) |
+| ChromaDB | **$0** (use local or Render instance) |
 
-**Total monthly cost:** ~$0-1 (Anthropic only, if you use it a lot)
+**Minimum:** ~$0 (free tier only)  
+**With database:** ~$7-10/month
+
+---
+
+## Monitoring & Observability
+
+Enable Langfuse for production monitoring:
+
+1. Set environment variables on backend:
+   - `LANGFUSE_PUBLIC_KEY`
+   - `LANGFUSE_SECRET_KEY`
+2. Go to [langfuse.com](https://langfuse.com) dashboard
+3. View token counts, latencies, error rates, and execution traces
+
+---
+
+## Auto-Deploy on Push
+
+Both Vercel and Netlify automatically redeploy when you push to `main` branch.
+
+```bash
+git add .
+git commit -m "Update UI"
+git push origin main
+# Vercel/Netlify redeploys automatically in ~2 min
+```
+
+---
+
+## Next Steps
+
+✅ Deploy React frontend to Vercel  
+✅ Deploy FastAPI backend to Render  
+🔄 Connect frontend to backend API  
+📡 Test agents work end-to-end  
+🎯 Iterate on features
 
 ---
 
