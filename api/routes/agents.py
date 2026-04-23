@@ -1,7 +1,7 @@
 """Agent execution routes for CampaignPilot API."""
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List, Dict, Any
 import uuid
 import json
 import logging
@@ -34,12 +34,12 @@ class AgentRunResponse(BaseModel):
     agent_name: str
     success: bool
     output: dict
-    tool_calls_made: list[dict]
+    tool_calls_made: list
     total_input_tokens: int
     total_output_tokens: int
     latency_ms: float
-    trace_url: str | None
-    error: str | None
+    trace_url: Optional[str]
+    error: Optional[str]
     timestamp: str
 
 
@@ -66,8 +66,8 @@ class OptimizerRunRequest(BaseModel):
 class ABTestDesignRequest(BaseModel):
     experiment_name: str = Field(..., description="Human-readable experiment name")
     campaign_id: Optional[int] = Field(None, description="Optional linked campaign ID")
-    filters: Optional[dict] = Field(None, description="SMB pool filters (e.g. {'industry': 'Restaurant & Food Service'})")
-    stratify_on: Optional[list[str]] = Field(None, description="Stratification variables (defaults to industry, size_bucket, dma_tier, advertising_experience)")
+    filters: Optional[Dict] = Field(None, description="SMB pool filters (e.g. {'industry': 'Restaurant & Food Service'})")
+    stratify_on: Optional[List[str]] = Field(None, description="Stratification variables (defaults to industry, size_bucket, dma_tier, advertising_experience)")
     test_fraction: float = Field(0.50, ge=0.1, le=0.9, description="Fraction of eligible SMBs assigned to test group")
     baseline_conversion_rate: float = Field(0.05, gt=0, lt=1, description="Expected baseline conversion rate (proportion)")
     minimum_detectable_effect: float = Field(0.20, gt=0, description="Minimum detectable effect (relative or absolute)")
@@ -120,10 +120,12 @@ def _run_eval_background(eval_run_id: str, request: EvalRunRequest) -> None:
                 metrics.append(StrategicCoherenceMetric())
         elif request.agent_name == "creative":
             from agents.creative import CreativeAgent
+            from tools.safety_checker import SafetyChecker
             from evals.metrics.deterministic import SafetyMetric
             from evals.metrics.llm_judge import BrandVoiceMetric
             from evals.metrics.brand_safety import BrandSafetyMetric
-            agent = CreativeAgent(vector_search_tool=vs, db_query_tool=db)
+            sc = SafetyChecker()
+            agent = CreativeAgent(vector_search_tool=vs, safety_checker_tool=sc)
             agent._eval_run_fn = lambda inp: agent.run_creative_brief(**inp)
             from tools.safety_checker import SafetyChecker
             metrics = [SafetyMetric(SafetyChecker()), CompletenessMetric(), BrandSafetyMetric()]
@@ -190,10 +192,25 @@ async def run_strategist(request: StrategistRunRequest) -> AgentRunResponse:
         from tools.vector_search import VectorSearchTool
         from tools.db_query import DBQueryTool
         from agents.strategist import StrategistAgent
+        from api.websocket import agent_event_manager
+        from db.session import get_session
+        from models.run import AgentRun
+        import asyncio
+
+        # Generate run_id before agent creation so it's available for event streaming
+        run_id = str(uuid.uuid4())
+
+        # Event callback that broadcasts to WebSocket clients
+        def event_callback(event: dict):
+            asyncio.create_task(agent_event_manager.broadcast(run_id, event))
 
         vs = VectorSearchTool()
         db = DBQueryTool()
-        agent = StrategistAgent(vector_search_tool=vs, db_query_tool=db)
+        agent = StrategistAgent(
+            vector_search_tool=vs,
+            db_query_tool=db,
+            event_callback=event_callback,
+        )
 
         result = agent.run_campaign_brief(
             campaign_goal=request.campaign_goal,
@@ -202,7 +219,30 @@ async def run_strategist(request: StrategistRunRequest) -> AgentRunResponse:
             target_segment=request.target_segment,
         )
 
-        run_id = str(uuid.uuid4())
+        # Save to database
+        try:
+            session = get_session()
+            run_record = AgentRun(
+                run_id=run_id,
+                agent_name="strategist",
+                model=agent.model,
+                max_turns=agent.max_turns,
+                input_params=request.dict(),
+                success=result.success,
+                output=result.output,
+                error=result.error,
+                tool_calls_made=result.tool_calls_made,
+                total_input_tokens=result.total_input_tokens,
+                total_output_tokens=result.total_output_tokens,
+                latency_ms=result.latency_ms,
+                trace_url=result.trace_url,
+            )
+            session.add(run_record)
+            session.commit()
+            session.close()
+            logger.info(f"Saved strategist run {run_id} to database")
+        except Exception as e:
+            logger.warning(f"Failed to save run to database: {e}")
 
         return AgentRunResponse(
             run_id=run_id,
@@ -225,13 +265,36 @@ async def run_strategist(request: StrategistRunRequest) -> AgentRunResponse:
 
 @router.get("/strategist/run/{run_id}", response_model=AgentRunResponse)
 async def get_strategist_run(run_id: str) -> AgentRunResponse:
-    """
-    Retrieve a stored Strategist run result by ID.
+    """Retrieve a stored Strategist run result by ID."""
+    try:
+        from db.session import get_session
+        from models.run import AgentRun
 
-    Note: in this implementation, results are not persisted between API restarts.
-    Integrate with Postgres for durable storage.
-    """
-    raise HTTPException(status_code=404, detail=f"Run {run_id} not found. Persistent storage not yet implemented.")
+        session = get_session()
+        run = session.query(AgentRun).filter(AgentRun.run_id == run_id).first()
+        session.close()
+
+        if not run:
+            raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
+
+        return AgentRunResponse(
+            run_id=run.run_id,
+            agent_name=run.agent_name,
+            success=run.success,
+            output=run.output,
+            tool_calls_made=run.tool_calls_made,
+            total_input_tokens=run.total_input_tokens,
+            total_output_tokens=run.total_output_tokens,
+            latency_ms=run.latency_ms,
+            trace_url=run.trace_url,
+            error=run.error,
+            timestamp=run.created_at.isoformat() if run.created_at else None,
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception(f"Failed to retrieve run {run_id}")
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve run: {str(e)}")
 
 
 @router.post("/creative/run", response_model=AgentRunResponse)
@@ -244,12 +307,25 @@ async def run_creative(request: CreativeRunRequest) -> AgentRunResponse:
     """
     try:
         from tools.vector_search import VectorSearchTool
-        from tools.db_query import DBQueryTool
+        from tools.safety_checker import SafetyChecker
         from agents.creative import CreativeAgent
+        from api.websocket import agent_event_manager
+        from db.session import get_session
+        from models.run import AgentRun
+        import asyncio
+
+        run_id = str(uuid.uuid4())
+
+        def event_callback(event: dict):
+            asyncio.create_task(agent_event_manager.broadcast(run_id, event))
 
         vs = VectorSearchTool()
-        db = DBQueryTool()
-        agent = CreativeAgent(vector_search_tool=vs, db_query_tool=db)
+        sc = SafetyChecker()
+        agent = CreativeAgent(
+            vector_search_tool=vs,
+            safety_checker_tool=sc,
+            event_callback=event_callback,
+        )
 
         result = agent.run_creative_brief(
             channel=request.channel,
@@ -260,8 +336,33 @@ async def run_creative(request: CreativeRunRequest) -> AgentRunResponse:
             num_variants=request.num_variants,
         )
 
+        # Save to database
+        try:
+            session = get_session()
+            run_record = AgentRun(
+                run_id=run_id,
+                agent_name="creative",
+                model=agent.model,
+                max_turns=agent.max_turns,
+                input_params=request.dict(),
+                success=result.success,
+                output=result.output,
+                error=result.error,
+                tool_calls_made=result.tool_calls_made,
+                total_input_tokens=result.total_input_tokens,
+                total_output_tokens=result.total_output_tokens,
+                latency_ms=result.latency_ms,
+                trace_url=result.trace_url,
+            )
+            session.add(run_record)
+            session.commit()
+            session.close()
+            logger.info(f"Saved creative run {run_id} to database")
+        except Exception as e:
+            logger.warning(f"Failed to save run to database: {e}")
+
         return AgentRunResponse(
-            run_id=str(uuid.uuid4()),
+            run_id=run_id,
             agent_name="creative",
             success=result.success,
             output=result.output,
@@ -279,6 +380,74 @@ async def run_creative(request: CreativeRunRequest) -> AgentRunResponse:
         raise HTTPException(status_code=500, detail=f"Agent execution failed: {str(e)}")
 
 
+@router.get("/creative/run/{run_id}", response_model=AgentRunResponse)
+async def get_creative_run(run_id: str) -> AgentRunResponse:
+    """Retrieve a stored Creative run result by ID."""
+    try:
+        from db.session import get_session
+        from models.run import AgentRun
+
+        session = get_session()
+        run = session.query(AgentRun).filter(AgentRun.run_id == run_id).first()
+        session.close()
+
+        if not run:
+            raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
+
+        return AgentRunResponse(
+            run_id=run.run_id,
+            agent_name=run.agent_name,
+            success=run.success,
+            output=run.output,
+            tool_calls_made=run.tool_calls_made,
+            total_input_tokens=run.total_input_tokens,
+            total_output_tokens=run.total_output_tokens,
+            latency_ms=run.latency_ms,
+            trace_url=run.trace_url,
+            error=run.error,
+            timestamp=run.created_at.isoformat() if run.created_at else None,
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception(f"Failed to retrieve run {run_id}")
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve run: {str(e)}")
+
+
+@router.get("/analyst/run/{run_id}", response_model=AgentRunResponse)
+async def get_analyst_run(run_id: str) -> AgentRunResponse:
+    """Retrieve a stored Analyst run result by ID."""
+    try:
+        from db.session import get_session
+        from models.run import AgentRun
+
+        session = get_session()
+        run = session.query(AgentRun).filter(AgentRun.run_id == run_id).first()
+        session.close()
+
+        if not run:
+            raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
+
+        return AgentRunResponse(
+            run_id=run.run_id,
+            agent_name=run.agent_name,
+            success=run.success,
+            output=run.output,
+            tool_calls_made=run.tool_calls_made,
+            total_input_tokens=run.total_input_tokens,
+            total_output_tokens=run.total_output_tokens,
+            latency_ms=run.latency_ms,
+            trace_url=run.trace_url,
+            error=run.error,
+            timestamp=run.created_at.isoformat() if run.created_at else None,
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception(f"Failed to retrieve run {run_id}")
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve run: {str(e)}")
+
+
 @router.post("/analyst/run", response_model=AgentRunResponse)
 async def run_analyst(request: AnalystRunRequest) -> AgentRunResponse:
     """
@@ -291,15 +460,53 @@ async def run_analyst(request: AnalystRunRequest) -> AgentRunResponse:
         from tools.vector_search import VectorSearchTool
         from tools.db_query import DBQueryTool
         from agents.analyst import AnalystAgent
+        from api.websocket import agent_event_manager
+        from db.session import get_session
+        from models.run import AgentRun
+        import asyncio
+
+        run_id = str(uuid.uuid4())
+
+        def event_callback(event: dict):
+            asyncio.create_task(agent_event_manager.broadcast(run_id, event))
 
         vs = VectorSearchTool()
         db = DBQueryTool()
-        agent = AnalystAgent(vector_search_tool=vs, db_query_tool=db)
+        agent = AnalystAgent(
+            vector_search_tool=vs,
+            db_query_tool=db,
+            event_callback=event_callback,
+        )
 
         result = agent.answer_question(question=request.question)
 
+        # Save to database
+        try:
+            session = get_session()
+            run_record = AgentRun(
+                run_id=run_id,
+                agent_name="analyst",
+                model=agent.model,
+                max_turns=agent.max_turns,
+                input_params=request.dict(),
+                success=result.success,
+                output=result.output,
+                error=result.error,
+                tool_calls_made=result.tool_calls_made,
+                total_input_tokens=result.total_input_tokens,
+                total_output_tokens=result.total_output_tokens,
+                latency_ms=result.latency_ms,
+                trace_url=result.trace_url,
+            )
+            session.add(run_record)
+            session.commit()
+            session.close()
+            logger.info(f"Saved analyst run {run_id} to database")
+        except Exception as e:
+            logger.warning(f"Failed to save run to database: {e}")
+
         return AgentRunResponse(
-            run_id=str(uuid.uuid4()),
+            run_id=run_id,
             agent_name="analyst",
             success=result.success,
             output=result.output,
@@ -317,6 +524,40 @@ async def run_analyst(request: AnalystRunRequest) -> AgentRunResponse:
         raise HTTPException(status_code=500, detail=f"Agent execution failed: {str(e)}")
 
 
+@router.get("/optimizer/run/{run_id}", response_model=AgentRunResponse)
+async def get_optimizer_run(run_id: str) -> AgentRunResponse:
+    """Retrieve a stored Optimizer run result by ID."""
+    try:
+        from db.session import get_session
+        from models.run import AgentRun
+
+        session = get_session()
+        run = session.query(AgentRun).filter(AgentRun.run_id == run_id).first()
+        session.close()
+
+        if not run:
+            raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
+
+        return AgentRunResponse(
+            run_id=run.run_id,
+            agent_name=run.agent_name,
+            success=run.success,
+            output=run.output,
+            tool_calls_made=run.tool_calls_made,
+            total_input_tokens=run.total_input_tokens,
+            total_output_tokens=run.total_output_tokens,
+            latency_ms=run.latency_ms,
+            trace_url=run.trace_url,
+            error=run.error,
+            timestamp=run.created_at.isoformat() if run.created_at else None,
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception(f"Failed to retrieve run {run_id}")
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve run: {str(e)}")
+
+
 @router.post("/optimizer/run", response_model=AgentRunResponse)
 async def run_optimizer(request: OptimizerRunRequest) -> AgentRunResponse:
     """
@@ -329,10 +570,23 @@ async def run_optimizer(request: OptimizerRunRequest) -> AgentRunResponse:
         from tools.vector_search import VectorSearchTool
         from tools.db_query import DBQueryTool
         from agents.optimizer import OptimizerAgent
+        from api.websocket import agent_event_manager
+        from db.session import get_session
+        from models.run import AgentRun
+        import asyncio
+
+        run_id = str(uuid.uuid4())
+
+        def event_callback(event: dict):
+            asyncio.create_task(agent_event_manager.broadcast(run_id, event))
 
         vs = VectorSearchTool()
         db = DBQueryTool()
-        agent = OptimizerAgent(vector_search_tool=vs, db_query_tool=db)
+        agent = OptimizerAgent(
+            vector_search_tool=vs,
+            db_query_tool=db,
+            event_callback=event_callback,
+        )
 
         result = agent.optimize_campaign(
             campaign_id=request.campaign_id,
@@ -341,8 +595,33 @@ async def run_optimizer(request: OptimizerRunRequest) -> AgentRunResponse:
             days_remaining=request.days_remaining,
         )
 
+        # Save to database
+        try:
+            session = get_session()
+            run_record = AgentRun(
+                run_id=run_id,
+                agent_name="optimizer",
+                model=agent.model,
+                max_turns=agent.max_turns,
+                input_params=request.dict(),
+                success=result.success,
+                output=result.output,
+                error=result.error,
+                tool_calls_made=result.tool_calls_made,
+                total_input_tokens=result.total_input_tokens,
+                total_output_tokens=result.total_output_tokens,
+                latency_ms=result.latency_ms,
+                trace_url=result.trace_url,
+            )
+            session.add(run_record)
+            session.commit()
+            session.close()
+            logger.info(f"Saved optimizer run {run_id} to database")
+        except Exception as e:
+            logger.warning(f"Failed to save run to database: {e}")
+
         return AgentRunResponse(
-            run_id=str(uuid.uuid4()),
+            run_id=run_id,
             agent_name="optimizer",
             success=result.success,
             output=result.output,
@@ -360,8 +639,42 @@ async def run_optimizer(request: OptimizerRunRequest) -> AgentRunResponse:
         raise HTTPException(status_code=500, detail=f"Agent execution failed: {str(e)}")
 
 
-@router.post("/ab-test/design")
-async def design_ab_experiment(request: ABTestDesignRequest) -> dict:
+@router.get("/ab-test/run/{run_id}", response_model=AgentRunResponse)
+async def get_ab_test_run(run_id: str) -> AgentRunResponse:
+    """Retrieve a stored A/B Test run result by ID."""
+    try:
+        from db.session import get_session
+        from models.run import AgentRun
+
+        session = get_session()
+        run = session.query(AgentRun).filter(AgentRun.run_id == run_id).first()
+        session.close()
+
+        if not run:
+            raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
+
+        return AgentRunResponse(
+            run_id=run.run_id,
+            agent_name=run.agent_name,
+            success=run.success,
+            output=run.output,
+            tool_calls_made=run.tool_calls_made,
+            total_input_tokens=run.total_input_tokens,
+            total_output_tokens=run.total_output_tokens,
+            latency_ms=run.latency_ms,
+            trace_url=run.trace_url,
+            error=run.error,
+            timestamp=run.created_at.isoformat() if run.created_at else None,
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception(f"Failed to retrieve run {run_id}")
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve run: {str(e)}")
+
+
+@router.post("/ab-test/design", response_model=AgentRunResponse)
+async def design_ab_experiment(request: ABTestDesignRequest) -> AgentRunResponse:
     """
     Design a statistically valid A/B experiment using the SMB advertiser pool.
 
@@ -371,9 +684,21 @@ async def design_ab_experiment(request: ABTestDesignRequest) -> dict:
     try:
         from tools.db_query import DBQueryTool
         from agents.ab_testing_agent import ABTestingAgent
+        from api.websocket import agent_event_manager
+        from db.session import get_session
+        from models.run import AgentRun
+        import asyncio
+
+        run_id = str(uuid.uuid4())
+
+        def event_callback(event: dict):
+            asyncio.create_task(agent_event_manager.broadcast(run_id, event))
 
         db = DBQueryTool()
-        agent = ABTestingAgent(db_query_tool=db)
+        agent = ABTestingAgent(
+            db_query_tool=db,
+            event_callback=event_callback,
+        )
 
         result = agent.design_experiment(
             experiment_name=request.experiment_name,
@@ -389,11 +714,47 @@ async def design_ab_experiment(request: ABTestDesignRequest) -> dict:
             persist=request.persist,
         )
 
+        # Save to database
+        try:
+            session = get_session()
+            run_record = AgentRun(
+                run_id=run_id,
+                agent_name="ab-test",
+                model=agent.model if hasattr(agent, 'model') else None,
+                max_turns=agent.max_turns if hasattr(agent, 'max_turns') else None,
+                input_params=request.dict(),
+                success=True,
+                output=result.to_dict() if hasattr(result, 'to_dict') else str(result),
+                error=None,
+                tool_calls_made=[],
+                total_input_tokens=0,
+                total_output_tokens=0,
+                latency_ms=0.0,
+                trace_url=None,
+            )
+            session.add(run_record)
+            session.commit()
+            session.close()
+            logger.info(f"Saved ab-test run {run_id} to database")
+        except Exception as e:
+            logger.warning(f"Failed to save run to database: {e}")
+
         from dataclasses import asdict
-        return {
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            **asdict(result),
-        }
+        output_dict = asdict(result) if hasattr(result, '__dataclass_fields__') else dict(result) if isinstance(result, dict) else {"result": str(result)}
+
+        return AgentRunResponse(
+            run_id=run_id,
+            agent_name="ab-test",
+            success=True,
+            output=output_dict,
+            tool_calls_made=[],
+            total_input_tokens=0,
+            total_output_tokens=0,
+            latency_ms=0.0,
+            trace_url=None,
+            error=None,
+            timestamp=datetime.now(timezone.utc).isoformat(),
+        )
 
     except Exception as e:
         logger.exception("AB test design failed")
@@ -435,7 +796,7 @@ async def get_eval_status(eval_run_id: str) -> dict:
 
 
 @router.get("/eval/runs")
-async def list_eval_runs(limit: int = 20) -> list[dict]:
+async def list_eval_runs(limit: int = 20) -> List[Dict]:
     """List recent eval runs from the database."""
     try:
         from tools.db_query import DBQueryTool

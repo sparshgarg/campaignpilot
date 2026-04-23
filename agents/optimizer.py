@@ -122,6 +122,7 @@ INTERACTION PROTOCOL:
         vector_search_tool: Any,
         model: str = "claude-sonnet-4-5",
         max_turns: int = 8,
+        event_callback: Optional[Any] = None,
     ) -> None:
         """Initialize the OptimizerAgent.
 
@@ -130,11 +131,12 @@ INTERACTION PROTOCOL:
             vector_search_tool: Instance with search(query, collection, n_results) method.
             model: Claude model to use.
             max_turns: Maximum agentic loop turns.
+            event_callback: Optional callable for streaming execution events.
 
         Raises:
             ValueError: If tools are not provided or missing required methods.
         """
-        super().__init__(model=model, max_turns=max_turns, langfuse_enabled=True)
+        super().__init__(model=model, max_turns=max_turns, langfuse_enabled=True, event_callback=event_callback)
 
         if not db_query_tool:
             raise ValueError("db_query_tool is required")

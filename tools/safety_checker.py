@@ -125,6 +125,10 @@ class SafetyChecker:
             "details": details
         }
 
+    def check_brand_safety(self, text: str) -> dict[str, Any]:
+        """Alias for check_safety() for compatibility with agent interfaces."""
+        return self.check_safety(text)
+
     def check_unsubstantiated_claims(self, text: str) -> dict[str, Any]:
         """Check for unsubstantiated marketing claims.
 

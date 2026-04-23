@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampaignPilot - System Architecture & End-to-End Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .toc {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .toc ol {
+            list-style-position: inside;
+            font-size: 1.05em;
+        }
+
+        .toc li {
+            padding: 8px 0;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            color: #5a6c8d;
+            font-size: 1.1em;
+            margin: 20px 0 10px 0;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .diagram {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .flow-step {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 6px;
+        }
+
+        .flow-step strong {
+            color: #667eea;
+        }
+
+        .agent-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+        }
+
+        .agent-card h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+
+        .status.running {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.ready {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        .endpoint {
+            background: #fff5e6;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+
+        .method-post {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .method-get {
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .method-ws {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+            font-size: 0.95em;
+        }
+
+        .highlight {
+            background: #fff59d;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 CampaignPilot</h1>
+            <p>Production-Grade Multi-Agent Marketing Automation System</p>
+            <p style="margin-top: 15px; font-size: 0.95em;">Complete System Architecture & End-to-End Testing Documentation</p>
+        </header>
+
+        <div class="toc">
+            <h2>📋 Table of Contents</h2>
+            <ol>
+                <li><a href="#architecture">System Architecture Overview</a></li>
+                <li><a href="#agents">The Five AI Agents</a></li>
+                <li><a href="#api-flow">API Request/Response Flow</a></li>
+                <li><a href="#websocket">WebSocket Real-Time Event Streaming</a></li>
+                <li><a href="#database">Database Persistence & Run History</a></li>
+                <li><a href="#frontend">Frontend Consoles & User Interfaces</a></li>
+                <li><a href="#e2e-testing">End-to-End Testing Guide</a></li>
+                <li><a href="#deployment">Deployment & Production Readiness</a></li>
+            </ol>
+        </div>
+
+        <section id="architecture">
+            <h2>🏗️ System Architecture Overview</h2>
+
+            <h3>High-Level Design</h3>
+            <p>CampaignPilot is a distributed multi-agent system with three layers:</p>
+
+            <div class="diagram">
+┌─────────────────────────────────────────────────────────────────┐
+│                      FRONTEND LAYER                             │
+│              React + Vite @ localhost:5174                      │
+│  ┌──────────────┬──────────────┬──────────────┬──────────────┐  │
+│  │ Strategist   │ Creative     │ Analyst      │ Optimizer    │  │
+│  │ Console      │ Console      │ Console      │ Console      │  │
+│  └──────────────┴──────────────┴──────────────┴──────────────┘  │
+│                        └────────────────────────┘                │
+│                      A/B Testing Console                        │
+└──────────────┬────────────────────────────────────────┬─────────┘
+               │                                        │
+        HTTP POST/GET                            WebSocket
+        JSON Payloads                            Real-Time
+               │                                   Events
+               ↓                                        ↓
+┌──────────────────────────────────────────────────────────────────┐
+│                      API LAYER                                   │
+│              FastAPI @ localhost:8001                            │
+│  ┌──────────────┬──────────────┬──────────────┬──────────────┐  │
+│  │ /strategist  │ /creative    │ /analyst     │ /optimizer   │  │
+│  │ /run (POST)  │ /run (POST)  │ /run (POST)  │ /run (POST)  │  │
+│  └──────────────┴──────────────┴──────────────┴──────────────┘  │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ /ws/agent-events/{run_id} - WebSocket Endpoint              ││
+│  └─────────────────────────────────────────────────────────────┘│
+└──────────────┬─────────────────────────────────┬────────────────┘
+               │                                 │
+           Agent Execution              Database Storage
+           + Event Emission             + GET Endpoints
+               │                                 │
+               ↓                                 ↓
+┌──────────────────────────────────────────────────────────────────┐
+│                    AGENT & DATA LAYER                            │
+│  ┌────────────────┐  ┌────────────────┐  ┌────────────────┐    │
+│  │ Agent Instances│  │   PostgreSQL   │  │    ChromaDB    │    │
+│  │ (5 Total)      │  │   (Run History)│  │  (Knowledge)   │    │
+│  │ - Strategist   │  │                │  │                │    │
+│  │ - Creative     │  │  ┌──────────┐  │  │ Collections:   │    │
+│  │ - Analyst      │  │  │ agent_   │  │  │ - brand_guide │    │
+│  │ - Optimizer    │  │  │ runs     │  │  │ - campaign_   │    │
+│  │ - A/B Testing  │  │  │ table    │  │  │   history     │    │
+│  │                │  │  └──────────┘  │  │ - benchmarks   │    │
+│  └────────────────┘  └────────────────┘  └────────────────┘    │
+└──────────────────────────────────────────────────────────────────┘
+            </div>
+
+            <h3>Core Technologies</h3>
+            <ul class="feature-list">
+                <li><strong>Backend:</strong> FastAPI (async Python web framework)</li>
+                <li><strong>Frontend:</strong> React 18 + Vite (modern build tool)</li>
+                <li><strong>LLM:</strong> Claude (Anthropic API for agent reasoning)</li>
+                <li><strong>Real-Time:</strong> WebSocket for streaming agent execution events</li>
+                <li><strong>Database:</strong> PostgreSQL for run history & persistence</li>
+                <li><strong>Knowledge Base:</strong> ChromaDB (vector database) for RAG</li>
+                <li><strong>Observability:</strong> Langfuse (optional) for token tracking</li>
+            </ul>
+        </section>
+
+        <section id="agents">
+            <h2>🤖 The Five AI Agents</h2>
+
+            <h3>1. Strategist Agent</h3>
+            <div class="agent-card">
+                <h4>Purpose</h4>
+                <p>Generates comprehensive marketing campaign briefs with channel mix, budget allocation, KPIs, and strategic rationale.</p>
+
+                <h4>Input Parameters</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>campaign_goal</td>
+                        <td>string</td>
+                        <td>The campaign objective</td>
+                        <td>"Generate 50 MQLs for Lumen Pro from mid-market CFOs"</td>
+                    </tr>
+                    <tr>
+                        <td>budget_usd</td>
+                        <td>float</td>
+                        <td>Total budget in USD</td>
+                        <td>50000</td>
+                    </tr>
+                    <tr>
+                        <td>timeline_days</td>
+                        <td>integer</td>
+                        <td>Campaign duration</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td>target_segment</td>
+                        <td>string</td>
+                        <td>Target audience description</td>
+                        <td>"VP of Operations at Fortune 500 companies"</td>
+                    </tr>
+                </table>
+
+                <h4>Execution Process</h4>
+                <div class="flow-step">
+                    <strong>Step 1:</strong> Parse campaign request and extract key objectives
+                </div>
+                <div class="flow-step">
+                    <strong>Step 2:</strong> Search knowledge base for brand guidelines and messaging
+                </div>
+                <div class="flow-step">
+                    <strong>Step 3:</strong> Query database for past campaign performance on similar segments
+                </div>
+                <div class="flow-step">
+                    <strong>Step 4:</strong> Retrieve channel benchmarks from knowledge base
+                </div>
+                <div class="flow-step">
+                    <strong>Step 5:</strong> Generate multi-channel strategy with quantified recommendations
+                </div>
+                <div class="flow-step">
+                    <strong>Step 6:</strong> Output structured JSON with channel mix, budget split, KPIs, and rationale
+                </div>
+
+                <h4>Output Schema</h4>
+                <div class="code-block">
+{
+  "campaign_goal": "Generate 50 MQLs...",
+  "recommended_channels": ["LinkedIn", "Email", "Content"],
+  "budget_allocation": {
+    "LinkedIn": 25000,
+    "Email": 15000,
+    "Content": 10000
+  },
+  "primary_kpis": ["MQL Volume", "CAC", "ROAS"],
+  "timeline_recommendation": "Q4 2026",
+  "key_risks": ["Audience saturation", "Competitive activity"],
+  "rationale": "LinkedIn drives highest engagement for this persona..."
+}
+                </div>
+            </div>
+
+            <h3>2. Creative Agent</h3>
+            <div class="agent-card">
+                <h4>Purpose</h4>
+                <p>Generates multiple ad copy variants optimized for specific channels, personas, and messaging angles. Includes brand safety validation.</p>
+
+                <h4>Input Parameters</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>channel</td>
+                        <td>string</td>
+                        <td>facebook, instagram, reels, linkedin, email, etc.</td>
+                    </tr>
+                    <tr>
+                        <td>product</td>
+                        <td>string</td>
+                        <td>Product or service being advertised</td>
+                    </tr>
+                    <tr>
+                        <td>persona</td>
+                        <td>string</td>
+                        <td>Target persona name or description</td>
+                    </tr>
+                    <tr>
+                        <td>tone</td>
+                        <td>string</td>
+                        <td>friendly, professional, urgent, educational</td>
+                    </tr>
+                    <tr>
+                        <td>key_message</td>
+                        <td>string</td>
+                        <td>Core value proposition or message</td>
+                    </tr>
+                    <tr>
+                        <td>num_variants</td>
+                        <td>integer</td>
+                        <td>Number of creative variants (1-5)</td>
+                    </tr>
+                </table>
+
+                <h4>Safety Features</h4>
+                <ul class="feature-list">
+                    <li>Validates copy against brand guidelines</li>
+                    <li>Checks for prohibited phrases and messaging violations</li>
+                    <li>Ensures brand voice consistency</li>
+                    <li>Flags potentially problematic content</li>
+                </ul>
+            </div>
+
+            <h3>3. Analyst Agent</h3>
+            <div class="agent-card">
+                <h4>Purpose</h4>
+                <p>Answers natural-language marketing analytics questions by generating SQL queries, executing them, and providing business insights with proper context.</p>
+
+                <h4>Input</h4>
+                <p><strong>question:</strong> Natural language question like "What is the ROAS by channel for Q1 2026?"</p>
+
+                <h4>Allowed Tables</h4>
+                <ul class="feature-list">
+                    <li>campaigns - Master campaign data</li>
+                    <li>campaign_briefs - Strategic briefs from Strategist</li>
+                    <li>creatives - Ad variants from Creative Agent</li>
+                    <li>performance_events - Daily metrics (impressions, clicks, conversions, spend)</li>
+                    <li>optimization_recommendations - Recommendations from Optimizer</li>
+                    <li>eval_runs - Model evaluation results</li>
+                </ul>
+
+                <h4>Safety Measures</h4>
+                <ul class="feature-list">
+                    <li>Only SELECT queries allowed</li>
+                    <li>Query validation before execution</li>
+                    <li>Result anomaly detection (ROAS > 10x flagged)</li>
+                    <li>Data quality assessment included</li>
+                </ul>
+            </div>
+
+            <h3>4. Optimizer Agent</h3>
+            <div class="agent-card">
+                <h4>Purpose</h4>
+                <p>Analyzes campaign performance and generates quantified optimization recommendations based on benchmarks, historical data, and statistical significance.</p>
+
+                <h4>Input Parameters</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>campaign_id</td>
+                        <td>integer</td>
+                        <td>Campaign to optimize</td>
+                    </tr>
+                    <tr>
+                        <td>campaign_name</td>
+                        <td>string</td>
+                        <td>Human-readable name</td>
+                    </tr>
+                    <tr>
+                        <td>remaining_budget_usd</td>
+                        <td>float</td>
+                        <td>Unspent budget</td>
+                    </tr>
+                    <tr>
+                        <td>days_remaining</td>
+                        <td>integer</td>
+                        <td>Campaign flight time left</td>
+                    </tr>
+                </table>
+
+                <h4>Analysis Approach</h4>
+                <div class="flow-step">
+                    <strong>1.</strong> Retrieves current performance metrics by channel
+                </div>
+                <div class="flow-step">
+                    <strong>2.</strong> Compares against industry benchmarks
+                </div>
+                <div class="flow-step">
+                    <strong>3.</strong> Identifies underperforming channels (statistically significant)</li>
+                </div>
+                <div class="flow-step">
+                    <strong>4.</strong> Validates findings against historical patterns
+                </div>
+                <div class="flow-step">
+                    <strong>5.</strong> Generates budget reallocation recommendations with expected ROI impact
+                </div>
+            </div>
+
+            <h3>5. A/B Testing Agent</h3>
+            <div class="agent-card">
+                <h4>Purpose</h4>
+                <p>Designs statistically valid experiments using stratified random sampling, power analysis, and covariate balance validation.</p>
+
+                <h4>Key Features</h4>
+                <ul class="feature-list">
+                    <li><strong>Power Analysis:</strong> Calculates required sample sizes for desired statistical power</li>
+                    <li><strong>Stratification:</strong> Divides population by industry, size, DMA tier, advertising experience</li>
+                    <li><strong>Balance Validation:</strong> Ensures covariate balance using chi-square and Welch's t-test</li>
+                    <li><strong>Group Assignment:</strong> Proportional stratified random sampling</li>
+                    <li><strong>Diagnostics:</strong> Comprehensive balance reports and standardized effect sizes</li>
+                </ul>
+
+                <h4>Inputs</h4>
+                <ul class="feature-list">
+                    <li>experiment_name - Human-readable identifier</li>
+                    <li>baseline_conversion_rate - Expected baseline (0-1)</li>
+                    <li>minimum_detectable_effect - Minimum lift to detect (relative or absolute)</li>
+                    <li>desired_power - Statistical power goal (0.5-0.99, typically 0.8)</li>
+                    <li>significance_level - Type I error rate (typically 0.05)</li>
+                    <li>test_fraction - Proportion to assign to treatment (0.1-0.9)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="api-flow">
+            <h2>🔄 API Request/Response Flow</h2>
+
+            <h3>Endpoint Reference</h3>
+
+            <h4>Strategist Agent</h4>
+            <div class="endpoint">
+                <span class="method-post">POST</span> /agents/strategist/run
+            </div>
+            <p>Generates campaign brief. Returns run_id immediately for WebSocket subscription.</p>
+
+            <h4>Creative Agent</h4>
+            <div class="endpoint">
+                <span class="method-post">POST</span> /agents/creative/run
+            </div>
+            <p>Generates ad copy variants. Returns run_id for event streaming.</p>
+
+            <h4>Analyst Agent</h4>
+            <div class="endpoint">
+                <span class="method-post">POST</span> /agents/analyst/run
+            </div>
+            <p>Executes analytics query. Returns run_id and generated SQL.</p>
+
+            <h4>Optimizer Agent</h4>
+            <div class="endpoint">
+                <span class="method-post">POST</span> /agents/optimizer/run
+            </div>
+            <p>Generates optimization recommendations. Returns run_id for event stream.</p>
+
+            <h4>A/B Testing Agent</h4>
+            <div class="endpoint">
+                <span class="method-post">POST</span> /agents/ab-test/design
+            </div>
+            <p>Designs experiment. Returns run_id and experiment parameters.</p>
+
+            <h4>Retrieve Run Results</h4>
+            <div class="endpoint">
+                <span class="method-get">GET</span> /agents/{agent}/run/{run_id}
+            </div>
+            <p>Fetches stored run result from database. Includes all metadata and outputs.</p>
+
+            <h3>Standard Response Schema</h3>
+            <div class="code-block">
+{
+  "run_id": "550e8400-e29b-41d4-a716-446655440000",
+  "agent_name": "strategist",
+  "success": true,
+  "output": {
+    "campaign_goal": "...",
+    "recommended_channels": [...],
+    "budget_allocation": {...}
+  },
+  "tool_calls_made": [
+    {
+      "tool_name": "search_knowledge_base",
+      "input": {...},
+      "output": {...}
+    }
+  ],
+  "total_input_tokens": 2048,
+  "total_output_tokens": 1024,
+  "latency_ms": 3500,
+  "trace_url": "https://cloud.langfuse.com/traces/...",
+  "error": null,
+  "timestamp": "2026-04-22T20:46:33Z"
+}
+            </div>
+
+            <h3>Request/Response Lifecycle</h3>
+            <div class="diagram">
+Frontend                           Backend                          Database
+   │                                 │                                 │
+   │  1. POST /agents/agent/run      │                                 │
+   ├────────────────────────────────→│                                 │
+   │     (agent params)              │                                 │
+   │                                 │ 2. Generate run_id              │
+   │                                 │    Create event callback        │
+   │                                 │ 3. Instantiate agent            │
+   │                                 │    (with event_callback)        │
+   │                                 │ 4. Execute agent.run()          │
+   │                                 │    (emitting events)            │
+   │                                 │                                 │
+   │ 5. Immediate Response           │                                 │
+   │←────────────────────────────────┤ 6. Save run to database        │
+   │    {run_id, timestamp, ...}     ├─────────────────→                │
+   │                                 │     INSERT INTO agent_runs      │
+   │                                 │
+   │ 7. Connect WebSocket            │
+   │    /ws/agent-events/{run_id}    │
+   ├────────────────────────────────→│
+   │                                 │
+   │ 8. Stream Events (live)         │
+   │←────────────────────────────────┤
+   │  {type: "tool_call", ...}       │
+   │  {type: "completed", ...}       │
+   │                                 │
+   │ 9. Poll GET /agents/.../run_id  │
+   │    (optional, for final result) │
+   ├────────────────────────────────→│
+   │                                 │ 10. Query database
+   │ 11. Full Result                 │     SELECT * FROM agent_runs
+   │←────────────────────────────────┤←─────────────────
+   │    {run_id, success, output...} │
+            </div>
+        </section>
+
+        <section id="websocket">
+            <h2>⚡ WebSocket Real-Time Event Streaming</h2>
+
+            <h3>How Event Streaming Works</h3>
+            <p>When an agent starts executing, it emits events throughout its lifecycle. These are broadcast to connected WebSocket clients in real-time, providing live visibility into what the agent is doing.</p>
+
+            <h3>Connection Protocol</h3>
+            <div class="code-block">
+// Frontend connects after receiving run_id
+const wsProtocol = location.protocol === 'https:' ? 'wss' : 'ws';
+const wsUrl = `${wsProtocol}://${API_HOST}/ws/agent-events/${run_id}`;
+const ws = new WebSocket(wsUrl);
+
+ws.onmessage = (event) => {
+  const agentEvent = JSON.parse(event.data);
+  console.log('Event:', agentEvent);
+};
+            </div>
+
+            <h3>Event Types & Examples</h3>
+
+            <h4>1. Tool Call Event</h4>
+            <div class="code-block">
+{
+  "type": "tool_call",
+  "tool_name": "search_knowledge_base",
+  "input": {
+    "query": "brand voice guidelines",
+    "n_results": 5
+  },
+  "timestamp": 1713811593.5
+}
+            </div>
+
+            <h4>2. Tool Result Event</h4>
+            <div class="code-block">
+{
+  "type": "tool_result",
+  "tool_name": "search_knowledge_base",
+  "output": [
+    {
+      "doc_id": "brand_001",
+      "content": "Brand voice is professional yet approachable..."
+    }
+  ],
+  "timestamp": 1713811594.2
+}
+            </div>
+
+            <h4>3. Reasoning Event</h4>
+            <div class="code-block">
+{
+  "type": "reasoning",
+  "thinking": "The user wants a LinkedIn strategy for VP of Operations...",
+  "timestamp": 1713811595.0
+}
+            </div>
+
+            <h4>4. Completion Event</h4>
+            <div class="code-block">
+{
+  "type": "completed",
+  "success": true,
+  "total_turns": 5,
+  "timestamp": 1713811620.3
+}
+            </div>
+
+            <h4>5. Error Event</h4>
+            <div class="code-block">
+{
+  "type": "error",
+  "message": "Failed to query database: connection timeout",
+  "timestamp": 1713811605.1
+}
+            </div>
+
+            <h3>Event Flow During Execution</h3>
+            <div class="diagram">
+Agent Execution Timeline:
+
+T+0.0s: reasoning event
+        ├─ Analyzing campaign goal and constraints
+        │
+T+0.5s: tool_call event (search_knowledge_base)
+        │
+T+1.2s: tool_result event
+        │
+T+1.5s: tool_call event (get_campaign_history)
+        │
+T+2.8s: tool_result event
+        │
+T+3.0s: tool_call event (get_benchmark_data)
+        │
+T+4.1s: tool_result event
+        │
+T+4.5s: reasoning event
+        ├─ Synthesizing findings into recommendations
+        │
+T+5.2s: completed event
+        └─ Agent finished, run_id stored in database
+            </div>
+        </section>
+
+        <section id="database">
+            <h2>💾 Database Persistence & Run History</h2>
+
+            <h3>Agent Runs Table Schema</h3>
+            <div class="code-block">
+CREATE TABLE agent_runs (
+  id SERIAL PRIMARY KEY,
+  run_id UUID NOT NULL UNIQUE,
+  agent_name VARCHAR(50),
+  model VARCHAR(100),
+  max_turns INTEGER,
+  input_params JSONB,
+  success BOOLEAN,
+  output JSONB,
+  error TEXT,
+  tool_calls_made JSONB,
+  total_input_tokens INTEGER,
+  total_output_tokens INTEGER,
+  latency_ms FLOAT,
+  trace_url TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+            </div>
+
+            <h3>Data Saved for Each Run</h3>
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td>run_id</td>
+                    <td>UUID</td>
+                    <td>Unique identifier for the run (used in WebSocket URL)</td>
+                </tr>
+                <tr>
+                    <td>agent_name</td>
+                    <td>string</td>
+                    <td>Which agent executed (strategist, creative, analyst, etc.)</td>
+                </tr>
+                <tr>
+                    <td>input_params</td>
+                    <td>JSON</td>
+                    <td>Complete input parameters for audit trail</td>
+                </tr>
+                <tr>
+                    <td>success</td>
+                    <td>boolean</td>
+                    <td>Whether the run completed without errors</td>
+                </tr>
+                <tr>
+                    <td>output</td>
+                    <td>JSON</td>
+                    <td>Complete agent output (strategy, creatives, recommendations, etc.)</td>
+                </tr>
+                <tr>
+                    <td>error</td>
+                    <td>string</td>
+                    <td>Error message if success=false</td>
+                </tr>
+                <tr>
+                    <td>tool_calls_made</td>
+                    <td>JSON array</td>
+                    <td>All tools executed with inputs/outputs (observability)</td>
+                </tr>
+                <tr>
+                    <td>total_input_tokens</td>
+                    <td>integer</td>
+                    <td>Total tokens sent to Claude API</td>
+                </tr>
+                <tr>
+                    <td>total_output_tokens</td>
+                    <td>integer</td>
+                    <td>Total tokens generated by Claude</td>
+                </tr>
+                <tr>
+                    <td>latency_ms</td>
+                    <td>float</td>
+                    <td>End-to-end execution time in milliseconds</td>
+                </tr>
+                <tr>
+                    <td>trace_url</td>
+                    <td>string</td>
+                    <td>Link to Langfuse trace (if enabled)</td>
+                </tr>
+            </table>
+
+            <h3>Run Retrieval</h3>
+            <p>After an agent finishes, you can retrieve the complete run result via:</p>
+            <div class="code-block">GET /agents/{agent_name}/run/{run_id}</div>
+
+            <div class="success-box">
+                <strong>✓ Run History Benefits:</strong>
+                <ul>
+                    <li>Complete audit trail of all agent executions</li>
+                    <li>Token usage tracking for cost analysis</li>
+                    <li>Performance metrics (latency) for optimization</li>
+                    <li>Replayability - can review exact inputs/outputs</li>
+                    <li>Error tracking - identify patterns in failures</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="frontend">
+            <h2>🖥️ Frontend Consoles & User Interfaces</h2>
+
+            <h3>Console Architecture</h3>
+            <p>Each agent has a dedicated console interface with consistent patterns:</p>
+
+            <div class="diagram">
+┌────────────────────────────────────────────────────────────┐
+│                    Agent Console                           │
+│  ┌────────────────────────────────────────────────────┐   │
+│  │ Form Section (Left)      | Results Section (Right) │   │
+│  │ ─────────────────────────|──────────────────────   │   │
+│  │ • Input fields           | • Execution Timeline    │   │
+│  │ • Campaign goal          | • Real-time events      │   │
+│  │ • Budget parameters      | • Success/Error status  │   │
+│  │ • Other config           | • Tokens used           │   │
+│  │                          | • Latency               │   │
+│  │ [Run Agent Button]       | • Langfuse trace link   │   │
+│  └────────────────────────────────────────────────────┘   │
+└────────────────────────────────────────────────────────────┘
+            </div>
+
+            <h3>1. Strategist Console</h3>
+            <h4>Form Fields</h4>
+            <ul>
+                <li><strong>Campaign Goal:</strong> Text input (required)</li>
+                <li><strong>Budget USD:</strong> Number input (default: 5000)</li>
+                <li><strong>Timeline Days:</strong> Number input (default: 30)</li>
+                <li><strong>Target Segment:</strong> Text input (required)</li>
+            </ul>
+            <h4>Workflow</h4>
+            <ol>
+                <li>User fills form and clicks "Run Campaign Strategist"</li>
+                <li>Frontend POSTs to /agents/strategist/run</li>
+                <li>Receives run_id immediately</li>
+                <li>Connects WebSocket to stream execution events</li>
+                <li>Displays events in timeline as they arrive</li>
+                <li>Shows final strategy output when complete</li>
+            </ol>
+
+            <h3>2. Creative Console</h3>
+            <h4>Form Fields</h4>
+            <ul>
+                <li><strong>Channel:</strong> Select (facebook, instagram, reels, linkedin, email, search, display)</li>
+                <li><strong>Product:</strong> Text input</li>
+                <li><strong>Persona:</strong> Text input</li>
+                <li><strong>Tone:</strong> Select (friendly, professional, urgent, educational)</li>
+                <li><strong>Key Message:</strong> Textarea</li>
+                <li><strong>Num Variants:</strong> Number (1-5, default: 3)</li>
+            </ul>
+
+            <h3>3. Analyst Console</h3>
+            <h4>Form Fields</h4>
+            <ul>
+                <li><strong>Question:</strong> Textarea - Natural language analytics question</li>
+            </ul>
+            <h4>Output Includes</h4>
+            <ul>
+                <li>Generated SQL query</li>
+                <li>Query results (as table)</li>
+                <li>Business narrative insight</li>
+                <li>Key findings summary</li>
+                <li>Data quality notes</li>
+            </ul>
+
+            <h3>4. Optimizer Console</h3>
+            <h4>Form Fields</h4>
+            <ul>
+                <li><strong>Campaign ID:</strong> Number</li>
+                <li><strong>Campaign Name:</strong> Text</li>
+                <li><strong>Remaining Budget USD:</strong> Number</li>
+                <li><strong>Days Remaining:</strong> Number</li>
+            </ul>
+            <h4>Output Includes</h4>
+            <ul>
+                <li>Channel performance analysis</li>
+                <li>Budget reallocation recommendations</li>
+                <li>Expected ROI impact</li>
+                <li>Risk assessment</li>
+                <li>Implementation priorities</li>
+            </ul>
+
+            <h3>5. A/B Testing Console</h3>
+            <h4>Form Fields</h4>
+            <ul>
+                <li><strong>Experiment Name:</strong> Text input</li>
+                <li><strong>Baseline Conversion Rate:</strong> Number (0.001-1.0)</li>
+                <li><strong>Minimum Detectable Effect:</strong> Number</li>
+                <li><strong>MDE Type:</strong> Select (relative/absolute)</li>
+                <li><strong>Desired Power:</strong> Number (0.5-0.99, default: 0.8)</li>
+                <li><strong>Significance Level:</strong> Number (0.01-0.20, default: 0.05)</li>
+                <li><strong>Test Fraction:</strong> Number (0.1-0.9, default: 0.5)</li>
+            </ul>
+
+            <h3>Console Interaction Pattern</h3>
+            <div class="code-block">
+// 1. User submits form
+handleSubmit(formData) {
+  setLoading(true);
+
+  // 2. POST to backend
+  response = fetch(`/agents/${agent}/run`, {
+    method: 'POST',
+    body: JSON.stringify(formData)
+  });
+
+  // 3. Get run_id from response
+  data = response.json();
+  run_id = data.run_id;
+
+  // 4. Connect WebSocket
+  ws = new WebSocket(`/ws/agent-events/${run_id}`);
+
+  // 5. Stream events
+  ws.onmessage = (event) => {
+    agentEvent = JSON.parse(event.data);
+    setEvents(prev => [...prev, agentEvent]);
+  };
+}
+            </div>
+        </section>
+
+        <section id="e2e-testing">
+            <h2>✅ End-to-End Testing Guide</h2>
+
+            <h3>System Status</h3>
+            <div class="success-box">
+                <strong>✓ All Systems Running</strong>
+                <ul>
+                    <li>Frontend: http://localhost:5174 - <span class="status ready">Ready</span></li>
+                    <li>Backend API: http://localhost:8001 - <span class="status running">Running</span></li>
+                    <li>Health Check: /health endpoint - <span class="status running">OK</span></li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ External Services Status</strong>
+                <ul>
+                    <li>PostgreSQL - Not Connected (run history persisted to in-memory fallback)</li>
+                    <li>ChromaDB - Not Connected (knowledge base unavailable)</li>
+                    <li>Langfuse - Not Configured (tracing disabled)</li>
+                </ul>
+                <p><em>Note: Agents can still run but won't have knowledge base context and run history won't persist to database.</em></p>
+            </div>
+
+            <h3>Testing Checklist</h3>
+
+            <h4>✓ Test 1: API Health Check</h4>
+            <div class="code-block">
+curl http://localhost:8001/health | jq .
+
+Expected Response:
+{
+  "status": "ok",
+  "version": "1.0.0",
+  "services": {
+    "postgres": false,
+    "chromadb": false
+  }
+}
+            </div>
+
+            <h4>✓ Test 2: Frontend Loads</h4>
+            <p>Open http://localhost:5174 in browser. You should see:</p>
+            <ul>
+                <li>Navigation bar with 5 agent buttons</li>
+                <li>Hero section with CampaignPilot branding</li>
+                <li>Agent showcase cards</li>
+                <li>Footer with deployment info</li>
+            </ul>
+
+            <h4>✓ Test 3: Launch Strategist Console</h4>
+            <ol>
+                <li>Click "Strategist" button in navigation or hero section</li>
+                <li>You should see the Strategist Console with form and results panel</li>
+                <li>Fill in form:
+                    <ul>
+                        <li>Campaign Goal: "Generate 100 MQLs for mid-market DevOps managers"</li>
+                        <li>Budget: 50000</li>
+                        <li>Timeline: 90 days</li>
+                        <li>Target Segment: "Director of Infrastructure at 500-5000 employee companies"</li>
+                    </ul>
+                </li>
+                <li>Click "Generate Campaign Strategy"</li>
+            </ol>
+
+            <h4>Expected Behavior During Test 3</h4>
+            <div class="info-box">
+                <strong>Step 1: Immediate Response</strong>
+                <p>Within 1-2 seconds, you should see a run_id in the response and the Execution Timeline starts filling with events.</p>
+
+                <strong>Step 2: Live Event Streaming</strong>
+                <p>You'll see events like:</p>
+                <ul>
+                    <li>[reasoning] Analyzing campaign requirements...</li>
+                    <li>[tool_call] search_knowledge_base</li>
+                    <li>[tool_result] Retrieved brand guidelines</li>
+                    <li>[tool_call] get_campaign_history</li>
+                    <li>[tool_result] Retrieved historical performance</li>
+                </ul>
+
+                <strong>Step 3: Agent Processing</strong>
+                <p>Agent runs through its multi-turn loop (typically 3-8 turns depending on complexity).</p>
+
+                <strong>Step 4: Completion</strong>
+                <p>When done, you'll see [completed] event and the Results panel will show:</p>
+                <ul>
+                    <li>Success status (green checkmark)</li>
+                    <li>Latency in milliseconds</li>
+                    <li>Token usage (input + output)</li>
+                    <li>Link to Langfuse trace (if enabled)</li>
+                </ul>
+
+                <strong>Step 5: Final Output</strong>
+                <p>The agent's complete output (strategy, budget split, KPIs, rationale) is available in the output field.</p>
+            </div>
+
+            <h4>✓ Test 4: Test Creative Console</h4>
+            <ol>
+                <li>Back to home, click "Creative" agent</li>
+                <li>Fill form:
+                    <ul>
+                        <li>Channel: "linkedin"</li>
+                        <li>Product: "Cloud Infrastructure Platform"</li>
+                        <li>Persona: "VP of Infrastructure"</li>
+                        <li>Tone: "professional"</li>
+                        <li>Key Message: "Reduce cloud costs by 40% without sacrificing performance"</li>
+                        <li>Num Variants: 3</li>
+                    </ul>
+                </li>
+                <li>Click "Generate Ad Variants"</li>
+                <li>Watch WebSocket events stream in real-time</li>
+                <li>Review generated ad copy variants when complete</li>
+            </ol>
+
+            <h4>✓ Test 5: Test Analyst Console</h4>
+            <ol>
+                <li>Click "Analyst" agent</li>
+                <li>Enter question: "What channels drove the most conversions last quarter?"</li>
+                <li>Click "Ask Question"</li>
+                <li>Watch agent:
+                    <ul>
+                        <li>Parse question</li>
+                        <li>Generate SQL</li>
+                        <li>Execute against database</li>
+                        <li>Interpret results</li>
+                    </ul>
+                </li>
+                <li>Review SQL query and results in output</li>
+            </ol>
+
+            <h4>✓ Test 6: Test Optimizer Console</h4>
+            <ol>
+                <li>Click "Optimizer" agent</li>
+                <li>Fill form:
+                    <ul>
+                        <li>Campaign ID: 1</li>
+                        <li>Campaign Name: "Q2 2026 DevOps Outreach"</li>
+                        <li>Remaining Budget: 25000</li>
+                        <li>Days Remaining: 30</li>
+                    </ul>
+                </li>
+                <li>Click "Analyze & Optimize"</li>
+                <li>Review optimization recommendations</li>
+            </ol>
+
+            <h4>✓ Test 7: Test A/B Testing Console</h4>
+            <ol>
+                <li>Click "A/B Testing" agent</li>
+                <li>Fill form:
+                    <ul>
+                        <li>Experiment Name: "Email subject line test"</li>
+                        <li>Baseline Conversion Rate: 0.05 (5%)</li>
+                        <li>Minimum Detectable Effect: 0.20 (20% relative lift)</li>
+                        <li>MDE Type: "relative"</li>
+                        <li>Desired Power: 0.80</li>
+                        <li>Significance Level: 0.05</li>
+                        <li>Test Fraction: 0.50</li>
+                    </ul>
+                </li>
+                <li>Click "Design Experiment"</li>
+                <li>Review sample size calculations and power analysis</li>
+            </ol>
+
+            <h3>Validation Criteria</h3>
+            <p>A successful end-to-end test confirms:</p>
+            <ul class="feature-list">
+                <li>Frontend loads without errors</li>
+                <li>All 5 agent consoles are accessible</li>
+                <li>Each console form accepts input and submits to backend</li>
+                <li>Backend receives request and returns run_id immediately</li>
+                <li>WebSocket connects and streams events in real-time</li>
+                <li>Events display in timeline as they arrive</li>
+                <li>Agent completes execution and emits completion event</li>
+                <li>Results panel shows success status, latency, and token count</li>
+                <li>Run data can be retrieved via GET endpoint (if DB connected)</li>
+                <li>Console remains responsive during execution</li>
+            </ul>
+
+            <h3>Common Issues & Troubleshooting</h3>
+
+            <h4>Issue: "Failed to connect to WebSocket"</h4>
+            <p><strong>Cause:</strong> API server not running on correct port</p>
+            <p><strong>Fix:</strong> Verify backend is running: <code>curl http://localhost:8001/health</code></p>
+
+            <h4>Issue: "API error: 500"</h4>
+            <p><strong>Cause:</strong> Agent initialization or execution error</p>
+            <p><strong>Fix:</strong> Check backend logs: <code>tail -50 /tmp/backend.log</code></p>
+
+            <h4>Issue: "PostgreSQL connection failed" in logs</h4>
+            <p><strong>Cause:</strong> Database not running (expected in dev environment)</p>
+            <p><strong>Fix:</strong> This is non-blocking. Runs still execute but aren't persisted to DB.</p>
+
+            <h4>Issue: "ChromaDB connection failed" in logs</h4>
+            <p><strong>Cause:</strong> Vector database not running</p>
+            <p><strong>Fix:</strong> Agents won't have access to knowledge base, but can still execute with basic reasoning.</p>
+        </section>
+
+        <section id="deployment">
+            <h2>🚀 Deployment & Production Readiness</h2>
+
+            <h3>Current Development Setup</h3>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Location</th>
+                    <th>Port</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Frontend</td>
+                    <td>localhost</td>
+                    <td>5174</td>
+                    <td>✓ Running</td>
+                </tr>
+                <tr>
+                    <td>Backend API</td>
+                    <td>localhost</td>
+                    <td>8001</td>
+                    <td>✓ Running</td>
+                </tr>
+                <tr>
+                    <td>PostgreSQL</td>
+                    <td>localhost:5432</td>
+                    <td>5432</td>
+                    <td>⚠ Not Connected</td>
+                </tr>
+                <tr>
+                    <td>ChromaDB</td>
+                    <td>localhost:8000</td>
+                    <td>8000</td>
+                    <td>⚠ Not Connected</td>
+                </tr>
+            </table>
+
+            <h3>Production Deployment Checklist</h3>
+            <div class="info-box">
+                <h4>Infrastructure</h4>
+                <ul class="feature-list">
+                    <li>Deploy frontend to CDN (Vercel, Netlify, AWS CloudFront)</li>
+                    <li>Deploy backend to container service (Docker on AWS ECS, Google Cloud Run, Render)</li>
+                    <li>Set up PostgreSQL (AWS RDS, Google Cloud SQL, or self-managed)</li>
+                    <li>Set up ChromaDB (self-hosted or managed vector DB)</li>
+                    <li>Configure Langfuse (optional, for observability)</li>
+                </ul>
+
+                <h4>Security</h4>
+                <ul class="feature-list">
+                    <li>Enable HTTPS for all endpoints</li>
+                    <li>Set up API authentication (JWT, OAuth2)</li>
+                    <li>Configure CORS properly (restrict to your domain)</li>
+                    <li>Secure database credentials (use environment variables, AWS Secrets Manager)</li>
+                    <li>Enable rate limiting on API endpoints</li>
+                    <li>Set up WAF (Web Application Firewall)</li>
+                </ul>
+
+                <h4>Monitoring & Observability</h4>
+                <ul class="feature-list">
+                    <li>Set up centralized logging (ELK, CloudWatch, Datadog)</li>
+                    <li>Configure APM (Application Performance Monitoring)</li>
+                    <li>Set up alerting for critical errors</li>
+                    <li>Monitor API latency and throughput</li>
+                    <li>Track token usage for cost management</li>
+                    <li>Monitor database performance</li>
+                </ul>
+
+                <h4>Scaling</h4>
+                <ul class="feature-list">
+                    <li>Enable horizontal scaling for backend API</li>
+                    <li>Set up load balancing</li>
+                    <li>Configure auto-scaling policies</li>
+                    <li>Implement connection pooling for database</li>
+                    <li>Cache frequently accessed data (knowledge base, benchmarks)</li>
+                </ul>
+            </div>
+
+            <h3>Next Steps</h3>
+            <ol>
+                <li><strong>Set up PostgreSQL:</strong> Create database and load schema</li>
+                <li><strong>Set up ChromaDB:</strong> Load knowledge base documents into vector DB</li>
+                <li><strong>Configure Langfuse:</strong> Set up account for observability</li>
+                <li><strong>Run integration tests:</strong> Verify all 5 agents against real data</li>
+                <li><strong>Performance testing:</strong> Load test with concurrent requests</li>
+                <li><strong>Deploy to staging:</strong> Test on staging environment</li>
+                <li><strong>Deploy to production:</strong> Blue-green deploy with rollback capability</li>
+            </ol>
+        </section>
+
+        <footer>
+            <p>CampaignPilot v1.0.0 | Production-Grade Multi-Agent Marketing Automation</p>
+            <p>Documentation generated: April 22, 2026 | Status: ✓ System Running | All 5 Agents Operational</p>
+            <p>For questions or support, refer to /docs endpoint in FastAPI or review individual agent console logs.</p>
+        </footer>
+    </div>
+</body>
+</html>

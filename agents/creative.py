@@ -93,6 +93,7 @@ INTERACTION PROTOCOL:
         safety_checker_tool: Any,
         model: str = "claude-sonnet-4-5",
         max_turns: int = 6,
+        event_callback: Optional[Any] = None,
     ) -> None:
         """Initialize the CreativeAgent.
 
@@ -101,11 +102,12 @@ INTERACTION PROTOCOL:
             safety_checker_tool: Instance with check_brand_safety(text) method.
             model: Claude model to use.
             max_turns: Maximum agentic loop turns.
+            event_callback: Optional callable for streaming execution events.
 
         Raises:
             ValueError: If tools are not provided or missing required methods.
         """
-        super().__init__(model=model, max_turns=max_turns, langfuse_enabled=True)
+        super().__init__(model=model, max_turns=max_turns, langfuse_enabled=True, event_callback=event_callback)
 
         if not vector_search_tool:
             raise ValueError("vector_search_tool is required")

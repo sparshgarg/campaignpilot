@@ -310,8 +310,9 @@ class ABTestingAgent(BaseAgent):
         db_query_tool: Any,
         model: str = "claude-sonnet-4-6",
         max_turns: int = 6,
+        event_callback: Optional[Any] = None,
     ) -> None:
-        super().__init__(model=model, max_turns=max_turns, langfuse_enabled=False)
+        super().__init__(model=model, max_turns=max_turns, langfuse_enabled=False, event_callback=event_callback)
 
         if not db_query_tool:
             raise ValueError("db_query_tool is required")

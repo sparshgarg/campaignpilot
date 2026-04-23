@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Nav = ({ onLaunchClick }) => {
+const Nav = ({ onLaunchClick, onDocsClick }) => {
   return (
     <div className="nav-wrap">
       <nav className="nav">
@@ -14,7 +14,7 @@ const Nav = ({ onLaunchClick }) => {
             <a href="#platform">Platform</a>
             <a href="#workflow">Workflow</a>
             <a href="#metrics">Results</a>
-            <a href="#docs">Docs</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onDocsClick?.(); }}>Docs</a>
           </div>
         </div>
         <div className="nav-cta">

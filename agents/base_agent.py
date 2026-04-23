@@ -69,21 +69,13 @@ class BaseAgent(ABC):
         self.langfuse_enabled = langfuse_enabled
         self.event_callback = event_callback
 
-    def _emit(self, event_type: str, **data) -> None:
-        """Emit an execution event to the callback if set."""
-        if self.event_callback:
-            try:
-                self.event_callback({"type": event_type, "timestamp": time.time(), **data})
-            except Exception as e:
-                logger.warning(f"Event callback failed: {e}")
-
-        # Initialize Anthropic client (lazy — validated on first LLM call)
+        # Initialize Anthropic client
         api_key = os.getenv("ANTHROPIC_API_KEY")
         self.client = anthropic.Anthropic(api_key=api_key) if api_key else None
 
         # Initialize Langfuse client (gracefully disable if keys not set)
         self.langfuse = None
-        if langfuse_enabled:
+        if self.langfuse_enabled:
             try:
                 langfuse_secret = os.getenv("LANGFUSE_SECRET_KEY")
                 langfuse_public = os.getenv("LANGFUSE_PUBLIC_KEY")
@@ -106,6 +98,14 @@ class BaseAgent(ABC):
             except Exception as e:
                 logger.warning(f"Failed to initialize Langfuse: {e}; continuing without tracing")
                 self.langfuse = None
+
+    def _emit(self, event_type: str, **data) -> None:
+        """Emit an execution event to the callback if set."""
+        if self.event_callback:
+            try:
+                self.event_callback({"type": event_type, "timestamp": time.time(), **data})
+            except Exception as e:
+                logger.warning(f"Event callback failed: {e}")
 
     @abstractmethod
     def get_system_prompt(self) -> str:

@@ -75,10 +75,14 @@ app.add_middleware(
 from api.routes import agents as agents_router  # noqa: E402
 from api.routes import campaigns as campaigns_router  # noqa: E402
 from api.routes import evals as evals_router  # noqa: E402
+from api.websocket import websocket_endpoint  # noqa: E402
 
 app.include_router(agents_router.router)
 app.include_router(campaigns_router.router)
 app.include_router(evals_router.router)
+
+# WebSocket endpoint for real-time agent event streaming
+app.websocket_route("/ws/agent-events/{run_id}")(websocket_endpoint)
 
 
 @app.get("/", tags=["meta"])
