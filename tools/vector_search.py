@@ -1,4 +1,5 @@
 """ChromaDB vector search tool for CampaignPilot knowledge base."""
+from __future__ import annotations
 
 import os
 import logging

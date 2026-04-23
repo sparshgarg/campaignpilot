@@ -14,6 +14,8 @@ The agent:
   7. Returns a structured ExperimentResult with all diagnostics
 """
 
+from __future__ import annotations
+
 import json
 import logging
 import math

@@ -1,4 +1,5 @@
 """PostgreSQL database query tools for CampaignPilot."""
+from __future__ import annotations
 
 import os
 import logging

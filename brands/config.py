@@ -4,6 +4,8 @@ Brand configuration loader for CampaignPilot.
 Set ACTIVE_BRAND=meta (or amex, etc.) in your .env file.
 Each brand lives in brands/{brand_name}/ with a config.json + knowledge base files.
 """
+from __future__ import annotations
+
 import json
 import os
 from dataclasses import dataclass, field
