@@ -1,6 +1,6 @@
 import React from 'react';
 // Cta.jsx + Footer.jsx
-const Cta = () => {
+const Cta = ({ onLaunchClick }) => {
   return (
     <section className="section page">
       <div className="cta-card">
@@ -17,7 +17,7 @@ const Cta = () => {
             plan, create, measure, and optimize — with every tool call traced.
           </p>
           <div className="cta-actions">
-            <button className="btn btn-primary btn-lg">Launch console →</button>
+            <button className="btn btn-primary btn-lg" onClick={onLaunchClick}>Launch console →</button>
             <button className="btn btn-outline btn-lg" style={{ background: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.18)', color: 'white' }}>
               Read the docs
             </button>

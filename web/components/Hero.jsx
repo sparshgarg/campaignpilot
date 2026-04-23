@@ -1,6 +1,6 @@
 import React from 'react';
 // Hero.jsx — hero with floating mini-UI cards
-const Hero = () => {
+const Hero = ({ onLaunchClick }) => {
   return (
     <section className="hero page">
       <div className="hero-bg">
@@ -20,7 +20,7 @@ const Hero = () => {
             traceable.
           </p>
           <div className="hero-ctas">
-            <button className="btn btn-primary btn-lg">
+            <button className="btn btn-primary btn-lg" onClick={onLaunchClick}>
               Start a campaign brief
               <span style={{ fontSize: 16 }}>→</span>
             </button>

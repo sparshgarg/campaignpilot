@@ -73,7 +73,7 @@ const AGENTS = [
   },
 ];
 
-const AgentShowcase = () => {
+const AgentShowcase = ({ onLaunch }) => {
   const [active, setActive] = React.useState('strategist');
   const agent = AGENTS.find((a) => a.id === active);
 
@@ -122,7 +122,7 @@ const AgentShowcase = () => {
               ))}
             </div>
             <div style={{ marginTop: 28, display: 'flex', gap: 10 }}>
-              <button className="btn btn-dark">Launch {agent.name.toLowerCase()} →</button>
+              <button className="btn btn-dark" onClick={onLaunch}>Launch {agent.name.toLowerCase()} →</button>
               <button className="btn btn-outline">View eval rubric</button>
             </div>
           </div>

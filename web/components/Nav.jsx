@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Nav = () => {
+const Nav = ({ onLaunchClick }) => {
   return (
     <div className="nav-wrap">
       <nav className="nav">
@@ -19,7 +19,7 @@ const Nav = () => {
         </div>
         <div className="nav-cta">
           <button className="btn btn-ghost">Sign in</button>
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={onLaunchClick}>
             Launch console
             <span style={{ fontSize: 16 }}>→</span>
           </button>
