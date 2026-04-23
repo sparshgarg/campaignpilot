@@ -62,11 +62,14 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS — permissive for local dev; tighten for production
+# CORS — set ALLOWED_ORIGINS env var (comma-separated) to restrict in production
+_raw_origins = os.environ.get("ALLOWED_ORIGINS", "")
+_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()] or ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=_origins,
+    allow_credentials=False if "*" in _origins else True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
