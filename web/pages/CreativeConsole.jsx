@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { API_BASE, WS_BASE } from '../lib/api.js';
+import React, { useState } from 'react';
+import { API_BASE } from '../lib/api.js';
 
 const CHANNELS = ['facebook', 'instagram', 'reels', 'linkedin', 'email', 'search', 'display', 'tiktok'];
 const TONES = ['professional', 'friendly', 'urgent', 'educational', 'humorous', 'inspirational'];
@@ -76,12 +76,7 @@ const CreativeConsole = ({ onBack }) => {
   const [formData, setFormData] = useState({ channel: 'linkedin', product: '', persona: '', tone: 'professional', key_message: '', num_variants: 3 });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [events, setEvents] = useState([]);
-  const eventsEndRef = useRef(null);
-  const wsRef = useRef(null);
-
-  useEffect(() => { eventsEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [events]);
-  useEffect(() => () => wsRef.current?.close(), []);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,21 +85,13 @@ const CreativeConsole = ({ onBack }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); setEvents([]); setResult(null);
-    wsRef.current?.close();
-
+    setLoading(true); setResult(null); setError(null);
     try {
       const res = await fetch(`${API_BASE}/agents/creative/run`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
       if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err.detail || res.statusText); }
-      const data = await res.json();
-      setResult(data);
-
-      const ws = new WebSocket(`${WS_BASE}/ws/agent-events/${data.run_id}`);
-      wsRef.current = ws;
-      ws.onmessage = (ev) => { try { const d = JSON.parse(ev.data); if (d.type !== 'ping') setEvents(p => [...p, d]); } catch {} };
-      ws.onerror = () => setEvents(p => [...p, { type: 'error', message: 'WebSocket failed' }]);
+      setResult(await res.json());
     } catch (err) {
-      setEvents([{ type: 'error', message: err.message }]);
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -169,15 +156,16 @@ const CreativeConsole = ({ onBack }) => {
           {/* Execution timeline */}
           <div style={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: loading ? '#EC4899' : events.length ? '#10B981' : '#D1D5DB' }} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Execution Timeline</span>
-              {events.length > 0 && <span style={{ fontSize: 11, color: '#9CA3AF', marginLeft: 'auto' }}>{events.length} events</span>}
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: loading ? '#EC4899' : result ? '#10B981' : '#D1D5DB' }} />
+              <span style={{ fontSize: 12, fontWeight: 700, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Execution Status</span>
             </div>
-            {events.length === 0 && !loading
-              ? <p style={{ fontSize: 13, color: '#D1D5DB', margin: 0 }}>Submit the form to see live agent execution events here.</p>
-              : <div style={{ maxHeight: 220, overflowY: 'auto' }}>{events.map((ev, i) => <EventRow key={i} event={ev} />)}</div>
+            {loading
+              ? <p style={{ fontSize: 13, color: '#EC4899', margin: 0 }}>Agent running — generating creatives…</p>
+              : result
+                ? <p style={{ fontSize: 13, color: '#10B981', margin: 0 }}>Completed in {(result.latency_ms / 1000).toFixed(1)}s · {result.total_input_tokens + result.total_output_tokens} tokens</p>
+                : <p style={{ fontSize: 13, color: '#D1D5DB', margin: 0 }}>Submit the form to generate creative variants.</p>
             }
-            <div ref={eventsEndRef} />
+            {error && <p style={{ fontSize: 13, color: '#DC2626', margin: '8px 0 0' }}>{error}</p>}
           </div>
 
           {/* Metrics bar */}

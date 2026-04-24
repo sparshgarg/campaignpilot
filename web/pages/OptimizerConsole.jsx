@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { API_BASE, WS_BASE } from '../lib/api.js';
+import React, { useState } from 'react';
+import { API_BASE } from '../lib/api.js';
 
 const EVENT_COLORS = { reasoning: '#8B5CF6', tool_call: '#6366F1', tool_result: '#06B6D4', completed: '#10B981', error: '#EF4444' };
 
@@ -84,12 +84,7 @@ const OptimizerConsole = ({ onBack }) => {
   const [formData, setFormData] = useState({ campaign_id: 1, campaign_name: '', remaining_budget_usd: 5000, days_remaining: 14 });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [events, setEvents] = useState([]);
-  const eventsEndRef = useRef(null);
-  const wsRef = useRef(null);
-
-  useEffect(() => { eventsEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [events]);
-  useEffect(() => () => wsRef.current?.close(), []);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -99,19 +94,13 @@ const OptimizerConsole = ({ onBack }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); setEvents([]); setResult(null);
-    wsRef.current?.close();
+    setLoading(true); setResult(null); setError(null);
     try {
       const res = await fetch(`${API_BASE}/agents/optimizer/run`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
       if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err.detail || res.statusText); }
-      const data = await res.json();
-      setResult(data);
-      const ws = new WebSocket(`${WS_BASE}/ws/agent-events/${data.run_id}`);
-      wsRef.current = ws;
-      ws.onmessage = (ev) => { try { const d = JSON.parse(ev.data); if (d.type !== 'ping') setEvents(p => [...p, d]); } catch {} };
-      ws.onerror = () => setEvents(p => [...p, { type: 'error', message: 'WebSocket failed' }]);
+      setResult(await res.json());
     } catch (err) {
-      setEvents([{ type: 'error', message: err.message }]);
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -166,14 +155,15 @@ const OptimizerConsole = ({ onBack }) => {
           {/* Timeline */}
           <div style={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: loading ? '#F59E0B' : events.length ? '#10B981' : '#D1D5DB' }} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Execution Timeline</span>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: loading ? '#F59E0B' : result ? '#10B981' : '#D1D5DB' }} />
+              <span style={{ fontSize: 12, fontWeight: 700, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Execution Status</span>
             </div>
-            {events.length === 0 && !loading
-              ? <p style={{ fontSize: 13, color: '#D1D5DB', margin: 0 }}>Submit to see live optimization events.</p>
-              : <div style={{ maxHeight: 180, overflowY: 'auto' }}>{events.map((ev, i) => <EventRow key={i} event={ev} />)}</div>
+            {loading
+              ? <p style={{ fontSize: 13, color: '#F59E0B', margin: 0 }}>Agent running — optimizing campaign…</p>
+              : result
+                ? <p style={{ fontSize: 13, color: '#10B981', margin: 0 }}>Completed in {(result.latency_ms / 1000).toFixed(1)}s · {result.total_input_tokens + result.total_output_tokens} tokens</p>
+                : <p style={{ fontSize: 13, color: '#D1D5DB', margin: 0 }}>Submit to optimize your campaign budget.</p>
             }
-            <div ref={eventsEndRef} />
           </div>
 
           {/* Metrics */}
@@ -229,10 +219,10 @@ const OptimizerConsole = ({ onBack }) => {
             </div>
           )}
 
-          {events.some(e => e.type === 'error') && (
+          {error && (
             <div style={{ background: '#FEF2F2', border: '1px solid #FECACA', borderRadius: 12, padding: '16px 20px' }}>
               <div style={{ fontWeight: 700, color: '#DC2626', fontSize: 14, marginBottom: 4 }}>Error</div>
-              <p style={{ fontSize: 13, color: '#7F1D1D', margin: 0 }}>{events.find(e => e.type === 'error')?.message}</p>
+              <p style={{ fontSize: 13, color: '#7F1D1D', margin: 0 }}>{error}</p>
             </div>
           )}
         </div>
