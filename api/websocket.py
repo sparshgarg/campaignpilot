@@ -1,5 +1,6 @@
 """WebSocket handler for real-time agent event streaming."""
 
+import asyncio
 import json
 import logging
 from fastapi import WebSocket, WebSocketDisconnect
@@ -69,10 +70,13 @@ async def websocket_endpoint(websocket: WebSocket, run_id: str):
     """
     await agent_event_manager.connect(websocket, run_id)
     try:
-        # Keep connection open; events are pushed from agent execution
+        # Keep connection alive with periodic pings (Railway proxy closes idle sockets)
         while True:
-            # Wait for client messages (optional, for heartbeat/control)
-            await websocket.receive_text()
+            try:
+                await asyncio.wait_for(websocket.receive_text(), timeout=30)
+            except asyncio.TimeoutError:
+                # Send ping to keep the connection alive
+                await websocket.send_text(json.dumps({"type": "ping"}))
     except WebSocketDisconnect:
         agent_event_manager.disconnect(run_id, websocket)
     except Exception as e:

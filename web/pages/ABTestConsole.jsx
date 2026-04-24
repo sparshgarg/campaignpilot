@@ -79,7 +79,7 @@ const ABTestConsole = ({ onBack }) => {
       setResult(data);
       const ws = new WebSocket(`${WS_BASE}/ws/agent-events/${data.run_id}`);
       wsRef.current = ws;
-      ws.onmessage = (ev) => { try { setEvents(p => [...p, JSON.parse(ev.data)]); } catch {} };
+      ws.onmessage = (ev) => { try { const d = JSON.parse(ev.data); if (d.type !== 'ping') setEvents(p => [...p, d]); } catch {} };
       ws.onerror = () => setEvents(p => [...p, { type: 'error', message: 'WebSocket failed' }]);
     } catch (err) {
       setEvents([{ type: 'error', message: err.message }]);
