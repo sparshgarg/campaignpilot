@@ -34,14 +34,17 @@ const ChannelBar = ({ channel, amount, total }) => {
   );
 };
 
+const kpiLabel = (k) => typeof k === 'string' ? k : k.metric || k.label || k.name || JSON.stringify(k);
+const riskLabel = (r) => typeof r === 'string' ? r : r.risk || r.description || r.mitigation || JSON.stringify(r);
+
 const KPIChip = ({ kpi }) => (
-  <span style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.2)', color: '#6366F1', borderRadius: 20, padding: '4px 12px', fontSize: 12, fontWeight: 600 }}>{kpi}</span>
+  <span style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.2)', color: '#6366F1', borderRadius: 20, padding: '4px 12px', fontSize: 12, fontWeight: 600 }}>{kpiLabel(kpi)}</span>
 );
 
 const RiskChip = ({ risk }) => (
   <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: '#FFF7ED', border: '1px solid #FDE68A', borderRadius: 8 }}>
     <span style={{ color: '#F59E0B', fontSize: 14 }}>⚠</span>
-    <span style={{ fontSize: 13, color: '#92400E' }}>{risk}</span>
+    <span style={{ fontSize: 13, color: '#92400E' }}>{riskLabel(risk)}</span>
   </div>
 );
 
@@ -185,7 +188,7 @@ const StrategistConsole = ({ onBack }) => {
                 <div style={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: 16, padding: '20px 24px' }}>
                   <h3 style={{ fontSize: 14, fontWeight: 700, color: '#0A0A0A', margin: '0 0 14px 0' }}>Primary KPIs</h3>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                    {kpis.map(k => <KPIChip key={k} kpi={k} />)}
+                    {kpis.map((k, i) => <KPIChip key={i} kpi={k} />)}
                   </div>
                 </div>
               )}
