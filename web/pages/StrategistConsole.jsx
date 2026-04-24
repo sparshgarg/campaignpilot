@@ -65,15 +65,23 @@ const StrategistConsole = ({ onBack }) => {
     e.preventDefault();
     setLoading(true); setEvents([]); setResult(null);
     wsRef.current?.close();
+
+    // Open WebSocket before HTTP call so we can catch early events
+    // WS is best-effort — results arrive via HTTP regardless
+    const runId = crypto.randomUUID();
     try {
-      const res = await fetch(`${API_BASE}/agents/strategist/run`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+      const ws = new WebSocket(`${WS_BASE}/ws/agent-events/${runId}`);
+      wsRef.current = ws;
+      ws.onmessage = (ev) => { try { const d = JSON.parse(ev.data); if (d.type !== 'ping') setEvents(p => [...p, d]); } catch {} };
+      // Suppress WS errors — results still come via HTTP
+      ws.onerror = () => {};
+    } catch (_) {}
+
+    try {
+      const res = await fetch(`${API_BASE}/agents/strategist/run`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...formData, run_id: runId }) });
       if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err.detail || res.statusText); }
       const data = await res.json();
       setResult(data);
-      const ws = new WebSocket(`${WS_BASE}/ws/agent-events/${data.run_id}`);
-      wsRef.current = ws;
-      ws.onmessage = (ev) => { try { const d = JSON.parse(ev.data); if (d.type !== 'ping') setEvents(p => [...p, d]); } catch {} };
-      ws.onerror = () => setEvents(p => [...p, { type: 'error', message: 'WebSocket failed' }]);
     } catch (err) {
       setEvents([{ type: 'error', message: err.message }]);
     } finally {

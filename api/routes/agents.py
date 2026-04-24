@@ -27,6 +27,7 @@ class StrategistRunRequest(BaseModel):
     budget_usd: float = Field(..., gt=0, description="Total campaign budget in USD")
     timeline_days: int = Field(..., gt=0, le=365, description="Campaign duration in days")
     target_segment: str = Field(..., description="Target audience description")
+    run_id: Optional[str] = Field(None, description="Client-supplied run ID for WebSocket event correlation")
 
 
 class AgentRunResponse(BaseModel):
@@ -197,8 +198,8 @@ async def run_strategist(request: StrategistRunRequest) -> AgentRunResponse:
         from models.run import AgentRun
         import asyncio
 
-        # Generate run_id before agent creation so it's available for event streaming
-        run_id = str(uuid.uuid4())
+        # Use client-supplied run_id (for WS correlation) or generate one
+        run_id = request.run_id or str(uuid.uuid4())
 
         # Event callback that broadcasts to WebSocket clients
         def event_callback(event: dict):
