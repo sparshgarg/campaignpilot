@@ -26,15 +26,12 @@ class DBQueryTool:
 
         Args:
             database_url: PostgreSQL connection string. Defaults to DATABASE_URL env var.
-
-        Raises:
-            ValueError: If no database URL is provided or available.
+                          If neither is provided, the tool operates in no-op mode and
+                          all queries return empty results without raising.
         """
         self.database_url = database_url or os.getenv("DATABASE_URL")
         if not self.database_url:
-            raise ValueError(
-                "database_url must be provided or DATABASE_URL environment variable set"
-            )
+            logger.warning("DATABASE_URL not set — DBQueryTool running in no-op mode")
 
     @contextmanager
     def _get_connection(self):
@@ -66,18 +63,9 @@ class DBQueryTool:
         sql: str,
         params: tuple[Any, ...] | None = None
     ) -> list[dict[str, Any]]:
-        """Execute a safe SELECT query.
-
-        Args:
-            sql: SQL query with %s placeholders for parameters.
-            params: Tuple of parameters to safely substitute.
-
-        Returns:
-            List of result rows as dictionaries.
-
-        Raises:
-            psycopg2.Error: On query execution failure.
-        """
+        """Execute a safe SELECT query. Returns [] if no database is configured."""
+        if not self.database_url:
+            return []
         try:
             with self._get_connection() as conn:
                 with conn.cursor() as cur:
@@ -96,18 +84,9 @@ class DBQueryTool:
         sql: str,
         params: tuple[Any, ...] | None = None
     ) -> int:
-        """Execute an INSERT, UPDATE, or DELETE query.
-
-        Args:
-            sql: SQL query with %s placeholders for parameters.
-            params: Tuple of parameters to safely substitute.
-
-        Returns:
-            Number of rows affected.
-
-        Raises:
-            psycopg2.Error: On query execution failure.
-        """
+        """Execute an INSERT, UPDATE, or DELETE query. Returns 0 if no database is configured."""
+        if not self.database_url:
+            return 0
         try:
             with self._get_connection() as conn:
                 with conn.cursor() as cur:
